@@ -4,7 +4,7 @@
   <groupId>com.smgui</groupId>
   <artifactId>tomcat-embed</artifactId>
   <packaging>jar</packaging>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>1.0.0</version>
   <name>tomcat-embed Maven Webapp</name>
   <url>http://maven.apache.org</url>
   

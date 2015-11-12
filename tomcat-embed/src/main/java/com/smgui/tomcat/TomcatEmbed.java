@@ -27,7 +27,6 @@ public class TomcatEmbed {
 	}
 	
 	public void start() throws Exception {
-		System.out.println(System.getProperty("user.dir")+File.separator+this.appBase);
 		this.tomcat = new Tomcat();
 		this.tomcat.setSilent(false);
 		this.tomcat.setPort(this.port);
