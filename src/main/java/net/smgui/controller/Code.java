@@ -1,4 +1,4 @@
-package smgui.controller;
+package net.smgui.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class Code {
 	@RequestMapping("/code")
 	public String gotoCode() {
-		System.out.println("sss");
 		return "code";
 	}
 }

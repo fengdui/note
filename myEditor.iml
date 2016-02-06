@@ -58,5 +58,7 @@
     <orderEntry type="library" name="Maven: xalan:xalan:2.5.1" level="project" />
     <orderEntry type="library" name="Maven: velocity:velocity:1.4" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: velocity:velocity-dep:1.4" level="project" />
+    <orderEntry type="library" name="jquery.fullPage" level="application" />
+    <orderEntry type="library" name="jquery-ui-i18n" level="application" />
   </component>
 </module>
