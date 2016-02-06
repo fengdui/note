@@ -37,12 +37,38 @@
 		</div>
 	</div>
 </nav>
-<div class="container">
-	<div class="starter-template">
-		<textarea  rows="20" cols="100" id="editorBox" style="width: 100%;" ></textarea>
-		<textarea  rows="20" cols="100" id="result" style="width: 100%;" ></textarea>
-	</div>
-</div>
+<!--<div class="container">-->
+	<!--<div class="starter-template">-->
+		<!--<textarea  rows="20" cols="100" id="editorBox" style="width: 100%;" ></textarea>-->
+		<!--<textarea  rows="20" cols="100" id="result" style="width: 100%;" ></textarea>-->
+	<!--</div>-->
+<!--</div>-->
+<div id="fullpage">
+	<div class="section">第一屏</div>
+	<div class="section">
+		<div class="slide">
+			<div>
 
+			</div>
+		</div>
+		<div class="slide">第三屏的第二屏</div>
+		<div class="slide">第三屏的第三屏</div>
+		<div class="slide">第三屏的第四屏</div>
+	</div>
+	<div class="section"></div>
+	<div class="section">第四屏</div>
+</div>
+<script>
+	$(function(){
+		$('#fullpage').fullpage({
+			sectionsColor: ['#1bbc9b', '#4BBFC3', '#7BAABE', '#f90'],//背景颜色
+			anchors: ['page1', 'page2', 'page3', 'page4'],
+//			navigation: true,//显示导航 默认右侧
+//			navigationTooltips: ['fullPage.js', 'Powerful', 'Amazing', 'Simple'],
+			loopBottom: true,//滑道底部回到顶部
+			scrollOverflow: true, //一屏超出范围显示滚动条
+		})
+	})
+</script>
 </body>
 </html>
