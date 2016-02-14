@@ -4,14 +4,14 @@
 	<title>在线编程</title>
 	<meta charset="UTF-8">
 
-	<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<link href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
 	<link href="//cdn.bootcss.com/fullPage.js/2.7.7/jquery.fullPage.min.css" rel="stylesheet">
 
 	<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
-	<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<script src="//cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 	<script src="//cdn.bootcss.com/jqueryui/1.11.4/i18n/jquery-ui-i18n.min.js"></script>
-	<!--<script src="//cdn.bootcss.com/fullPage.js/2.7.7/jquery.fullPage.min.js"></script>-->
-	<script src="//cdn.bootcss.com/fullPage.js/2.7.7/jquery.fullPage.js"></script>
+	<script src="//cdn.bootcss.com/fullPage.js/2.7.7/jquery.fullPage.min.js"></script>
+	<script src="//cdn.bootcss.com/angular.js/1.4.9/angular.min.js"></script>
 
 	<style type="text/css">
 		/*.section { text-align: center; font: 50px "Microsoft Yahei"; color: #fff;}*/
@@ -47,15 +47,82 @@
 	<div class="section">第一屏</div>
 	<div class="section">
 		<div class="slide">
-			<div>
+			<div class="container" style="width: 85%; height: 85%">
+				<div class="panel panel-info" style="width: 100%; height: 100%">
+					<div class="panel-heading" style="height: 10%">
+						<h3 class="panel-title">面板标题</h3>
+					</div>
+					<div class="panel-body" style="height: 90%">
+						<div class="row" style="height: 100%">
 
+							<div class="col-xs-4" style="height: 100%">
+							<div class="panel panel-info" style="height: 100%">
+								<div class="panel-body">
+									这是一个基本的面板
+								</div>
+							</div>
+							</div>
+
+							<div class="col-xs-4" style="height: 100%">
+								<div class="panel panel-info" style="height: 50%">
+									<div class="panel-body">
+										这是一个基本的面板
+									</div>
+								</div>
+								<div class="panel panel-info" style="height: 45%">
+									<div class="panel-body">
+										这是一个基本的面板
+									</div>
+								</div>
+							</div>
+
+							<div class="col-xs-4">
+							<div class="panel panel-info">
+								<div class="panel-body">
+									这是一个基本的面板
+								</div>
+							</div>
+							<div class="panel panel-info">
+								<div class="panel-body">
+									这是一个基本的面板
+								</div>
+							</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
-		<div class="slide">第三屏的第二屏</div>
-		<div class="slide">第三屏的第三屏</div>
+		<div class="slide">
+			<div class="container" style="width: 85%; height: 85%">
+				<div class="panel panel-info" style="width: 100%; height: 100%">
+					<div class="panel-heading" style="height: 10%">
+						<h3 class="panel-title">面板标题</h3>
+					</div>
+					<div class="panel-body" style="height: 90%">
+						<div class="row" style="height: 100%">
+
+							<div class="col-xs-6" style="height: 100%">
+								<textarea style="height: 100%; width: 100%"></textarea>
+							</div>
+
+							<div class="col-xs-6" style="height: 100%" ng-app="resultApp" ng-controller="myResult">
+								<textarea style="height: 100%; width: 100%" ng-model="result"></textarea>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="slide">
+		</div>
 		<div class="slide">第三屏的第四屏</div>
 	</div>
-	<div class="section"></div>
+	<div class="section">
+
+	</div>
 	<div class="section">第四屏</div>
 </div>
 <script>
@@ -67,8 +134,16 @@
 //			navigationTooltips: ['fullPage.js', 'Powerful', 'Amazing', 'Simple'],
 			loopBottom: true,//滑道底部回到顶部
 			scrollOverflow: true, //一屏超出范围显示滚动条
-		})
-	})
+		});
+	});
+	var app = angular.module('resultApp', []);
+	app.controller('myResult', function($scope, $http) {
+		alert("myResult");
+		$http.post("/compile_java").success(function(){
+					alert("cccc");
+			$scope.result = "Doe";
+		});
+	});
 </script>
 </body>
 </html>

@@ -38,4 +38,10 @@
             <value>4048576</value>
         </property>
     </bean>
+
+    <!--<bean id="jspViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">-->
+        <!--<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />-->
+        <!--<property name="prefix" value="/WEB-INF/page/"/>-->
+        <!--<property name="suffix" value=".html"/>-->
+    <!--</bean>-->
 </beans>
