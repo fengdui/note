@@ -10,27 +10,27 @@
        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd">
 
     <mvc:annotation-driven/>
-    
+    <mvc:default-servlet-handler/>
     <context:component-scan base-package="net.smgui.controller"/>
 
     <!-- 配置velocity引擎 -->
-    <bean id="velocityConfigurer" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
-        <property name="resourceLoaderPath" value="/WEB-INF/page/" /><!-- 模板存放的路径 -->
-        <property name="configLocation" value="classpath:velocity.properties" />
-    </bean>
+    <!--<bean id="velocityConfigurer" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">-->
+        <!--<property name="resourceLoaderPath" value="/WEB-INF/page/" />&lt;!&ndash; 模板存放的路径 &ndash;&gt;-->
+        <!--<property name="configLocation" value="classpath:velocity.properties" />-->
+    <!--</bean>-->
 
     <!-- 配置视图的显示 -->
-    <bean id="ViewResolver" class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
-        <!--<property name="prefix" value="/WEB-INF/page/" />&lt;!&ndash; 视图文件的前缀，即存放的路径 &ndash;&gt;-->
-        <property name="suffix" value=".html" /><!-- 视图文件的后缀名 -->
-        <!--<property name="toolboxConfigLocation" value="/WEB-INF/tools.xml" />&lt;!&ndash;toolbox配置文件路径&ndash;&gt;-->
-        <!--<property name="dateToolAttribute" value="date" />&lt;!&ndash;日期函数名称&ndash;&gt;-->
-        <!--<property name="numberToolAttribute" value="number" />&lt;!&ndash;数字函数名称&ndash;&gt;-->
-        <property name="contentType" value="text/html;charset=UTF-8" />
-        <!--<property name="exposeSpringMacroHelpers" value="true" />&lt;!&ndash;是否使用spring对宏定义的支持&ndash;&gt;-->
-        <!--<property name="exposeRequestAttributes" value="true" />&lt;!&ndash;是否开放request属性&ndash;&gt;-->
-        <!--<property name="requestContextAttribute" value="rc"/>&lt;!&ndash;request属性引用名称&ndash;&gt;-->
-    </bean>
+    <!--<bean id="ViewResolver" class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">-->
+        <!--&lt;!&ndash;<property name="prefix" value="/WEB-INF/page/" />&lt;!&ndash; 视图文件的前缀，即存放的路径 &ndash;&gt;&ndash;&gt;-->
+        <!--<property name="suffix" value=".html" />&lt;!&ndash; 视图文件的后缀名 &ndash;&gt;-->
+        <!--&lt;!&ndash;<property name="toolboxConfigLocation" value="/WEB-INF/tools.xml" />&lt;!&ndash;toolbox配置文件路径&ndash;&gt;&ndash;&gt;-->
+        <!--&lt;!&ndash;<property name="dateToolAttribute" value="date" />&lt;!&ndash;日期函数名称&ndash;&gt;&ndash;&gt;-->
+        <!--&lt;!&ndash;<property name="numberToolAttribute" value="number" />&lt;!&ndash;数字函数名称&ndash;&gt;&ndash;&gt;-->
+        <!--<property name="contentType" value="text/html;charset=UTF-8" />-->
+        <!--&lt;!&ndash;<property name="exposeSpringMacroHelpers" value="true" />&lt;!&ndash;是否使用spring对宏定义的支持&ndash;&gt;&ndash;&gt;-->
+        <!--&lt;!&ndash;<property name="exposeRequestAttributes" value="true" />&lt;!&ndash;是否开放request属性&ndash;&gt;&ndash;&gt;-->
+        <!--&lt;!&ndash;<property name="requestContextAttribute" value="rc"/>&lt;!&ndash;request属性引用名称&ndash;&gt;&ndash;&gt;-->
+    <!--</bean>-->
 
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
         <!-- 设置上传文件的最大尺寸为4MB -->
@@ -39,9 +39,10 @@
         </property>
     </bean>
 
-    <!--<bean id="jspViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">-->
-        <!--<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />-->
-        <!--<property name="prefix" value="/WEB-INF/page/"/>-->
-        <!--<property name="suffix" value=".html"/>-->
-    <!--</bean>-->
+    <bean id="jspViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
+        <property name="prefix" value="/WEB-INF/page/"/>
+        <property name="suffix" value=".html"/>
+
+    </bean>
 </beans>
