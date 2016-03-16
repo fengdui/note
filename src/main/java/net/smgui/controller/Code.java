@@ -1,5 +1,6 @@
 package net.smgui.controller;
 
+import net.smgui.common.Cue;
 import net.smgui.common.PageRespData;
 import net.smgui.service.CompileService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,20 +18,6 @@ public class Code {
 	@Autowired
 	private CompileService compileService;
 
-	@RequestMapping(value = "code")
-	public String gotoCode() {
-		System.out.println(this.getClass().getClassLoader());
-		return "code";
-	}
-
-	@RequestMapping(value = "/compile_java", method = RequestMethod.POST)
-	public Object CompileJava(HttpServletRequest request) {
-		String path = request.getSession().getServletContext().getRealPath("/file/java");
-//		String msg = Runtime.getRuntime().exec();
-//		return new Result(msg);
-		return new PageRespData(true, path);
-	}
-
 	@RequestMapping(value = "/fileUpload", method = RequestMethod.POST)
 	@ResponseBody
 	public Object fileUpload(MultipartFile file) {
@@ -40,10 +27,19 @@ public class Code {
 		}
 		try {
 			String filePath = compileService.importFile(file);
-			return new PageRespData(true, Cue.SAVE_SUCCESS, filePath);
+			return new PageRespData(true, Cue.SUCCESS, filePath);
 		} catch (Exception e) {
-			getLogger().error("fileUpload error : " + e);
 			return new PageRespData(false, "上传出错 : " + e.getMessage());
 		}
+	}
+
+	@RequestMapping(value = "/compileJava", method = RequestMethod.POST)
+	@ResponseBody
+	public Object CompileJava(HttpServletRequest request) {
+		String path = request.getSession().getServletContext().getRealPath("/file/java");
+//		String msg = Runtime.getRuntime().exec();
+//		return new Result(msg);
+		System.out.println("aaa");
+		return new PageRespData(true, Cue.SUCCESS, path);
 	}
 }

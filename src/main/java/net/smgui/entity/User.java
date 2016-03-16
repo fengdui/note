@@ -1,7 +1,5 @@
 package net.smgui.entity;
 
-import java.util.Set;
-
 /**
  * User
  *
@@ -13,16 +11,6 @@ public class User {
     private int id;
     private String username;
     private String password;
-    private String qq;
-    private String school;
-    private String email;
-    private String blog;
-    private String nickname;
-    private int share;
-    private int sup;
-
-//    private Set<Submission> submissions;
-//    private Set<Submission> contests;
 
     public User(int id){
         this.id = id;
@@ -35,45 +23,8 @@ public class User {
 
     public User(){}
 
-
     public int getId() {
         return id;
-    }
-    public int getSup() {
-        return sup;
-    }
-    public void setSup(int sup) {
-        this.sup = sup;
-    }
-    public int getShare() {
-        return share;
-    }
-    public void setShare(int share) {
-        this.share = share;
-    }
-    public String getQq() {
-        return qq;
-    }
-    public void setQq(String qq) {
-        this.qq = qq;
-    }
-    public String getSchool() {
-        return school;
-    }
-    public void setSchool(String school) {
-        this.school = school;
-    }
-    public String getEmail() {
-        return email;
-    }
-    public void setEmail(String email) {
-        this.email = email;
-    }
-    public String getBlog() {
-        return blog;
-    }
-    public void setBlog(String blog) {
-        this.blog = blog;
     }
     public void setId(int id) {
         this.id = id;
@@ -90,24 +41,5 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-    public String getNickname() {
-        return nickname;
-    }
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
-    }
-//    public Set<Submission> getSubmissions() {
-//        return submissions;
-//    }
-//    public void setSubmissions(Set<Submission> submissions) {
-//        this.submissions = submissions;
-//    }
-//    public Set<Submission> getContests() {
-//        return contests;
-//    }
-//    public void setContests(Set<Submission> contests) {
-//        this.contests = contests;
-//    }
-
 
 }
