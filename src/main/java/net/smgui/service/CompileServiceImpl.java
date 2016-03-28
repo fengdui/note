@@ -89,4 +89,8 @@ public class CompileServiceImpl implements CompileService{
     public String compileJava(File javaSrc) {
         return "";
     }
+
+    public static void main(String[] args) {
+
+    }
 }
