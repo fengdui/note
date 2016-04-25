@@ -2,22 +2,17 @@ package net.smgui.service;
 
 import net.smgui.common.Constant;
 import net.smgui.util.FileUtil;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.ContextLoader;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.*;
+import java.io.*;
+import java.nio.Buffer;
+import java.nio.charset.Charset;
+import java.util.UUID;
 
-/**
- * CompileServiceImpl
- *
- * @author FD
- * @date 2016/3/10 0010
- */
+
 @Service
 public class CompileServiceImpl implements CompileService{
 
@@ -35,34 +30,56 @@ public class CompileServiceImpl implements CompileService{
         return filePath.toString();
     }
 
+    public String savaJava(String javaSrc, String path) {
+        FileOutputStream outputStream = null;
+        try {
+            path = path+File.separator+"Main.java";
+            byte[] bytes = javaSrc.getBytes("utf-8");
+            outputStream = new FileOutputStream(path);
+            outputStream.write(bytes);
+
+            FileInputStream input = new FileInputStream(path);
+            BufferedReader bf = new BufferedReader(new InputStreamReader(input, "utf-8"));
+            String ss;
+            while ((ss = bf.readLine()) != null) {
+                System.out.println(ss);
+            }
+            return path;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                outputStream.flush();
+                outputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
+
     public String compile(String command) throws Exception{
+        System.out.println("开始编译"+command);
         Process process = null;
         try {
             process = Runtime.getRuntime().exec(command);
         } catch (Exception e) {
-            try {
-                command = ContextLoader.getCurrentWebApplicationContext().getServletContext().getRealPath(Constant.PATH_COMMOND) + File.separator + command;
-                process = Runtime.getRuntime().exec(command);
-            } catch (Exception e1) {
-                process = null;
-                throw e1;
-            }
+           return "系统正在维护中";
         }
-
         InputStream is = null;
         BufferedReader br = null;
         try {
-            process.waitFor();
-            is = process.getInputStream();
-            if (is.available() <= 0) {
-                throw new Exception("编译错误");
-            }
+            is = process.getErrorStream();
             StringBuilder sb = new StringBuilder();
-            br = new BufferedReader(new InputStreamReader(is, "UTF-8"));
+            br = new BufferedReader(new InputStreamReader(is, "gbk"));
             String line = null;
+            System.out.println("F" + Charset.defaultCharset().name());
             while ((line = br.readLine()) != null) {
                 sb.append(line);
+                System.out.println(line);
+                sb.append("\n");
             }
+            process.waitFor();
             return sb.toString();
         } catch (Exception e) {
             throw e;
@@ -86,8 +103,9 @@ public class CompileServiceImpl implements CompileService{
         }
     }
 
-    public String compileJava(File javaSrc) {
-        return "";
+    public String compileJava(String path) throws Exception {
+        String command = "javac -encoding utf-8 "+ path;
+        return compile(command);
     }
 
     public static void main(String[] args) {

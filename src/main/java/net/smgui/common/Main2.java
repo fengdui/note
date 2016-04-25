@@ -1,5 +1,8 @@
 package net.smgui.common;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Scanner;
 
 /**
@@ -20,20 +23,36 @@ public class Main2 {
     }
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        long a, b, n;
-        a = sc.nextLong();
-        b = sc.nextLong();
-        n = sc.nextLong();
-        long ans1 = 0, ans2 = -1;
-        for (long i = a; i <= b; i++) {
-            if (getSum(i) == n) {
-                ans1++;
-                if (ans2 < 0)
-                ans2 = i;
+        float[] f = {-6, -8, 10, -8};
+        int[] ans = Program.Puzzle(f);
+        System.out.println(Arrays.toString(ans));
+    }
+
+    public static class Program {
+        public static int[] Puzzle(float[] a) {
+            int n = a.length;
+            float[] b = new float[n];
+            for(int i = 0; i < n; i++) {
+                b[i] = a[i];
             }
+            int[] c = new int[n];
+            HashMap<Float, Integer> map = new HashMap<Float, Integer>();
+            Arrays.sort(a);
+            int cnt = 0;
+            for(int i = 0; i < n; ) {
+                map.put(a[i], cnt);
+                int j = i+1;
+                while (j < n && a[i] == a[j]) {
+                    j++;
+                    cnt++;
+                }
+                cnt++;
+                i = j;
+            }
+            for (int i = 0; i < n;i++) {
+                c[i] = map.get(b[i]);
+            }
+            return c;
         }
-        System.out.println(ans1);
-        System.out.println(ans2);
     }
 }
