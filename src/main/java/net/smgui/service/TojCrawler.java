@@ -19,8 +19,8 @@ public class TojCrawler extends Crawler {
         info.timeLimit = (Integer.parseInt(RegUtil.regFind(html, "/(\\d*)MS")));
         info.memoryLimit = (Integer.parseInt(RegUtil.regFind(html, "(\\d*)KByte")));
         info.description = (RegUtil.regFind(html, "Times New Roman\">([\\s\\S]*?)</font></p></div>"));
-        info.input = (RegUtil.regFind(html, "Times New Roman\"><P>([\\s\\S]*?)</P></font></p></div>"));
-        info.output = (RegUtil.regFind2(html, "Times New Roman\"><P>([\\s\\S]*?)</P></font></p></div>"));
+        info.input = (RegUtil.regFind2(html, "Times New Roman\">([\\s\\S]*?)</font></p></div>"));
+        info.output = (RegUtil.regFind3(html, "Times New Roman\">([\\s\\S]*?)</font></p></div>"));
         info.sampleInput = (RegUtil.regFind(html, "sample_input\" class=\"sample_input_output\" readonly>([\\s\\S]*?)</textarea></p>"));
         info.sampleOutput = (RegUtil.regFind(html, "sample_output\" class=\"sample_input_output\" readonly>([\\s\\S]*?)</textarea></p>"));
 //        System.out.println(info.title);

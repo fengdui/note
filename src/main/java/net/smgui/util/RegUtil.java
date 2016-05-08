@@ -14,4 +14,10 @@ public class RegUtil {
         m.find();
         return m.find() ? m.group(1) : "";
     }
+    public static String regFind3(String text, String reg) {
+        Matcher m = Pattern.compile(reg).matcher(text);
+        m.find();
+        m.find();
+        return m.find() ? m.group(1) : "";
+    }
 }
