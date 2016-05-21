@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -81,6 +84,20 @@ public class Code {
 			return new Result(false, "编译失败");
 		}
 	}
+	@RequestMapping(value = "/compileJavaScript", method = RequestMethod.POST)
+	@ResponseBody
+	public Object compileJavaScript(HttpServletRequest request, @RequestBody Src code) {
+		ScriptEngineManager manager = new ScriptEngineManager();
+		ScriptEngine engine = manager.getEngineByName("JavaScript");
+		try {
+			Object result = engine.eval(code.getCode());
+			System.out.println(result);
+		} catch (ScriptException e) {
+			e.printStackTrace();
+		}
+		return "";
+	}
+
 	@RequestMapping(value = "/runCode", method = RequestMethod.POST)
 	@ResponseBody
 	public Object runCode(HttpServletRequest request, HttpServletResponse response, @RequestBody Src code) throws UnsupportedEncodingException {
@@ -111,5 +128,11 @@ public class Code {
 			System.setIn(SystemIn);
 			System.setOut(SystemOut);
 		}
+	}
+
+	public static void main(String[] args) {
+		Src code = new Src();
+		code.setCode("n=123");
+		new Code().compileJavaScript(null, code);
 	}
 }
