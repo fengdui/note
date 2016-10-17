@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <!--<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping"></bean>-->
+    <mvc:annotation-driven/>
+    <!--<mvc:default-servlet-handler/>-->
+    <!--<mvc:resources mapping="/resources/**" location="/resources/"/>-->
+    <context:component-scan base-package="com.zheyue"/>
+
+
+    <!--&lt;!&ndash; 鏂囦欢涓婁紶璁剧疆 &ndash;&gt;-->
+    <!--<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">-->
+        <!--&lt;!&ndash; 璁剧疆涓婁紶鏂囦欢鐨勬渶澶у昂瀵镐负4MB &ndash;&gt;-->
+        <!--<property name="maxUploadSize">-->
+            <!--<value>4194800</value>-->
+        <!--</property>-->
+    <!--</bean>-->
+
+    <!--&lt;!&ndash; freemarker &ndash;&gt;-->
+    <!--<bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">-->
+        <!--<property name="templateLoaderPaths">-->
+            <!--<list>-->
+                <!--<value>/WEB-INF/pages</value>-->
+            <!--</list>-->
+        <!--</property>-->
+        <!--<property name="defaultEncoding" value="UTF-8"/>-->
+        <!--<property name="freemarkerSettings">-->
+            <!--<props>-->
+                <!--<prop key="template_update_delay">0</prop>-->
+                <!--<prop key="default_encoding">UTF-8</prop>-->
+                <!--<prop key="number_format">0</prop>-->
+                <!--<prop key="datetime_format">yyyy-MM-dd HH:mm:ss</prop>-->
+            <!--</props>-->
+        <!--</property>-->
+    <!--</bean>-->
+    <!--<bean id="viewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">-->
+        <!--<property name="cache" value="true"/>-->
+        <!--<property name="prefix" value=""/>-->
+        <!--<property name="suffix" value=".ftl"/>-->
+        <!--<property name="contentType" value="text/html; charset=UTF-8"/>-->
+    <!--</bean>-->
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/pages/" />
+        <property name="suffix" value=".jsp" />
+    </bean>
+</beans>

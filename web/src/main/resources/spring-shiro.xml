@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+       <!-- 会话DAO -->
+       <bean id="sessionDAO" class="com.zheyue.authclient.session.ClientSessionDAO"/>
+
+       <!-- Realm实现 -->
+       <bean id="remoteRealm" class="com.zheyue.authclient.realm.ClientRealm"/>
+
+       <!-- 会话管理器 -->
+       <bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
+              <property name="sessionDAO" ref="sessionDAO"/>
+       </bean>
+
+       <!-- 安全管理器 -->
+       <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+              <property name="realm" ref="remoteRealm"/>
+              <property name="sessionManager" ref="sessionManager"/>
+       </bean>
+
+       <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+              <property name="securityManager" ref="securityManager" />
+              <property name="loginUrl" value="/login" />
+              <property name="successUrl" value="/user/list" />
+              <property name="unauthorizedUrl" value="/login" />
+              <!--<property name="filters">-->
+                     <!--<map>-->
+                            <!--<entry key="sperm" value-ref="simplePermFilter"/>-->
+                     <!--</map>-->
+              <!--</property>-->
+              <property name="filterChainDefinitions">
+                     <value>
+                            /Flat-UI-master/**=anon
+                            /index.jsp* = anon
+                            /test.jsp*=anon
+                            /jsp/** = authc
+                            /test/objT.do = sperm
+                     </value>
+              </property>
+       </bean>
+</beans>

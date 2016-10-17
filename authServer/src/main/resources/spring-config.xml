@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+       <context:property-placeholder location="classpath:db.properties"/>
+
+       <!--<bean id="captchaProducer" class="com.google.code.kaptcha.impl.DefaultKaptcha">-->
+       <!--<property name="config">-->
+       <!--<bean class="com.google.code.kaptcha.util.Config">-->
+       <!--<constructor-arg>-->
+       <!--<props>-->
+       <!--<prop key="kaptcha.border">yes</prop>-->
+       <!--<prop key="kaptcha.border.color">105,179,90</prop>-->
+       <!--<prop key="kaptcha.textproducer.font.color">blue</prop>-->
+       <!--<prop key="kaptcha.image.width">250</prop>-->
+       <!--<prop key="kaptcha.image.height">90</prop>-->
+       <!--<prop key="kaptcha.textproducer.font.size">80</prop>-->
+       <!--<prop key="kaptcha.session.key">code</prop>-->
+       <!--<prop key="kaptcha.textproducer.char.length">4</prop>-->
+       <!--<prop key="kaptcha.textproducer.font.names">瀹嬩綋,妤蜂綋,寰蒋闆呴粦</prop>-->
+       <!--</props>-->
+       <!--</constructor-arg>-->
+       <!--</bean>-->
+       <!--</property>-->
+       <!--</bean>-->
+       <bean id="BasicDataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+              <property name="url" value="${dbcp2.url}"/>
+              <property name="driverClassName" value="${dbcp2.driverClassName}"/>
+              <property name="username" value="${dbcp2.username}"/>
+              <property name="password" value="${dbcp2.password}"/>
+
+              <property name="initialSize" value="${dbcp2.initialSize}"/>
+              <property name="timeBetweenEvictionRunsMillis" value="${dbcp2.timeBetweenEvictionRunsMillis}"/>
+              <property name="poolPreparedStatements" value="${dbcp2.poolPreparedStatements}"/>
+              <property name="maxOpenPreparedStatements" value="${dbcp2.maxOpenPreparedStatements}"/>
+              <property name="removeAbandonedTimeout" value="${dbcp2.removeAbandonedTimeout}"/>
+              <property name="testOnBorrow" value="${dbcp2.testOnBorrow}"/>
+              <property name="testOnReturn" value="${dbcp2.testOnReturn}"/>
+              <property name="testWhileIdle" value="${dbcp2.testWhileIdle}"/>
+       </bean>
+
+       <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+              <property name="dataSource" ref="BasicDataSource" />
+       </bean>
+
+       <bean name="scannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+              <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+              <property name="basePackage" value="com.lutai.admin.*.dao"/>
+       </bean>
+       <bean id="sqlTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+              <property name="dataSource" ref="BasicDataSource" />
+       </bean>
+       <!--<import resource="spring-mvc.xml"/>-->
+       <import resource="spring-shiro.xml"/>
+</beans>

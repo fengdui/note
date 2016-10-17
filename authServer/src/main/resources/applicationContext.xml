@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	<context:property-placeholder location="classpath:db.properties"/>
+
+    <!--<bean id="captchaProducer" class="com.google.code.kaptcha.impl.DefaultKaptcha">-->
+        <!--<property name="config">-->
+            <!--<bean class="com.google.code.kaptcha.util.Config">-->
+                <!--<constructor-arg>-->
+                    <!--<props>-->
+                        <!--<prop key="kaptcha.border">yes</prop>-->
+                        <!--<prop key="kaptcha.border.color">105,179,90</prop>-->
+                        <!--<prop key="kaptcha.textproducer.font.color">blue</prop>-->
+                        <!--<prop key="kaptcha.image.width">250</prop>-->
+                        <!--<prop key="kaptcha.image.height">90</prop>-->
+                        <!--<prop key="kaptcha.textproducer.font.size">80</prop>-->
+                        <!--<prop key="kaptcha.session.key">code</prop>-->
+                        <!--<prop key="kaptcha.textproducer.char.length">4</prop>-->
+                        <!--<prop key="kaptcha.textproducer.font.names">瀹嬩綋,妤蜂綋,寰蒋闆呴粦</prop>-->
+                    <!--</props>-->
+                <!--</constructor-arg>-->
+            <!--</bean>-->
+        <!--</property>-->
+    <!--</bean>-->
+	<bean id="BasicDataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+        <!-- 鏁版嵁搴撳熀鏈俊鎭厤缃� -->
+        <property name="url" value="${dbcp2.url}"/>
+        <property name="driverClassName" value="${dbcp2.driverClassName}"/>
+        <property name="username" value="${dbcp2.username}"/>
+        <property name="password" value="${dbcp2.password}"/>
+
+        <!--<property name="maxIdle" value="${dbcp2.maxIdle}"/>-->
+        <property name="initialSize" value="${dbcp2.initialSize}"/>
+        <property name="timeBetweenEvictionRunsMillis" value="${dbcp2.timeBetweenEvictionRunsMillis}"/>
+        <property name="poolPreparedStatements" value="${dbcp2.poolPreparedStatements}"/>
+        <property name="maxOpenPreparedStatements" value="${dbcp2.maxOpenPreparedStatements}"/>
+        <property name="removeAbandonedTimeout" value="${dbcp2.removeAbandonedTimeout}"/>
+        <!-- 鐢宠杩炴帴鏃舵墽琛寁alidationQuery妫�娴嬭繛鎺ユ槸鍚︽湁鏁堬紝閰嶇疆涓簍rue浼氶檷浣庢�ц兘 -->
+        <property name="testOnBorrow" value="${dbcp2.testOnBorrow}"/>
+        <!-- 褰掕繕杩炴帴鏃舵墽琛寁alidationQuery妫�娴嬭繛鎺ユ槸鍚︽湁鏁堬紝閰嶇疆涓簍rue浼氶檷浣庢�ц兘  -->
+        <property name="testOnReturn" value="${dbcp2.testOnReturn}"/>
+        <!-- 寤鸿閰嶇疆涓簍rue锛屼笉褰卞搷鎬ц兘锛屽苟涓斾繚璇佸畨鍏ㄦ�с�傜敵璇疯繛鎺ョ殑鏃跺�欐娴嬶紝濡傛灉绌洪棽鏃堕棿澶т簬
+             timeBetweenEvictionRunsMillis锛屾墽琛寁alidationQuery妫�娴嬭繛鎺ユ槸鍚︽湁鏁堛��  -->
+        <property name="testWhileIdle" value="${dbcp2.testWhileIdle}"/>
+        <!-- 鐢ㄦ潵妫�娴嬭繛鎺ユ槸鍚︽湁鏁堢殑sql锛岃姹傛槸涓�涓煡璇㈣鍙�,濡傛灉validationQuery涓�
+             null锛宼estOnBorrow銆乼estOnReturn銆乼estWhileIdle閮戒笉璧峰叾浣滅敤銆� -->
+        <!--<property name="validationQuery" value="${dbcp2.validationQuery}"/>-->
+    </bean>
+
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="BasicDataSource" />
+    </bean>
+
+    <bean name="scannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+        <property name="basePackage" value="com.lutai.admin.*.dao"/>
+    </bean>
+    <bean id="sqlTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="BasicDataSource" />
+    </bean>
+
+    <!--&lt;!&ndash; 浣跨敤annotation瀹氫箟浜嬪姟 &ndash;&gt;-->
+    <tx:annotation-driven transaction-manager="sqlTransactionManager" proxy-target-class="true" />
+    <aop:aspectj-autoproxy expose-proxy="true"/>
+    <bean id="test" class="com.zheyue.authserver.controller.TestBean"></bean>
+    <bean id="a" class="com.zheyue.authserver.controller.AspectTest"></bean>
+</beans>

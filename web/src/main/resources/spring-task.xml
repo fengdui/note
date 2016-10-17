@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+       <bean id="taskExecutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+              <property name="corePoolSize" value="10"/>
+              <property name="maxPoolSize" value="30"/>
+       </bean>
+
+       <!--邮件发送-->
+       <bean id="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl" autowire="byName">
+              <property name="host" value="${mail.host}"/>
+              <property name="port" value="${mail.port}"/>
+              <property name="username" value="${mail.username}"/>
+              <property name="password" value="${mail.password}"/>
+              <property name="defaultEncoding" value="utf-8"/>
+       </bean>
+</beans>
