@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+       <bean id="BasicDataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+              <property name="url" value="${dbcp2.url}"/>
+              <property name="driverClassName" value="${dbcp2.driverClassName}"/>
+              <property name="username" value="${dbcp2.username}"/>
+              <property name="password" value="${dbcp2.password}"/>
+              <property name="initialSize" value="${dbcp2.initialSize}"/>
+              <property name="timeBetweenEvictionRunsMillis" value="${dbcp2.timeBetweenEvictionRunsMillis}"/>
+              <property name="poolPreparedStatements" value="${dbcp2.poolPreparedStatements}"/>
+              <property name="maxOpenPreparedStatements" value="${dbcp2.maxOpenPreparedStatements}"/>
+              <property name="removeAbandonedTimeout" value="${dbcp2.removeAbandonedTimeout}"/>
+              <property name="testOnBorrow" value="${dbcp2.testOnBorrow}"/>
+              <property name="testOnReturn" value="${dbcp2.testOnReturn}"/>
+              <property name="testWhileIdle" value="${dbcp2.testWhileIdle}"/>
+       </bean>
+       <bean id="BasicDataSource2" class="org.apache.commons.dbcp2.BasicDataSource">
+              <property name="url" value="${dbcp2.url}"/>
+              <property name="driverClassName" value="${dbcp2.driverClassName}"/>
+              <property name="username" value="${dbcp2.username}"/>
+              <property name="password" value="${dbcp2.password}"/>
+              <property name="initialSize" value="${dbcp2.initialSize}"/>
+              <property name="timeBetweenEvictionRunsMillis" value="${dbcp2.timeBetweenEvictionRunsMillis}"/>
+              <property name="poolPreparedStatements" value="${dbcp2.poolPreparedStatements}"/>
+              <property name="maxOpenPreparedStatements" value="${dbcp2.maxOpenPreparedStatements}"/>
+              <property name="removeAbandonedTimeout" value="${dbcp2.removeAbandonedTimeout}"/>
+              <property name="testOnBorrow" value="${dbcp2.testOnBorrow}"/>
+              <property name="testOnReturn" value="${dbcp2.testOnReturn}"/>
+              <property name="testWhileIdle" value="${dbcp2.testWhileIdle}"/>
+       </bean>
+
+       <!-- 配置多数据源映射关系 -->
+       <bean id="dataSource" class="com.zheyue.authserver.datasource.DynamicDataSource">
+              <property name="targetDataSources">
+                     <map key-type="java.lang.String">
+                            <entry key="dataSource1" value-ref="BasicDataSource"></entry>
+                            <entry key="dataSource2" value-ref="BasicDataSource2"></entry>
+                     </map>
+              </property>
+              <!-- 默认目标数据源为你主库数据源 -->
+              <property name="defaultTargetDataSource" ref="BasicDataSource"/>
+       </bean>
+
+       <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+              <property name="dataSource" ref="dataSource" />
+       </bean>
+
+       <bean name="scannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+              <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+              <property name="basePackage" value="com.zheyue.authserver.dao"/>
+       </bean>
+</beans>

@@ -31,32 +31,35 @@
         <!--</property>-->
     <!--</bean>-->
 	<bean id="BasicDataSource" class="org.apache.commons.dbcp2.BasicDataSource">
-        <!-- 鏁版嵁搴撳熀鏈俊鎭厤缃� -->
         <property name="url" value="${dbcp2.url}"/>
         <property name="driverClassName" value="${dbcp2.driverClassName}"/>
         <property name="username" value="${dbcp2.username}"/>
         <property name="password" value="${dbcp2.password}"/>
-
-        <!--<property name="maxIdle" value="${dbcp2.maxIdle}"/>-->
         <property name="initialSize" value="${dbcp2.initialSize}"/>
         <property name="timeBetweenEvictionRunsMillis" value="${dbcp2.timeBetweenEvictionRunsMillis}"/>
         <property name="poolPreparedStatements" value="${dbcp2.poolPreparedStatements}"/>
         <property name="maxOpenPreparedStatements" value="${dbcp2.maxOpenPreparedStatements}"/>
         <property name="removeAbandonedTimeout" value="${dbcp2.removeAbandonedTimeout}"/>
-        <!-- 鐢宠杩炴帴鏃舵墽琛寁alidationQuery妫�娴嬭繛鎺ユ槸鍚︽湁鏁堬紝閰嶇疆涓簍rue浼氶檷浣庢�ц兘 -->
         <property name="testOnBorrow" value="${dbcp2.testOnBorrow}"/>
-        <!-- 褰掕繕杩炴帴鏃舵墽琛寁alidationQuery妫�娴嬭繛鎺ユ槸鍚︽湁鏁堬紝閰嶇疆涓簍rue浼氶檷浣庢�ц兘  -->
         <property name="testOnReturn" value="${dbcp2.testOnReturn}"/>
-        <!-- 寤鸿閰嶇疆涓簍rue锛屼笉褰卞搷鎬ц兘锛屽苟涓斾繚璇佸畨鍏ㄦ�с�傜敵璇疯繛鎺ョ殑鏃跺�欐娴嬶紝濡傛灉绌洪棽鏃堕棿澶т簬
-             timeBetweenEvictionRunsMillis锛屾墽琛寁alidationQuery妫�娴嬭繛鎺ユ槸鍚︽湁鏁堛��  -->
         <property name="testWhileIdle" value="${dbcp2.testWhileIdle}"/>
-        <!-- 鐢ㄦ潵妫�娴嬭繛鎺ユ槸鍚︽湁鏁堢殑sql锛岃姹傛槸涓�涓煡璇㈣鍙�,濡傛灉validationQuery涓�
-             null锛宼estOnBorrow銆乼estOnReturn銆乼estWhileIdle閮戒笉璧峰叾浣滅敤銆� -->
-        <!--<property name="validationQuery" value="${dbcp2.validationQuery}"/>-->
     </bean>
-
+    <bean id="BasicDataSource2" class="org.apache.commons.dbcp2.BasicDataSource">
+        <property name="url" value="${dbcp2.url}"/>
+        <property name="driverClassName" value="${dbcp2.driverClassName}"/>
+        <property name="username" value="${dbcp2.username}"/>
+        <property name="password" value="${dbcp2.password}"/>
+        <property name="initialSize" value="${dbcp2.initialSize}"/>
+        <property name="timeBetweenEvictionRunsMillis" value="${dbcp2.timeBetweenEvictionRunsMillis}"/>
+        <property name="poolPreparedStatements" value="${dbcp2.poolPreparedStatements}"/>
+        <property name="maxOpenPreparedStatements" value="${dbcp2.maxOpenPreparedStatements}"/>
+        <property name="removeAbandonedTimeout" value="${dbcp2.removeAbandonedTimeout}"/>
+        <property name="testOnBorrow" value="${dbcp2.testOnBorrow}"/>
+        <property name="testOnReturn" value="${dbcp2.testOnReturn}"/>
+        <property name="testWhileIdle" value="${dbcp2.testWhileIdle}"/>
+    </bean>
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-        <property name="dataSource" ref="BasicDataSource" />
+        <property name="dataSource" ref="dataSource" />
     </bean>
 
     <bean name="scannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
@@ -64,12 +67,32 @@
         <property name="basePackage" value="com.lutai.admin.*.dao"/>
     </bean>
     <bean id="sqlTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <property name="dataSource" ref="BasicDataSource" />
+        <property name="dataSource" ref="dataSource" />
     </bean>
 
     <!--&lt;!&ndash; 浣跨敤annotation瀹氫箟浜嬪姟 &ndash;&gt;-->
-    <tx:annotation-driven transaction-manager="sqlTransactionManager" proxy-target-class="true" />
-    <aop:aspectj-autoproxy expose-proxy="true"/>
-    <bean id="test" class="com.zheyue.authserver.controller.TestBean"></bean>
-    <bean id="a" class="com.zheyue.authserver.controller.AspectTest"></bean>
+    <!--<aop:aspectj-autoproxy expose-proxy="true"/>-->
+    <!--<bean id="test" class="com.zheyue.authserver.controller.TestBean"></bean>-->
+    <!--<bean id="a" class="com.zheyue.authserver.controller.AspectTest"></bean>-->
+
+    <tx:annotation-driven transaction-manager="sqlTransactionManager" order="2"/>
+    <bean id="userService" class="com.zheyue.authserver.service.impl.UserServiceImpl"></bean>
+
+
+    <!-- 配置多数据源映射关系 -->
+    <bean id="dataSource" class="com.zheyue.authserver.datasource.DynamicDataSource">
+        <property name="targetDataSources">
+            <map key-type="java.lang.String">
+                <entry key="dataSource1" value-ref="BasicDataSource"></entry>
+                <entry key="dataSource2" value-ref="BasicDataSource2"></entry>
+            </map>
+        </property>
+        <!-- 默认目标数据源为你主库数据源 -->
+        <property name="defaultTargetDataSource" ref="BasicDataSource"/>
+    </bean>
+    <bean id="exchange" class="com.zheyue.authserver.datasource.DataSourceExchange"></bean>
+    <aop:config expose-proxy="true">
+        <aop:pointcut id="pointcut" expression="execution(* *.save*(..))"/>
+        <aop:advisor advice-ref="exchange" pointcut-ref="pointcut" order="1"/>
+    </aop:config>
 </beans>
