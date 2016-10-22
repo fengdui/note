@@ -7,6 +7,6 @@
 
        <bean name="/remoteService" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
               <property name="service" ref="remoteService"/>
-              <property name="serviceInterface" value="com.zheyue.remote.httpinvoker.RemoteService"/>
+              <property name="serviceInterface" value="com.zheyue.authserver.remote.RemoteService"/>
        </bean>
 </beans>

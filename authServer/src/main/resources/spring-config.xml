@@ -53,10 +53,8 @@
        <bean id="sqlTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
               <property name="dataSource" ref="BasicDataSource" />
        </bean>
-       <!--<import resource="spring-mvc.xml"/>-->
-       <!--<import resource="spring-shiro.xml"/>-->
-       <import resource="spring-mybatis.xml"/>
+       <import resource="spring-mvc.xml"/>
+       <import resource="spring-shiro.xml"/>
+       <!--<import resource="spring-mybatis.xml"/>-->
 
-
-       <bean id="userService" class="com.zheyue.authserver.service.impl.UserServiceImpl"></bean>
 </beans>

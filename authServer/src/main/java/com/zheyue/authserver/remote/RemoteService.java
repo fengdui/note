@@ -1,4 +1,4 @@
-package com.zheyue.remote.httpinvoker;
+package com.zheyue.authserver.remote;
 
 import org.apache.shiro.session.Session;
 

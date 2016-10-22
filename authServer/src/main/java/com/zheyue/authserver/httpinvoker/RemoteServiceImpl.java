@@ -1,6 +1,6 @@
 package com.zheyue.authserver.httpinvoker;
 
-import com.zheyue.remote.httpinvoker.RemoteService;
+import com.zheyue.authserver.remote.RemoteService;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.session.mgt.eis.SessionDAO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,11 +12,16 @@ import java.io.Serializable;
  */
 public class RemoteServiceImpl implements RemoteService {
 
-    @Autowired
-    private SessionDAO sessionDAO;
+//    @Autowired
+//    private SessionDAO sessionDAO;
+
+    public String getName() {
+        return "fd";
+    }
 
     public Session getSession(Serializable sessionId) {
-        return sessionDAO.readSession(sessionId);
+//        return sessionDAO.readSession(sessionId);
+        return null;
     }
 
     public Serializable createSession(Session session) {

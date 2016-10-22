@@ -1,9 +1,11 @@
 package com.zheyue.authclient.session;
 
-import com.zheyue.remote.httpinvoker.RemoteService;
+import com.zheyue.authclient.remote.RemoteService;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.session.mgt.eis.CachingSessionDAO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.io.Serializable;
 
@@ -33,5 +35,12 @@ public class ClientSessionDAO extends CachingSessionDAO{
     @Override
     protected Session doReadSession(Serializable serializable) {
         return remoteService.getSession(serializable);
+    }
+
+    public static void main(String[] args) {
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:spring-config.xml");
+        RemoteService remoteService = (RemoteService)applicationContext.getBean("remoteService");
+        String str = remoteService.getName();
+        System.out.println(str);
     }
 }

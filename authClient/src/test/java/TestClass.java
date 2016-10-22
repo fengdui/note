@@ -23,7 +23,7 @@ public class TestClass {
                     break;
                 System.out.println(line);
             }
-            this.getClass().get
+//            this.getClass().get
             System.out.println(Charset.defaultCharset());
         } catch (FileNotFoundException e) {
             e.printStackTrace();

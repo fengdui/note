@@ -4,7 +4,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
        <bean id="remoteService" class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
-              <property name="serviceUrl" value="${remote.httpinvoker.url}"/>
-              <property name="serviceInterface" value="com.zheyue.remote.httpinvoker.RemoteService"/>
+              <property name="serviceUrl" value="http://localhost:8080/authserver/remoteService"/>
+              <property name="serviceInterface" value="com.zheyue.authclient.remote.RemoteService"/>
        </bean>
 </beans>

@@ -63,6 +63,7 @@
        <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
 
        <aop:aspectj-autoproxy proxy-target-class="true"/>
+
        <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
               <property name="securityManager" ref="securityManager"/>
        </bean>

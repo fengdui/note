@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/authClient/authClient.iml" filepath="$PROJECT_DIR$/authClient/authClient.iml" />
+      <module fileurl="file://$PROJECT_DIR$/authServer/authServer.iml" filepath="$PROJECT_DIR$/authServer/authServer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/anthServer/authServer.iml" filepath="$PROJECT_DIR$/anthServer/authServer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/netty/netty.iml" filepath="$PROJECT_DIR$/netty/netty.iml" />
+      <module fileurl="file://$PROJECT_DIR$/remote/remote.iml" filepath="$PROJECT_DIR$/remote/remote.iml" />
+      <module fileurl="file://$PROJECT_DIR$/web/web.iml" filepath="$PROJECT_DIR$/web/web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/zheyue.iml" filepath="$PROJECT_DIR$/zheyue.iml" />
+    </modules>
+  </component>
+</project>
