@@ -28,6 +28,7 @@ public class NIOServer implements Runnable {
             serverSocketChannel.configureBlocking(false);
             serverSocketChannel.bind(new InetSocketAddress(port), 1024);
             serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT);
+//            serverSocketChannel.accept().reg;
             System.out.println("服务器在"+port+"启动");
         } catch (IOException e) {
             e.printStackTrace();
