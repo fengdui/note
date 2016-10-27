@@ -91,6 +91,7 @@
         <property name="defaultTargetDataSource" ref="BasicDataSource"/>
     </bean>
     <bean id="exchange" class="com.zheyue.authserver.datasource.DataSourceExchange"></bean>
+    <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
     <aop:config expose-proxy="true">
         <aop:pointcut id="pointcut" expression="execution(* *.save*(..))"/>
         <aop:advisor advice-ref="exchange" pointcut-ref="pointcut" order="1"/>
