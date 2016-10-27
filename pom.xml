@@ -13,8 +13,9 @@
         <module>authclient</module>
         <module>netty</module>
         <module>remote</module>
-        <module>web</module>
-        <module>rpc</module>
+        <!--<module>web</module>-->
+        <!--<module>rpc</module>-->
+        <module>zheyue-rpc</module>
     </modules>
 
 
