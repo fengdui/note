@@ -41,6 +41,7 @@ public class FileServer {
                         }
                     });
             ChannelFuture f = b.bind(port).sync();
+            System.out.println("fd");
             f.channel().closeFuture().sync();
         }
         finally {

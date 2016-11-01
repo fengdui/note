@@ -26,6 +26,7 @@ public class FileHandler extends SimpleChannelInboundHandler<String> {
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         System.out.println("tcp 连接");
+        ctx.executor();
     }
 
     @Override
