@@ -50,12 +50,12 @@ public class WebSocketServer {
 
 
     public static void main(String[] args) throws Exception {
-//        new WebSocketServer().start(8888);
-        Random random = new Random();
-        for (int i = 0; i < 10; i++) {
-            int j = random.nextInt(100000000);
-            int k = (int)(89999999*Math.random()+10000000);
-            System.out.println(k);
-        }
+        new WebSocketServer().start(9999);
+//        Random random = new Random();
+//        for (int i = 0; i < 10; i++) {
+//            int j = random.nextInt(100000000);
+//            int k = (int)(89999999*Math.random()+10000000);
+//            System.out.println(k);
+//        }
     }
 }
