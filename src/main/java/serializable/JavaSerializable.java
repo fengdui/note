@@ -1,4 +1,4 @@
-package file;
+package serializable;
 
 import file.handler.FileHandler;
 import io.netty.bootstrap.ServerBootstrap;
@@ -7,21 +7,18 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.codec.LineBasedFrameDecoder;
-import io.netty.handler.codec.http.HttpObjectAggregator;
-import io.netty.handler.codec.http.HttpServerCodec;
-import io.netty.handler.codec.http.websocketx.WebSocketServerProtocolHandler;
+import io.netty.handler.codec.serialization.ClassResolvers;
+import io.netty.handler.codec.serialization.ObjectDecoder;
+import io.netty.handler.codec.serialization.ObjectEncoder;
 import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.codec.string.StringEncoder;
-import io.netty.handler.stream.ChunkedWriteHandler;
 import io.netty.util.CharsetUtil;
-import netty.WebSocketHandler;
-
-import java.nio.charset.Charset;
 
 /**
- * Created by fd on 2016/10/22.
+ * @author FD
+ * @data 2016/11/4
  */
-public class FileServer {
+public class JavaSerializable {
     public void start(int port) throws Exception {
         EventLoopGroup bossGroup = new NioEventLoopGroup();
         EventLoopGroup workGroup = new NioEventLoopGroup();
@@ -34,10 +31,9 @@ public class FileServer {
                         @Override
                         protected void initChannel(SocketChannel socketChannel) throws Exception {
                             socketChannel.pipeline()
-                                    .addLast(new StringEncoder(CharsetUtil.UTF_8),
-                                    new LineBasedFrameDecoder(1024),
-                                    new StringDecoder(CharsetUtil.UTF_8),
-                                    new FileHandler());
+                                    .addLast(new ObjectEncoder())
+                                    .addLast(new ObjectDecoder(ClassResolvers.weakCachingResolver(this.getClass().getClassLoader())))
+                                    .addLast(new JavaSerializableHandler());
                         }
                     });
             ChannelFuture f = b.bind(port).sync();
@@ -50,8 +46,11 @@ public class FileServer {
         }
     }
 
+    public class TestServerHandler extends ChannelHandlerAdapter {
+
+    }
 
     public static void main(String[] args) throws Exception {
-        new FileServer().start(8888);
+        new JavaSerializable().start(8888);
     }
 }
