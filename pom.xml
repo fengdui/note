@@ -17,6 +17,7 @@
         <!--<module>rpc</module>-->
         <module>zheyue-rpc</module>
         <module>zheyue-search</module>
+        <module>zheyue-config</module>
     </modules>
 
 
