@@ -25,10 +25,13 @@
         <module name="anthClient" />
         <module name="anthServer" />
         <module name="authClient" />
-        <module name="authServer" />
         <module name="netty" />
         <module name="remote" />
         <module name="web" />
+        <module name="zheyue-config" />
+        <module name="zheyue-rpc" />
+        <module name="zheyue-search" />
+        <module name="zheyue-security" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -40,6 +43,10 @@
       <module name="remote" target="1.5" />
       <module name="web" target="1.5" />
       <module name="zheyue" target="1.5" />
+      <module name="zheyue-config" target="1.8" />
+      <module name="zheyue-rpc" target="1.8" />
+      <module name="zheyue-search" target="1.5" />
+      <module name="zheyue-security" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
