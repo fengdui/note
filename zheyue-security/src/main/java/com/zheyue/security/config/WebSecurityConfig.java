@@ -43,4 +43,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         // RemeberMe
         http.rememberMe().key("webmvc#FD637E6D9C0F1A5A67082AF56CE32485");
     }
+
+    public static void main(String[] args) {
+
+    }
 }
