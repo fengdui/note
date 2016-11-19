@@ -25,4 +25,8 @@ public class HelloController implements ApplicationContextAware {
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         this.applicationContext = applicationContext;
     }
+
+    public static void main(String[] args) {
+
+    }
 }
