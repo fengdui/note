@@ -18,6 +18,7 @@
         <module>zheyue-rpc</module>
         <module>zheyue-search</module>
         <module>zheyue-config</module>
+        <module>zheyue-encrypt</module>
     </modules>
 
 

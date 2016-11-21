@@ -10,6 +10,7 @@
       <module fileurl="file://$PROJECT_DIR$/web/web.iml" filepath="$PROJECT_DIR$/web/web.iml" />
       <module fileurl="file://$PROJECT_DIR$/zheyue.iml" filepath="$PROJECT_DIR$/zheyue.iml" />
       <module fileurl="file://$PROJECT_DIR$/zheyue-config/zheyue-config.iml" filepath="$PROJECT_DIR$/zheyue-config/zheyue-config.iml" />
+      <module fileurl="file://$PROJECT_DIR$/zheyue-encrypt/zheyue-encrypt.iml" filepath="$PROJECT_DIR$/zheyue-encrypt/zheyue-encrypt.iml" />
       <module fileurl="file://$PROJECT_DIR$/zheyue-rpc/zheyue-rpc.iml" filepath="$PROJECT_DIR$/zheyue-rpc/zheyue-rpc.iml" />
       <module fileurl="file://$PROJECT_DIR$/zheyue-search/zheyue-search.iml" filepath="$PROJECT_DIR$/zheyue-search/zheyue-search.iml" />
       <module fileurl="file://$PROJECT_DIR$/zheyue-security/zheyue-security.iml" filepath="$PROJECT_DIR$/zheyue-security/zheyue-security.iml" />
