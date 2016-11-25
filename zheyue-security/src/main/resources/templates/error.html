@@ -4,6 +4,7 @@
     <title></title>
 </head>
 <body>
-    错误页面
+    你没有权限查看
+    <span th:text="${#httpSession.getAttribute('SPRING_SECURITY_LAST_EXCEPTION')}"></span>
 </body>
 </html>

@@ -24,9 +24,9 @@
         <finalName>authserver</finalName>
         <plugins>
             <plugin>
-                <groupId>org.mortbay.jetty</groupId>
+                <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
-                <version>8.1.8.v20121106</version>
+                <version>9.3.14.v20161028</version>
                 <configuration>
                     <webAppConfig>
                         <contextPath>/${project.build.finalName}</contextPath>

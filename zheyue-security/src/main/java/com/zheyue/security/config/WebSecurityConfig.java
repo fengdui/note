@@ -12,7 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
  * @date 2016/11/18
  */
 
-@Configuration
+//@Configuration
 //@EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
@@ -22,12 +22,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         //自定义accessDecisionManager访问控制器,并开启表达式语言
         http.authorizeRequests()
                 .antMatchers("/**").authenticated();
+        http.csrf().disable();
+
+//        http.exceptionHandling().accessDeniedPage("/403");
         //自定义登录页面
-//        http.formLogin().loginPage("/login")
-//                .failureUrl("/error")
-//                .loginProcessingUrl("/j_spring_security_check")
-//                .usernameParameter("username")
-//                .passwordParameter("password").permitAll();
+        http.formLogin().loginPage("/login")
+//                .failureUrl("/error2")
+                .loginProcessingUrl("/login_check")
+                .defaultSuccessUrl("/hello")
+                .usernameParameter("username")
+                .passwordParameter("password").permitAll();
 
         // 自定义注销
 //        http.logout().logoutUrl("/logout").logoutSuccessUrl("/login")
@@ -41,14 +45,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.rememberMe().key("webmvc#FD637E6D9C0F1A5A67082AF56CE32485");
 
         //basic
-        http.httpBasic();
+//        http.httpBasic();
 
     }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
-        auth.inMemoryAuthentication();
+        auth.inMemoryAuthentication().withUser("fd").password("fd").roles("fd");
     }
 
     public static void main(String[] args) {

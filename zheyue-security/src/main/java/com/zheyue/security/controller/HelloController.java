@@ -26,6 +26,12 @@ public class HelloController implements ApplicationContextAware {
         mv.setViewName("login");
         return mv;
     }
+//    @RequestMapping("error")
+//    public ModelAndView error() {
+//        ModelAndView mv = new ModelAndView();
+//        mv.setViewName("error");
+//        return mv;
+//    }
     ApplicationContext applicationContext;
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
