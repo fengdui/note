@@ -14,33 +14,33 @@
         <module>../zheyue-security</module>
     </modules>
     <dependencies>
-        <dependency>
-            <groupId>com.zheyue</groupId>
-            <artifactId>remote</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.zheyue</groupId>-->
+            <!--<artifactId>remote</artifactId>-->
+            <!--<version>1.0-SNAPSHOT</version>-->
+        <!--</dependency>-->
     </dependencies>
     <build>
         <finalName>authserver</finalName>
         <plugins>
             <plugin>
-                <groupId>org.eclipse.jetty</groupId>
-                <artifactId>jetty-maven-plugin</artifactId>
-                <version>9.3.14.v20161028</version>
-                <configuration>
-                    <webAppConfig>
-                        <contextPath>/${project.build.finalName}</contextPath>
-                    </webAppConfig>
-                </configuration>
+                <groupId>org.mortbay.jetty</groupId>
+                <artifactId>maven-jetty-plugin</artifactId>
+                <version>6.1.26</version>
             </plugin>
 
             <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>
                 <artifactId>tomcat7-maven-plugin</artifactId>
                 <version>2.2</version>
+                <!--<configuration>-->
+                    <!--<url>http://localhost:8080/manager/text</url> &lt;!&ndash; tomcat管理路径 &ndash;&gt;-->
+                <!--</configuration>-->
                 <configuration>
+                    <server>tomcat</server> <!-- 与settings.xml文件中Server的id相同 -->
                     <ignorePackaging>true</ignorePackaging>
                     <path>/${project.build.finalName}</path>
+                    <url>http://localhost:8080/manager/text</url>
                     <uriEncoding>UTF-8</uriEncoding>
                     <useBodyEncodingForURI>true</useBodyEncodingForURI>
                 </configuration>
