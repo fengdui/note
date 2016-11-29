@@ -28,16 +28,17 @@ public class MybatisConfig {
     }
 
     /**
+     * 使用@MapperScan("com.zheyue.encrypt.dao")代替
      * mybatis自动扫描配置
      * @return
      */
-    @Bean("scannerConfigurer")
+    /*@Bean("scannerConfigurer")
     public MapperScannerConfigurer scannerConfigurer() {
         MapperScannerConfigurer scannerConfigurer = new MapperScannerConfigurer();
         scannerConfigurer.setSqlSessionFactoryBeanName("sqlSessionFactory");
         scannerConfigurer.setBasePackage("com.zheyue.encrypt.dao");
         return scannerConfigurer;
-    }
+    }*/
 
 
 }

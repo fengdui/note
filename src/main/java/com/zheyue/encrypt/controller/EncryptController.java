@@ -1,10 +1,13 @@
 package com.zheyue.encrypt.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.sql.DataSource;
 
 /**
  * @author FD
@@ -13,11 +16,17 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class EncryptController {
 
-    @RequestMapping("publicKey")
-    public ModelAndView publicKey(HttpServletRequest request, ModelAndView mv) {
+    @Autowired
+    DataSource dataSource;
+
+    public static final String publicKey = "FD";
+
+    @RequestMapping("publickey")
+    @ResponseBody
+    public String publicKey(HttpServletRequest request) {
 
         System.out.println("fd");
-        return mv;
+        return publicKey;
     }
 
     @RequestMapping("status")

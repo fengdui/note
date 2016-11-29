@@ -21,6 +21,7 @@ public class DataSourceConfig {
     public FilterRegistrationBean druidWebStatFilter() {
         FilterRegistrationBean registrationBean = new FilterRegistrationBean();
         registrationBean.setFilter(new WebStatFilter());
+        registrationBean.addUrlPatterns("/*");
         return registrationBean;
     }
 
@@ -28,6 +29,7 @@ public class DataSourceConfig {
     ServletRegistrationBean druidStatViewServlet() {
         ServletRegistrationBean registrationBean = new ServletRegistrationBean();
         registrationBean.setServlet(new StatViewServlet());
+        registrationBean.addUrlMappings("/druid/*");
         return registrationBean;
     }
 }

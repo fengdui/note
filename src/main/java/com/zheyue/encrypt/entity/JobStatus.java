@@ -7,6 +7,7 @@ import com.zheyue.encrypt.utils.Status;
  * @date 2016/11/29
  */
 public class JobStatus {
+
     private String filePath;
     private int jobCode = Status.UNSUBMIT.getCode();
     private String jobMessage = Status.UNSUBMIT.getMsg();

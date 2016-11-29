@@ -1,9 +1,11 @@
 package com.zheyue.encrypt;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
+@MapperScan("com.zheyue.encrypt.dao")
 public class FileEncryptApplication {
 
 	public static void main(String[] args) {
