@@ -2,10 +2,9 @@ package com.zheyue.encrypt.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.xml.ws.RequestWrapper;
 
 /**
  * @author FD
@@ -15,8 +14,10 @@ import javax.xml.ws.RequestWrapper;
 public class EncryptController {
 
     @RequestMapping("publicKey")
-    public void publicKey(HttpServletRequest request) {
+    public ModelAndView publicKey(HttpServletRequest request, ModelAndView mv) {
 
+        System.out.println("fd");
+        return mv;
     }
 
     @RequestMapping("status")
