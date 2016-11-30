@@ -2,6 +2,7 @@ package com.zheyue.encrypt.config;
 
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
+import org.mybatis.spring.annotation.MapperScan;
 import org.mybatis.spring.mapper.MapperScannerConfigurer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -14,6 +15,7 @@ import javax.sql.DataSource;
  * @date 2016/11/29
  */
 @Configuration
+@MapperScan("com.zheyue.encrypt.dao")
 public class MybatisConfig {
 
     @Autowired
