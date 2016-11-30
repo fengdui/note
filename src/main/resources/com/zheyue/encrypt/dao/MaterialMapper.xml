@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zheyue.encrypt.dao.MaterialMapper" >
+  <resultMap id="BaseResultMap" type="com.zheyue.encrypt.entity.Material" >
+    <id column="MaterialID" property="materialid" jdbcType="INTEGER" />
+    <result column="MaterialName" property="materialname" jdbcType="VARCHAR" />
+    <result column="NickName" property="nickname" jdbcType="VARCHAR" />
+    <result column="Note" property="note" jdbcType="VARCHAR" />
+    <result column="State" property="state" jdbcType="INTEGER" />
+    <result column="Path" property="path" jdbcType="VARCHAR" />
+    <result column="Type" property="type" jdbcType="INTEGER" />
+    <result column="UseTexture1" property="usetexture1" jdbcType="INTEGER" />
+    <result column="UseTexture2" property="usetexture2" jdbcType="INTEGER" />
+    <result column="UseTexture3" property="usetexture3" jdbcType="INTEGER" />
+    <result column="UseTexture4" property="usetexture4" jdbcType="INTEGER" />
+    <result column="UseTexture5" property="usetexture5" jdbcType="INTEGER" />
+    <result column="UseTexture6" property="usetexture6" jdbcType="INTEGER" />
+    <result column="UseTexture7" property="usetexture7" jdbcType="INTEGER" />
+    <result column="UseTexture8" property="usetexture8" jdbcType="INTEGER" />
+    <result column="UseTexture9" property="usetexture9" jdbcType="INTEGER" />
+    <result column="UseTexture10" property="usetexture10" jdbcType="INTEGER" />
+    <result column="UseTexture11" property="usetexture11" jdbcType="INTEGER" />
+    <result column="UseTexture12" property="usetexture12" jdbcType="INTEGER" />
+    <result column="UseTexture13" property="usetexture13" jdbcType="INTEGER" />
+    <result column="UseTexture14" property="usetexture14" jdbcType="INTEGER" />
+    <result column="UseTexture15" property="usetexture15" jdbcType="INTEGER" />
+    <result column="UseTexture16" property="usetexture16" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    MaterialID, MaterialName, NickName, Note, State, Path, Type, UseTexture1, UseTexture2, 
+    UseTexture3, UseTexture4, UseTexture5, UseTexture6, UseTexture7, UseTexture8, UseTexture9, 
+    UseTexture10, UseTexture11, UseTexture12, UseTexture13, UseTexture14, UseTexture15, 
+    UseTexture16
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from material
+    where MaterialID = #{materialid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from material
+    where MaterialID = #{materialid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zheyue.encrypt.entity.Material" >
+    insert into material (MaterialID, MaterialName, NickName, 
+      Note, State, Path, 
+      Type, UseTexture1, UseTexture2, 
+      UseTexture3, UseTexture4, UseTexture5, 
+      UseTexture6, UseTexture7, UseTexture8, 
+      UseTexture9, UseTexture10, UseTexture11, 
+      UseTexture12, UseTexture13, UseTexture14, 
+      UseTexture15, UseTexture16)
+    values (#{materialid,jdbcType=INTEGER}, #{materialname,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}, 
+      #{note,jdbcType=VARCHAR}, #{state,jdbcType=INTEGER}, #{path,jdbcType=VARCHAR}, 
+      #{type,jdbcType=INTEGER}, #{usetexture1,jdbcType=INTEGER}, #{usetexture2,jdbcType=INTEGER}, 
+      #{usetexture3,jdbcType=INTEGER}, #{usetexture4,jdbcType=INTEGER}, #{usetexture5,jdbcType=INTEGER}, 
+      #{usetexture6,jdbcType=INTEGER}, #{usetexture7,jdbcType=INTEGER}, #{usetexture8,jdbcType=INTEGER}, 
+      #{usetexture9,jdbcType=INTEGER}, #{usetexture10,jdbcType=INTEGER}, #{usetexture11,jdbcType=INTEGER}, 
+      #{usetexture12,jdbcType=INTEGER}, #{usetexture13,jdbcType=INTEGER}, #{usetexture14,jdbcType=INTEGER}, 
+      #{usetexture15,jdbcType=INTEGER}, #{usetexture16,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zheyue.encrypt.entity.Material" >
+    insert into material
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="materialid != null" >
+        MaterialID,
+      </if>
+      <if test="materialname != null" >
+        MaterialName,
+      </if>
+      <if test="nickname != null" >
+        NickName,
+      </if>
+      <if test="note != null" >
+        Note,
+      </if>
+      <if test="state != null" >
+        State,
+      </if>
+      <if test="path != null" >
+        Path,
+      </if>
+      <if test="type != null" >
+        Type,
+      </if>
+      <if test="usetexture1 != null" >
+        UseTexture1,
+      </if>
+      <if test="usetexture2 != null" >
+        UseTexture2,
+      </if>
+      <if test="usetexture3 != null" >
+        UseTexture3,
+      </if>
+      <if test="usetexture4 != null" >
+        UseTexture4,
+      </if>
+      <if test="usetexture5 != null" >
+        UseTexture5,
+      </if>
+      <if test="usetexture6 != null" >
+        UseTexture6,
+      </if>
+      <if test="usetexture7 != null" >
+        UseTexture7,
+      </if>
+      <if test="usetexture8 != null" >
+        UseTexture8,
+      </if>
+      <if test="usetexture9 != null" >
+        UseTexture9,
+      </if>
+      <if test="usetexture10 != null" >
+        UseTexture10,
+      </if>
+      <if test="usetexture11 != null" >
+        UseTexture11,
+      </if>
+      <if test="usetexture12 != null" >
+        UseTexture12,
+      </if>
+      <if test="usetexture13 != null" >
+        UseTexture13,
+      </if>
+      <if test="usetexture14 != null" >
+        UseTexture14,
+      </if>
+      <if test="usetexture15 != null" >
+        UseTexture15,
+      </if>
+      <if test="usetexture16 != null" >
+        UseTexture16,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="materialid != null" >
+        #{materialid,jdbcType=INTEGER},
+      </if>
+      <if test="materialname != null" >
+        #{materialname,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null" >
+        #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null" >
+        #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="path != null" >
+        #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="usetexture1 != null" >
+        #{usetexture1,jdbcType=INTEGER},
+      </if>
+      <if test="usetexture2 != null" >
+        #{usetexture2,jdbcType=INTEGER},
+      </if>
+      <if test="usetexture3 != null" >
+        #{usetexture3,jdbcType=INTEGER},
+      </if>
+      <if test="usetexture4 != null" >
+        #{usetexture4,jdbcType=INTEGER},
+      </if>
+      <if test="usetexture5 != null" >
+        #{usetexture5,jdbcType=INTEGER},
+      </if>
+      <if test="usetexture6 != null" >
+        #{usetexture6,jdbcType=INTEGER},
+      </if>
+      <if test="usetexture7 != null" >
+        #{usetexture7,jdbcType=INTEGER},
+      </if>
+      <if test="usetexture8 != null" >
+        #{usetexture8,jdbcType=INTEGER},
+      </if>
+      <if test="usetexture9 != null" >
+        #{usetexture9,jdbcType=INTEGER},
+      </if>
+      <if test="usetexture10 != null" >
+        #{usetexture10,jdbcType=INTEGER},
+      </if>
+      <if test="usetexture11 != null" >
+        #{usetexture11,jdbcType=INTEGER},
+      </if>
+      <if test="usetexture12 != null" >
+        #{usetexture12,jdbcType=INTEGER},
+      </if>
+      <if test="usetexture13 != null" >
+        #{usetexture13,jdbcType=INTEGER},
+      </if>
+      <if test="usetexture14 != null" >
+        #{usetexture14,jdbcType=INTEGER},
+      </if>
+      <if test="usetexture15 != null" >
+        #{usetexture15,jdbcType=INTEGER},
+      </if>
+      <if test="usetexture16 != null" >
+        #{usetexture16,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zheyue.encrypt.entity.Material" >
+    update material
+    <set >
+      <if test="materialname != null" >
+        MaterialName = #{materialname,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null" >
+        NickName = #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null" >
+        Note = #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        State = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="path != null" >
+        Path = #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        Type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="usetexture1 != null" >
+        UseTexture1 = #{usetexture1,jdbcType=INTEGER},
+      </if>
+      <if test="usetexture2 != null" >
+        UseTexture2 = #{usetexture2,jdbcType=INTEGER},
+      </if>
+      <if test="usetexture3 != null" >
+        UseTexture3 = #{usetexture3,jdbcType=INTEGER},
+      </if>
+      <if test="usetexture4 != null" >
+        UseTexture4 = #{usetexture4,jdbcType=INTEGER},
+      </if>
+      <if test="usetexture5 != null" >
+        UseTexture5 = #{usetexture5,jdbcType=INTEGER},
+      </if>
+      <if test="usetexture6 != null" >
+        UseTexture6 = #{usetexture6,jdbcType=INTEGER},
+      </if>
+      <if test="usetexture7 != null" >
+        UseTexture7 = #{usetexture7,jdbcType=INTEGER},
+      </if>
+      <if test="usetexture8 != null" >
+        UseTexture8 = #{usetexture8,jdbcType=INTEGER},
+      </if>
+      <if test="usetexture9 != null" >
+        UseTexture9 = #{usetexture9,jdbcType=INTEGER},
+      </if>
+      <if test="usetexture10 != null" >
+        UseTexture10 = #{usetexture10,jdbcType=INTEGER},
+      </if>
+      <if test="usetexture11 != null" >
+        UseTexture11 = #{usetexture11,jdbcType=INTEGER},
+      </if>
+      <if test="usetexture12 != null" >
+        UseTexture12 = #{usetexture12,jdbcType=INTEGER},
+      </if>
+      <if test="usetexture13 != null" >
+        UseTexture13 = #{usetexture13,jdbcType=INTEGER},
+      </if>
+      <if test="usetexture14 != null" >
+        UseTexture14 = #{usetexture14,jdbcType=INTEGER},
+      </if>
+      <if test="usetexture15 != null" >
+        UseTexture15 = #{usetexture15,jdbcType=INTEGER},
+      </if>
+      <if test="usetexture16 != null" >
+        UseTexture16 = #{usetexture16,jdbcType=INTEGER},
+      </if>
+    </set>
+    where MaterialID = #{materialid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zheyue.encrypt.entity.Material" >
+    update material
+    set MaterialName = #{materialname,jdbcType=VARCHAR},
+      NickName = #{nickname,jdbcType=VARCHAR},
+      Note = #{note,jdbcType=VARCHAR},
+      State = #{state,jdbcType=INTEGER},
+      Path = #{path,jdbcType=VARCHAR},
+      Type = #{type,jdbcType=INTEGER},
+      UseTexture1 = #{usetexture1,jdbcType=INTEGER},
+      UseTexture2 = #{usetexture2,jdbcType=INTEGER},
+      UseTexture3 = #{usetexture3,jdbcType=INTEGER},
+      UseTexture4 = #{usetexture4,jdbcType=INTEGER},
+      UseTexture5 = #{usetexture5,jdbcType=INTEGER},
+      UseTexture6 = #{usetexture6,jdbcType=INTEGER},
+      UseTexture7 = #{usetexture7,jdbcType=INTEGER},
+      UseTexture8 = #{usetexture8,jdbcType=INTEGER},
+      UseTexture9 = #{usetexture9,jdbcType=INTEGER},
+      UseTexture10 = #{usetexture10,jdbcType=INTEGER},
+      UseTexture11 = #{usetexture11,jdbcType=INTEGER},
+      UseTexture12 = #{usetexture12,jdbcType=INTEGER},
+      UseTexture13 = #{usetexture13,jdbcType=INTEGER},
+      UseTexture14 = #{usetexture14,jdbcType=INTEGER},
+      UseTexture15 = #{usetexture15,jdbcType=INTEGER},
+      UseTexture16 = #{usetexture16,jdbcType=INTEGER}
+    where MaterialID = #{materialid,jdbcType=INTEGER}
+  </update>
+
+
+  <select id="selectPathById" resultType="java.lang.String">
+    SELECT path FROM material where MaterialID = #{materialId}
+  </select>
+</mapper>

@@ -1,7 +1,9 @@
 package com.zheyue.encrypt.controller;
 
 import com.zheyue.encrypt.service.EncyptService;
+import com.zheyue.encrypt.service.MaterialService;
 import com.zheyue.encrypt.service.TaskService;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,8 @@ public class EncryptController {
 
     @Autowired
     private TaskService taskService;
+    @Autowired
+    private MaterialService materialService;
 
     public static final String publicKey = "FD";
 
@@ -41,8 +45,14 @@ public class EncryptController {
     }
 
     @RequestMapping("encrypt")
-    public void encrypt(HttpServletRequest request) {
+    @ResponseBody
+    public String encrypt(HttpServletRequest request) {
+        String path =  materialService.getPathById(2);
+        if (StringUtils.isEmpty(path)) {
+            return "文件不存在";
+        }
 
+        return path;
     }
 
 }
