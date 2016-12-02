@@ -7,6 +7,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -27,6 +28,9 @@ public class EncryptController {
     private TaskService taskService;
     @Autowired
     private MaterialService materialService;
+    @Autowired
+    private RedisTemplate redisTemplate;
+
 
     public static final String publicKey = "FD";
 
@@ -47,6 +51,7 @@ public class EncryptController {
     @RequestMapping("encrypt")
     @ResponseBody
     public String encrypt(HttpServletRequest request) {
+        redisTemplate.convertAndSend("fd", "fd");
         String path =  materialService.getPathById(2);
         if (StringUtils.isEmpty(path)) {
             return "文件不存在";

@@ -25,8 +25,8 @@ public class DataSourceConfig {
     @Autowired
     private DataSourceProperties properties;
 
-    @Bean
-    public DataSource myTestDb2DataSource() throws Exception {
+    @Bean("dataSource")
+    public DataSource dataSource() throws Exception {
         Properties props = new Properties();
         props.put("driverClassName", properties.getDriverClassName());
         props.put("url", properties.getUrl());

@@ -21,16 +21,19 @@ public class MybatisConfig {
     @Autowired
     DataSource dataSource;
 
-
-    @Bean("sqlSessionFactory")
-    public SqlSessionFactoryBean sqlSessionFactory() {
-        SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
-        sqlSessionFactoryBean.setDataSource(dataSource);
-        return sqlSessionFactoryBean;
-    }
+    /**
+     * sqlSessionFactory在MybatisAutoConfiguration已经自动创建
+     * @return
+     */
+//    @Bean("sqlSessionFactory")
+//    public SqlSessionFactoryBean sqlSessionFactory() {
+//        SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
+//        sqlSessionFactoryBean.setDataSource(dataSource);
+//        return sqlSessionFactoryBean;
+//    }
 
     /**
-     * 使用@MapperScan("com.zheyue.encrypt.dao")代替
+     * 使用@MapperScan("com.zheyue.encrypt.dao")注解代替
      * mybatis自动扫描配置
      * @return
      */
