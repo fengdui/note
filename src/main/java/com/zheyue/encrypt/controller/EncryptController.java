@@ -51,7 +51,8 @@ public class EncryptController {
     @RequestMapping("encrypt")
     @ResponseBody
     public String encrypt(HttpServletRequest request) {
-        redisTemplate.convertAndSend("fd", "fd");
+//        redisTemplate.convertAndSend("fd", "fd");
+        System.out.println("fd1");
         String path =  materialService.getPathById(2);
         if (StringUtils.isEmpty(path)) {
             return "文件不存在";

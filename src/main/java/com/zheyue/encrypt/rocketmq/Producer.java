@@ -12,21 +12,22 @@ public class Producer {
     public static void main(String[] args) {
         DefaultMQProducer producer = new DefaultMQProducer("Producer");
         //nameserver服务,多个以;分开
-        producer.setNamesrvAddr("192.168.133.128:9876");
+        producer.setNamesrvAddr("localhost:9876");
+        producer.setVipChannelEnabled(false);
         try{
             producer.start();
 
             Message msg = new Message("PushTopic","push","1","Just for test.".getBytes());
             SendResult result = producer.send(msg);
-            System.out.println("id:"+result.getMsgId()+" result:" +result.getSendStatus());;
+            System.out.println("id:"+result.getMsgId()+" result:" +result.getSendStatus());
 
             msg = new Message("PushTopic","push","2","Just for test.".getBytes());
             result = producer.send(msg);
-            System.out.println("id:"+result.getMsgId()+" result:" +result.getSendStatus());;
+            System.out.println("id:"+result.getMsgId()+" result:" +result.getSendStatus());
 
             msg = new Message("PullTopic","pull","1","Just for test.".getBytes());
             result = producer.send(msg);
-            System.out.println("id:"+result.getMsgId()+" result:" +result.getSendStatus());;
+            System.out.println("id:"+result.getMsgId()+" result:" +result.getSendStatus());
         }catch(Exception e){
             e.printStackTrace();
         }finally {
