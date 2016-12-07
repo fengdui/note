@@ -2,16 +2,20 @@ package com.zheyue.encrypt.coder;
 
 
 import org.apache.commons.codec.binary.Base64;
+import org.springframework.context.annotation.Configuration;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 import java.security.Key;
+import java.util.Arrays;
 
 /**
  * @author FD
  * @date 2016/11/30
  */
+
+@Configuration
 public class AESCoder {
 
     private static byte[] sbox = new byte[256];
@@ -43,24 +47,38 @@ public class AESCoder {
     }
 
     public static void main(String[] args) throws Exception{
-//        String data = "你是猪你是猪哇哈哈";
-//        String key = "ffffffffdddddddd";
-//        System.out.println("密钥  "+key);
-//        System.out.println("原文  "+data);
-//        byte[] data2 = encrypt(data.getBytes(), key.getBytes());
-//        System.out.println("密文  " + Base64.encodeBase64String(data2));
-//
-//        byte[] data3 = decrypt(data2, key.getBytes());
-//        System.out.println("原文  " + new String(data3));
-        generateSbox();
-        for (int i = 0; i < 256; i++) {
-                System.out.format("%x", sbox[i]);
-                System.out.println();
+        String data = "你是猪你是猪哇哈哈XXXX";
+        String key = "ffffffffdddddddd";
+        System.out.println("密钥  "+key);
+        System.out.println("原文  "+data);
+        byte[] data4 = Arrays.copyOf(data.getBytes(), 16);
+        System.out.println("加密前字节长度 "+ data.getBytes().length);
+        byte[] data2 = encrypt(data.getBytes(), key.getBytes());
+
+        System.out.println("加密后字节长度 "+ data2.length);
+        for (int i = 0; i < data2.length; i++) {
+            System.out.print(data2[i]+" ");
         }
-//        System.out.println(Integer.toBinaryString(128*131));
-//        System.out.println(Integer.toBinaryString(283));
-//        System.out.println(Integer.toBinaryString(inv(194, 283)));
-//        System.out.println(Integer.toBinaryString(inv(255, 283)));
+        System.out.println();
+        System.out.println("base64密文  " + Base64.encodeBase64String(data2));
+
+        byte[] data3 = decrypt(data2, key.getBytes());
+        System.out.println("原文  " + new String(data3));
+//        generateSbox();
+//        for (int i = 0; i < 256; i++) {
+//                System.out.format("%x", sbox[i]);
+//                System.out.println();
+//        }
+
+    }
+
+    //乘以2
+    private byte xtime (byte x) {
+        int tmp = x << 1;
+        if((x&0x80) > 0) {
+            tmp ^= 0x1B;
+        }
+        return (byte)tmp;
     }
 
     //得到s盒 每一个字节计算逆元
@@ -71,12 +89,13 @@ public class AESCoder {
         byte p = 1, q = 1;
         do {
             p = (byte)(p ^ (p << 1) ^ ((p & 0x80) > 0 ? 0x1B : 0));
-            System.out.println("p: " + p);
+//            System.out.println("p: " + ((int)p&0xFF));
             q ^= q << 1;
             q ^= q << 2;
             q ^= q << 4;
             q ^= (q & 0x80) > 0 ? 0x09 : 0;
-            sbox[p] = (byte)(q ^ (q << 4 | q >> 4)^(q << 3 | q >> 5) ^ (q << 2 | q >> 6) ^ (q << 1 | q >> 7) ^ 0x63);
+//            System.out.println("q: " + (byte)(q ^ (q << 4 | q >> 4)^(q << 3 | q >> 5) ^ (q << 2 | q >> 6) ^ (q << 1 | q >> 7) ^ 0x63));
+            sbox[(int)p&0xFF] = (byte)(q ^ (q << 4 | q >> 4)^(q << 3 | q >> 5) ^ (q << 2 | q >> 6) ^ (q << 1 | q >> 7) ^ 0x63);
         } while (p != 1);
 
         sbox[0] = (byte)0x63;
@@ -87,6 +106,36 @@ public class AESCoder {
 //        return pow_mod(a, n-2, n);
 //    }
 
+
+    //行移位变换
+    public void shiftRows(byte[][] data) {
+        byte tmp = data[1][0];
+        for (int i = 1; i < 4; i++) {
+            data[1][i-1] = data[1][i];
+        }
+        data[1][3] = tmp;
+        tmp = data[2][0];
+        data[2][0] = data[2][2];
+        data[2][2] = tmp;
+        tmp = data[2][1];
+        data[2][1] = data[2][3];
+        data[2][3] = tmp;
+        tmp = data[3][3];
+        for (int i = 1; i < 4; i++) {
+            data[3][i] = data[3][i-1];
+        }
+        data[3][0] = tmp;
+    }
+
+    public void mixColumns(byte[][] data) {
+
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+
+            }
+        }
+
+    }
 
 
     /**

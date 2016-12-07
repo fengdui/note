@@ -52,13 +52,19 @@ public class EncryptController {
     @ResponseBody
     public String encrypt(HttpServletRequest request) {
 //        redisTemplate.convertAndSend("fd", "fd");
-        System.out.println("fd1");
-        String path =  materialService.getPathById(2);
-        if (StringUtils.isEmpty(path)) {
-            return "文件不存在";
-        }
+//        System.out.println("fd1");
+//        String path =  materialService.getPathById(2);
+//        if (StringUtils.isEmpty(path)) {
+//            return "文件不存在";
+//        }
 
-        return path;
+        taskService.executeTask();
+        return "";
     }
 
+    public static void main(String[] args) {
+        EncryptController encryptController = new EncryptController();
+        for (int i = 0; i < 10; i++)
+        encryptController.taskService.executeTask();
+    }
 }
