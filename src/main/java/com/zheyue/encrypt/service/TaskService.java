@@ -36,9 +36,9 @@ public class TaskService {
             System.out.println("执行任务 "+ id +" 开始时间 "+System.currentTimeMillis());
 //            File file = new File("C:\\Users\\FD\\Desktop\\fd.pdf");
 //            FileOutputStream
-            byte[] bytes = new byte[1024];
+            byte[] bytes = new byte[1024*1024*100];
             Arrays.fill(bytes, (byte)6);
-            for (int i = 0; i < 1024*20; i++) {
+            for (int i = 0; i < 1; i++) {
                 AESCoder.encrypt(bytes, key.getBytes());
 
             }
@@ -50,10 +50,14 @@ public class TaskService {
     }
 
     public static void main(String[] args) {
-        TaskService taskService = new TaskService();
-        for (int i = 0; i < 10; i++) {
+        System.out.println(Runtime.getRuntime().maxMemory()/1024/1024);
+        System.out.println(Runtime.getRuntime().freeMemory()/1024/1024);
+        System.out.println(Runtime.getRuntime().totalMemory()/1024/1024);
 
-            taskService.executeTask();
-        }
+//        TaskService taskService = new TaskService();
+//        for (int i = 0; i < 1; i++) {
+//
+//            taskService.executeTask();
+//        }
     }
 }

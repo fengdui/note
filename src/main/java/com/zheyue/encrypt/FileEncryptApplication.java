@@ -12,7 +12,7 @@ public class FileEncryptApplication {
 
 	class MyRunnable implements Runnable {
 
-		private volatile boolean stoped = true;
+		private volatile boolean stoped = false;
 
 		@Override
 		public void run() {
@@ -28,14 +28,14 @@ public class FileEncryptApplication {
 	}
 
 	public static void main(String[] args) {
-//		SpringApplication.run(FileEncryptApplication.class, args);
-		new FileEncryptApplication().thread.start();
-		Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
-			@Override
-			public void run() {
-				System.out.println("系统退出");
-			}
-		}));
+		SpringApplication.run(FileEncryptApplication.class, args);
+//		new FileEncryptApplication().thread.start();
+//		Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
+//			@Override
+//			public void run() {
+//				System.out.println("系统退出");
+//			}
+//		}));
 	}
 
 }
