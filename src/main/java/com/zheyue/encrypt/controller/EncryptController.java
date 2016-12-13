@@ -57,14 +57,19 @@ public class EncryptController {
 //        if (StringUtils.isEmpty(path)) {
 //            return "文件不存在";
 //        }
-
-        taskService.executeTask();
-        return "";
+        try {
+            taskService.executeTask();
+            return "加密成功";
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("XX");
+        }
+        return "加密失败";
     }
 
-    public static void main(String[] args) {
-        EncryptController encryptController = new EncryptController();
-        for (int i = 0; i < 10; i++)
-        encryptController.taskService.executeTask();
-    }
+//    public static void main(String[] args) {
+//        EncryptController encryptController = new EncryptController();
+//        for (int i = 0; i < 10; i++)
+//        encryptController.taskService.executeTask();
+//    }
 }

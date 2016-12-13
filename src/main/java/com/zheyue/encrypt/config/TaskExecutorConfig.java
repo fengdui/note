@@ -44,15 +44,15 @@ public class TaskExecutorConfig implements AsyncConfigurer {
         return null;
     }
 
-    public static void main(String[] args) {
-
-        System.out.println(~CAPACITY);
-        System.out.println(CAPACITY);
-
-//        System.out.println(SHUTDOWN);
-//        System.out.println(STOP);
-//        System.out.println(TIDYING);
-//        System.out.println(TERMINATED);
-
-    }
+//    public static void main(String[] args) {
+//
+//        System.out.println(~CAPACITY);
+//        System.out.println(CAPACITY);
+//
+////        System.out.println(SHUTDOWN);
+////        System.out.println(STOP);
+////        System.out.println(TIDYING);
+////        System.out.println(TERMINATED);
+//
+//    }
 }

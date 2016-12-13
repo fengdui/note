@@ -46,36 +46,36 @@ public class AESCoder {
         return cipher.doFinal(data);
     }
 
-    public static void main(String[] args) throws Exception{
-        String data = "你是谁";
-        System.out.println(data.length());
-        System.out.println(data.codePointCount(0, data.length()));
-        int index = data.offsetByCodePoints(0, 1);
-        System.out.println(data.codePointAt(index));
-
-//        String key = "ffffffffdddddddd";
-//        System.out.println("密钥  "+key);
-//        System.out.println("原文  "+data);
-//        byte[] data4 = Arrays.copyOf(data.getBytes(), 16);
-//        System.out.println("加密前字节长度 "+ data.getBytes().length);
-//        byte[] data2 = encrypt(data.getBytes(), key.getBytes());
+//    public static void main(String[] args) throws Exception{
+//        String data = "你是谁";
+//        System.out.println(data.length());
+//        System.out.println(data.codePointCount(0, data.length()));
+//        int index = data.offsetByCodePoints(0, 1);
+//        System.out.println(data.codePointAt(index));
 //
-//        System.out.println("加密后字节长度 "+ data2.length);
-//        for (int i = 0; i < data2.length; i++) {
-//            System.out.print(data2[i]+" ");
-//        }
-//        System.out.println();
-//        System.out.println("base64密文  " + Base64.encodeBase64String(data2));
+////        String key = "ffffffffdddddddd";
+////        System.out.println("密钥  "+key);
+////        System.out.println("原文  "+data);
+////        byte[] data4 = Arrays.copyOf(data.getBytes(), 16);
+////        System.out.println("加密前字节长度 "+ data.getBytes().length);
+////        byte[] data2 = encrypt(data.getBytes(), key.getBytes());
+////
+////        System.out.println("加密后字节长度 "+ data2.length);
+////        for (int i = 0; i < data2.length; i++) {
+////            System.out.print(data2[i]+" ");
+////        }
+////        System.out.println();
+////        System.out.println("base64密文  " + Base64.encodeBase64String(data2));
+////
+////        byte[] data3 = decrypt(data2, key.getBytes());
+////        System.out.println("原文  " + new String(data3));
+////        generateSbox();
+////        for (int i = 0; i < 256; i++) {
+////                System.out.format("%x", sbox[i]);
+////                System.out.println();
+////        }
 //
-//        byte[] data3 = decrypt(data2, key.getBytes());
-//        System.out.println("原文  " + new String(data3));
-//        generateSbox();
-//        for (int i = 0; i < 256; i++) {
-//                System.out.format("%x", sbox[i]);
-//                System.out.println();
-//        }
-
-    }
+//    }
 
     //乘以2
     private byte xtime (byte x) {
