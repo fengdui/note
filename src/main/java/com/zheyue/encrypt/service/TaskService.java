@@ -54,10 +54,10 @@ public class TaskService {
         System.out.println(Runtime.getRuntime().freeMemory()/1024/1024);
         System.out.println(Runtime.getRuntime().totalMemory()/1024/1024);
 
-//        TaskService taskService = new TaskService();
-//        for (int i = 0; i < 1; i++) {
-//
-//            taskService.executeTask();
-//        }
+        TaskService taskService = new TaskService();
+        for (int i = 0; i < 5; i++) {
+
+            taskService.executeTask();
+        }
     }
 }
