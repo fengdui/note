@@ -29,6 +29,8 @@ public class FileEncryptApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(FileEncryptApplication.class, args);
+
+
 //		new FileEncryptApplication().thread.start();
 //		Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
 //			@Override
