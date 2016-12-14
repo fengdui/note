@@ -18,8 +18,8 @@ import javax.sql.DataSource;
 @MapperScan("com.zheyue.encrypt.dao")
 public class MybatisConfig {
 
-    @Autowired
-    DataSource dataSource;
+//    @Autowired
+//    DataSource dataSource;
 
     /**
      * sqlSessionFactory在MybatisAutoConfiguration已经自动创建
