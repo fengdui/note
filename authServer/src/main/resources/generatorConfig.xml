@@ -14,11 +14,11 @@
             password="root" />
  
         <javaModelGenerator targetPackage="com.lutai.admin.auth.entity"
-            targetProject="C:\Users\lutai\IdeaProjects\zheyuevr\src\main\java\" />
+            targetProject="src\main\java\" />
         <sqlMapGenerator targetPackage="com.lutai.admin.auth.dao"
-            targetProject="C:\Users\lutai\IdeaProjects\zheyuevr\src\main\resources\" />
+            targetProject="src\main\resources\" />
         <javaClientGenerator targetPackage="com.lutai.admin.auth.dao"
-            targetProject="C:\Users\lutai\IdeaProjects\zheyuevr\src\main\java\" type="XMLMAPPER" />
+            targetProject="src\main\java\" type="XMLMAPPER" />
  
         <table tableName="sys_file" domainObjectName="SysFile"
             enableCountByExample="false" enableSelectByExample="false"
