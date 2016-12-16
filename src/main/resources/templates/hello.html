@@ -2,9 +2,33 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title></title>
-    <script src="/js/lib/require.js" data-main="/js/app/hello_require.js"></script>
+    <!--<script src="/js/lib/require.js" data-main="/js/app/hello_require.js"></script>-->
+    <script src="/js/lib/vue.js"></script>
+
 </head>
 <body>
-    sssAAA
+<div id="example-2">
+    <!-- `greet` 是在下面定义的方法名 -->
+    <button v-on:click="hello">Greet</button>
+</div>
+
+<div id="app">
+    {{ message }}
+</div>
 </body>
+<script>
+    var vm = new Vue({
+        // 选项
+        el: '#app',
+        data: {
+            message: 'Hello Vue!'
+        },
+        methods: {
+            hello : function() {
+                alert("你好");
+            }
+        }
+    });
+    vm.hello();
+</script>
 </html>
