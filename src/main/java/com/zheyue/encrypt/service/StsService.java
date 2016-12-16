@@ -20,6 +20,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class StsService {
 
+
+//    {
+//        IClientProfile profile = DefaultProfile.getProfile("cn-hangzhou", "LTAIwKGyu3xB7S6a", "9dbcFotQhlzwTa8DkYhbmDdP5BO7Ow");
+//        this.client = new DefaultAcsClient(profile);
+//    }
     @Autowired
     public DefaultAcsClient client;
 
@@ -31,7 +36,7 @@ public class StsService {
     public String roleArn;
 
     public String getRoleSessionName(String userId, String userName) throws Exception{
-        return userId+"#"+userName;
+        return userId + "_" + userName;
     }
 
 
@@ -76,4 +81,12 @@ public class StsService {
         AssumeRoleResponse response = assumeRole(roleSessionName, policy);
         return response.getCredentials();
     }
+
+//    public static void main(String[] args) throws Exception {
+//        AssumeRoleResponse.Credentials credentials = new StsService().getStsCredentials("fd", "fd");
+//        System.out.println("Expiration: " + credentials.getExpiration());
+//        System.out.println("Access Key Id: " + credentials.getAccessKeyId());
+//        System.out.println("Access Key Secret: " + credentials.getAccessKeySecret());
+//        System.out.println("Security Token: " + credentials.getSecurityToken());
+//    }
 }

@@ -42,9 +42,11 @@ public class AliyunConfig {
     @Value("${ram.accessKeySecret}")
     public String accessKeySecret;
 
+    @Bean
     public DefaultAcsClient acsClient() {
         IClientProfile profile = DefaultProfile.getProfile(region_cn_hangzhou, accessKeyId, accessKeySecret);
         DefaultAcsClient client = new DefaultAcsClient(profile);
+        return client;
     }
 
 }
