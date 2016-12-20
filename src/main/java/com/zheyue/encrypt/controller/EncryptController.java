@@ -1,6 +1,7 @@
 package com.zheyue.encrypt.controller;
 
 import com.zheyue.encrypt.service.MaterialService;
+import com.zheyue.encrypt.service.OssService;
 import com.zheyue.encrypt.service.StsService;
 import com.zheyue.encrypt.service.TaskService;
 import org.slf4j.Logger;
@@ -25,6 +26,8 @@ public class EncryptController {
 
     @Autowired
     private StsService stsService;
+    @Autowired
+    private OssService ossService;
     @Autowired
     private TaskService taskService;
     @Autowired
@@ -64,11 +67,11 @@ public class EncryptController {
 //            return "文件不存在";
 //        }
         try {
-            taskService.executeTask();
-            return "加密成功";
+            String key = ossService.getAndEncryptAndPut("fd.pdf", "fd");
+//            taskService.executeTask();
+            return "加密成功 "+ key;
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("XX");
         }
         return "加密失败";
     }

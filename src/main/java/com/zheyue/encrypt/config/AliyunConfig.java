@@ -15,22 +15,18 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class AliyunConfig {
 
-//    @Value("${oss.endpoint}")
-//    private String endpoint;
-//
+    @Value("${oss.endpoint}")
+    private String endpoint;
+
 //    @Value("${oss.accessKeyId}")
 //    private String accessKeyId;
 //
 //    @Value("${oss.accessKeySecret}")
 //    private String accessKeySecret;
-//
+
 //    @Value("${oss.bucketName}")
 //    private String bucketName;
-//
-//    @Bean("ossClient")
-//    public OSSClient ossClient() {
-//        return new OSSClient(endpoint, accessKeyId, accessKeySecret);
-//    }
+
 
     // 目前只有"cn-hangzhou"这个region可用, 不要使用填写其他region的值
     @Value("${sts.region_cn_hangzhou}")
@@ -49,4 +45,8 @@ public class AliyunConfig {
         return client;
     }
 
+    @Bean("ossClient")
+    public OSSClient ossClient() {
+        return new OSSClient(endpoint, accessKeyId, accessKeySecret);
+    }
 }
