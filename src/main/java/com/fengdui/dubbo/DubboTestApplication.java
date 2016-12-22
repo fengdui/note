@@ -1,5 +1,6 @@
 package com.fengdui.dubbo;
 
+import com.alibaba.dubbo.config.spring.ReferenceBean;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -12,6 +13,8 @@ public class DubboTestApplication {
 		SpringApplication application = new SpringApplication();
 		application.setWebEnvironment(false);
 		ConfigurableApplicationContext applicationContext = application.run(DubboTestApplication.class, args);
-		applicationContext.getBean("iDubboDemoService");
+		ReferenceBean referenceBean = (ReferenceBean)applicationContext.getBean("referenceBean");
+		referenceBean.get();
+//		applicationContext.addApplicationListener();
 	}
 }
