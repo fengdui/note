@@ -5,16 +5,20 @@ import com.alibaba.dubbo.config.spring.AnnotationBean;
 import com.alibaba.dubbo.config.spring.ReferenceBean;
 import com.fengdui.dubbo.service.IDubboDemoService;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.config.BeanPostProcessor;
+import org.springframework.beans.factory.config.InstantiationAwareBeanPostProcessor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+
+import java.beans.PropertyDescriptor;
 
 /**
  * @author FD
  * @date 2016/12/20
  */
 @Configuration
-@PropertySource(value = "classpath:/dubbo.properties")
+//@PropertySource(value = "classpath:/dubbo.properties")
 public class DubboConfig {
 
     @Value("${dubbo.application.name}")
@@ -44,6 +48,9 @@ public class DubboConfig {
     @Value("${dubbo.provider.delay}")
     private int delay;
 
+    @Value("${dubbo.annotation.package}")
+    private String packageName;
+
 
 //    @Bean
 //    public ReferenceBean referenceBean(ApplicationConfig application, RegistryConfig registry) {
@@ -58,17 +65,6 @@ public class DubboConfig {
 //        return reference;
 //    }
 
-    /**
-     * 设置dubbo扫描包
-     * @param packageName
-     * @return
-     */
-    @Bean
-    public AnnotationBean annotationBean(@Value("${dubbo.annotation.package}") String packageName) {
-        AnnotationBean annotationBean = new AnnotationBean();
-        annotationBean.setPackage(packageName);
-        return annotationBean;
-    }
 
     /**
      * 注入dubbo上下文
@@ -76,10 +72,19 @@ public class DubboConfig {
      */
     @Bean
     public ApplicationConfig applicationConfig() {
+        System.out.println(delay);
         // 当前应用配置
         ApplicationConfig applicationConfig = new ApplicationConfig();
         applicationConfig.setName(this.applicationName);
         return applicationConfig;
+    }
+
+    @Bean
+    public static AnnotationBean annotationBean(@Value("${dubbo.annotation.package}") String packageName) {
+
+        AnnotationBean annotationBean = new AnnotationBean();
+        annotationBean.setPackage(packageName);
+        return annotationBean;
     }
 
     /**
@@ -122,6 +127,7 @@ public class DubboConfig {
      */
     @Bean(name="defaultProvider")
     public ProviderConfig providerConfig(ApplicationConfig applicationConfig, RegistryConfig registryConfig, ProtocolConfig protocolConfig) {
+        System.out.println(delay);
         ProviderConfig providerConfig = new ProviderConfig();
         providerConfig.setTimeout(timeout);
         providerConfig.setRetries(retries);
