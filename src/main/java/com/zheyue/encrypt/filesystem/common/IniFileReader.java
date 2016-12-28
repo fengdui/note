@@ -22,14 +22,26 @@ import java.util.Hashtable;
 */
 public class IniFileReader
 {
+	@SuppressWarnings("rawtypes")
 	private Hashtable paramTable;
+	private String conf_filename;
 	
 /**
 * @param conf_filename config filename
 */
 	public IniFileReader(String conf_filename) throws FileNotFoundException, IOException
 	{
+		this.conf_filename = conf_filename;
 		loadFromFile(conf_filename);
+	}
+	
+/**
+* get the config filename
+* @return config filename
+*/
+	public String getConfFilename()
+	{
+		return this.conf_filename;
 	}
 	
 /**
@@ -37,6 +49,7 @@ public class IniFileReader
 * @param name item name in config file
 * @return string value
 */
+	@SuppressWarnings("rawtypes")
 	public String getStrValue(String name)
 	{
 		Object obj;
@@ -94,6 +107,7 @@ public class IniFileReader
 * @param name item name in config file
 * @return string values (array)
 */
+	@SuppressWarnings("rawtypes")
 	public String[] getValues(String name)
 	{
 		Object obj;
@@ -118,6 +132,7 @@ public class IniFileReader
 		return values;
 	}
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private void loadFromFile(String conf_filename) throws FileNotFoundException, IOException
 	{
 		FileReader fReader;

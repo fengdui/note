@@ -8,23 +8,24 @@
 
 package com.zheyue.encrypt.filesystem.fastdfs;
 
-import java.io.IOException;
-import java.io.OutputStream;
-
 /**
- * upload file callback interface
+ * Download file callback interface
  * 
  * @author Happy Fish / YuQing
- * @version Version 1.0
+ * @version Version 1.4
  */
-public interface UploadCallback {
+public interface DownloadCallback {
 	/**
-	 * send file content callback function, be called only once when the file
-	 * uploaded
+	 * recv file content callback function, may be called more than once when
+	 * the file downloaded
 	 * 
-	 * @param out
-	 *            output stream for writing file content
+	 * @param file_size
+	 *            file size
+	 * @param data
+	 *            data buff
+	 * @param bytes
+	 *            data bytes
 	 * @return 0 success, return none zero(errno) if fail
 	 */
-	public int send(OutputStream out) throws IOException;
+	public int recv(long file_size, byte[] data, int bytes);
 }
