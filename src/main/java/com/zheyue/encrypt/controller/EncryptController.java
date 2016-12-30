@@ -1,5 +1,6 @@
 package com.zheyue.encrypt.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.zheyue.encrypt.service.MaterialService;
 import com.zheyue.encrypt.service.OssService;
 import com.zheyue.encrypt.service.StsService;
@@ -67,9 +68,11 @@ public class EncryptController {
 //            return "文件不存在";
 //        }
         try {
-            String key = ossService.getAndEncryptAndPut("fd.pdf", "fd");
+            byte[] bytes = new byte[]{2, 4};
+            System.out.println(JSON.toJSON(bytes));
+//            String key = ossService.getAndEncryptAndPut("fd.pdf", "fd");
 //            taskService.executeTask();
-            return "加密成功 "+ key;
+            return "加密成功 "+ "";
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -87,8 +90,11 @@ public class EncryptController {
         return "获取sts失败";
     }
 //    public static void main(String[] args) {
-//        EncryptController encryptController = new EncryptController();
-//        for (int i = 0; i < 10; i++)
-//        encryptController.taskService.executeTask();
+////        EncryptController encryptController = new EncryptController();
+////        for (int i = 0; i < 10; i++)
+////        encryptController.taskService.executeTask();
+//
+//        byte[] bytes = new byte[]{2, 4};
+//        System.out.println(JSON.toJSON(bytes));
 //    }
 }
