@@ -1,6 +1,8 @@
 package com.zheyue.encrypt.server;
 
 import com.zheyue.encrypt.annotation.RpcService;
+import com.zheyue.encrypt.netty.ServerChannelInitializer;
+import com.zheyue.encrypt.serialize.SerializeProtocol;
 import com.zheyue.encrypt.zookeeper.ServiceRegistry;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
@@ -30,50 +32,46 @@ import java.util.Map;
  * @author FD
  * @date 2016/12/29
  */
-public class FileServer implements InitializingBean {
+public class FileServer implements ApplicationContextAware{
 
     private static final Logger LOGGER = LoggerFactory.getLogger(RpcServer.class);
 
 //    @Value("${server.address}")
-//    private String serverAddress;
+    private String serverAddress;
 //    @Autowired
 //    private ServiceRegistry serviceRegistry;
 
+    private int parallel;
+    private SerializeProtocol serializeProtocol;
+
+    private EventLoopGroup boss = new NioEventLoopGroup();
+
+    private EventLoopGroup worker = new NioEventLoopGroup(parallel);
+
     private Map<String, Object> handlerMap = new HashMap<>();
 
-//    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-//        Map<String, Object> serviceMap = applicationContext.getBeansWithAnnotation(RpcService.class);
-//        if (serviceMap != null && serviceMap.size() > 0) {
-//            for (Object serviceBean : serviceMap.values()) {
-//                String interfaceName = serviceBean.getClass().getAnnotation(RpcService.class).value().getName();
-//                handlerMap.put(interfaceName, serviceBean);
-//            }
-//        }
-//    }
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        Map<String, Object> serviceMap = applicationContext.getBeansWithAnnotation(RpcService.class);
+        if (serviceMap != null && serviceMap.size() > 0) {
+            for (Object serviceBean : serviceMap.values()) {
+                String interfaceName = serviceBean.getClass().getAnnotation(RpcService.class).value().getName();
+                handlerMap.put(interfaceName, serviceBean);
+            }
+        }
+    }
 
-    public void afterPropertiesSet() throws Exception {
-        EventLoopGroup bossGroup = new NioEventLoopGroup();
-        EventLoopGroup workGroup = new NioEventLoopGroup();
+    public void start() throws Exception {
         try {
             ServerBootstrap b = new ServerBootstrap();
-            b.group(bossGroup, workGroup)
-                    .channel(NioServerSocketChannel.class)
-                    .option(ChannelOption.SO_BACKLOG, 1024)
-                    .childHandler(new ChannelInitializer<SocketChannel>() {
-                        @Override
-                        protected void initChannel(SocketChannel socketChannel) throws Exception {
-                            socketChannel.pipeline()
-                                    .addLast(new StringEncoder(CharsetUtil.UTF_8))
-                                    .addLast(new LineBasedFrameDecoder(1024))
-                                    .addLast(new StringDecoder(CharsetUtil.UTF_8));
-                        }
-                    });
-//            String[] array = serverAddress.split(":");
-//            String host = array[0];
-//            int port = Integer.parseInt(array[1]);
+            b.group(boss, worker).channel(NioServerSocketChannel.class)
+                    .childHandler(new ServerChannelInitializer(serializeProtocol, handlerMap))
+                    .option(ChannelOption.SO_BACKLOG, 1024);
+            String[] ipAddr = serverAddress.split(":");
+            String host = ipAddr[0];
+            int port = Integer.parseInt(ipAddr[1]);
             System.out.println("fd");
-            ChannelFuture future = b.bind("localhost", 8888).sync();
-            LOGGER.debug("server started on port {}", 8888);
+            ChannelFuture future = b.bind(host, port).sync();
+            LOGGER.debug("server started on port {}", port);
 //            if (serviceRegistry != null) {
 //                System.out.println("zhuce");
 //                serviceRegistry.register(serverAddress);
@@ -81,8 +79,8 @@ public class FileServer implements InitializingBean {
             future.channel().closeFuture().sync();
         }
         finally {
-            bossGroup.shutdownGracefully();
-            workGroup.shutdownGracefully();
+            boss.shutdownGracefully();
+            worker.shutdownGracefully();
         }
     }
 }
