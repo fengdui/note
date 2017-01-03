@@ -11,6 +11,7 @@ public class DownloadRequest implements Serializable{
     private int requestId;
     private int fileNum;
     private int[] fileId;
+    private int userId;
 
     public int getRequestId() {
         return requestId;
@@ -34,6 +35,14 @@ public class DownloadRequest implements Serializable{
 
     public void setFileId(int[] fileId) {
         this.fileId = fileId;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
 }

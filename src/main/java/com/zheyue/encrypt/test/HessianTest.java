@@ -30,6 +30,10 @@ public class HessianTest {
         outputStream.write(byteArrayOutputStream4Int.toByteArray());
         outputStream.write(data);
 
+        InputStream inputStream = s1.getInputStream();
+
+
+
         s1.close();
     }
 }

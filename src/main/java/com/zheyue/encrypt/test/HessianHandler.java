@@ -1,5 +1,7 @@
 package com.zheyue.encrypt.test;
 
+import com.zheyue.encrypt.concurrency.DownloadExecutor;
+import com.zheyue.encrypt.concurrency.DownloadTask;
 import com.zheyue.encrypt.model.DownloadRequest;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
@@ -24,11 +26,12 @@ public class HessianHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        System.out.println("read");
         DownloadRequest request = (DownloadRequest) msg;
         System.out.println(request.getRequestId());
         System.out.println(request.getFileNum());
         System.out.println(Arrays.toString(request.getFileId()));
+        DownloadTask task = new DownloadTask(request, ctx);
+        DownloadExecutor.sbmit(task);
     }
 
     @Override
