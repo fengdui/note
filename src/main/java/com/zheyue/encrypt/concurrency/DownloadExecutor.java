@@ -32,7 +32,7 @@ public class DownloadExecutor {
     private static ExecutorService getJDkThreadPoolExecutor() {
         return Executors.newFixedThreadPool(10);
     }
-    public static void sbmit(Callable<Boolean> task) {
+    public static void submit(Callable<Boolean> task) {
         ListenableFuture<Boolean> listenableFuture = getThreadPoolExecutor().submit(task);
         Futures.addCallback(listenableFuture, new FutureCallback<Boolean>() {
             public void onSuccess(Boolean result) {
