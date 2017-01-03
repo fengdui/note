@@ -1,9 +1,9 @@
-package com.zheyue.encrypt.netty;
+package com.zheyue.encrypt.test;
 
+import com.zheyue.encrypt.netty.DownloadHandler;
 import com.zheyue.encrypt.serialize.SerializeProtocol;
 import com.zheyue.encrypt.serialize.hessian.HessianDecoder;
 import com.zheyue.encrypt.serialize.hessian.HessianEncoder;
-import com.zheyue.encrypt.test.FileReciveTest;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.socket.SocketChannel;
 
@@ -13,14 +13,12 @@ import java.util.Map;
  * @author FD
  * @date 2016/12/30
  */
-public class ServerChannelInitializer extends ChannelInitializer<SocketChannel> {
+public class ClientChannelInitializer extends ChannelInitializer<SocketChannel> {
 
     private SerializeProtocol serializeProtocol;
-    private Map<String, Object> handlerMap;
 
-    public ServerChannelInitializer(SerializeProtocol serializeProtocol, Map<String, Object> handlerMap) {
+    public ClientChannelInitializer(SerializeProtocol serializeProtocol) {
         this.serializeProtocol = serializeProtocol;
-        this.handlerMap = handlerMap;
     }
 
     @Override
@@ -36,7 +34,7 @@ public class ServerChannelInitializer extends ChannelInitializer<SocketChannel> 
                 break;
             }
             case HESSIANSERIALIZE: {
-                ch.pipeline().addLast(new HessianDecoder()).addLast(new HessianEncoder()).addLast(new DownloadHandler());
+                ch.pipeline().addLast(new HessianDecoder()).addLast(new HessianEncoder()).addLast(new FileReciveTest());
                 break;
             }
             case PROTOSTUFFSERIALIZE: {

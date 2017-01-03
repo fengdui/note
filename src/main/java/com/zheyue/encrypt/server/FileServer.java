@@ -36,7 +36,7 @@ public class FileServer{
 
     private EventLoopGroup boss = new NioEventLoopGroup();
 
-    private EventLoopGroup worker = new NioEventLoopGroup(parallel);
+    private EventLoopGroup worker = new NioEventLoopGroup(10);
 
     private Map<String, Object> handlerMap = new HashMap<>();
 
@@ -59,8 +59,7 @@ public class FileServer{
             String[] ipAddr = serverAddress.split(":");
             String host = ipAddr[0];
             int port = Integer.parseInt(ipAddr[1]);
-            ChannelFuture future = b.bind(host, port).sync();
-            LOGGER.debug("server started on port {}", port);
+            ChannelFuture future = b.bind(9999).sync();
 //            if (serviceRegistry != null) {
 //                System.out.println("zhuce");
 //                serviceRegistry.register(serverAddress);

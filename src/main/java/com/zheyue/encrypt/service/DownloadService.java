@@ -35,7 +35,7 @@ public class DownloadService {
 
     public Boolean downloadFromOss(DownloadRequest request, ChannelHandlerContext ctx) {
 
-        String key = "";
+        String key = "fd.pdf";
         OSSObject ossObject = client.getObject(bucketName, key);
         try(InputStream in = ossObject.getObjectContent()) {
             long startTime = System.currentTimeMillis();

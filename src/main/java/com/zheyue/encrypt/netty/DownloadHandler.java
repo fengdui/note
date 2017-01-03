@@ -16,16 +16,17 @@ public class DownloadHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        System.out.println("连接成功");
+//        System.out.println("连接成功");
     }
 
     @Override
     public void channelRegistered(ChannelHandlerContext ctx) throws Exception {
-        System.out.println("注册成功");
+//        System.out.println("注册成功");
     }
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
+        System.out.println("注册成功");
         DownloadRequest request = (DownloadRequest) msg;
         System.out.println(request.getRequestId());
         System.out.println(request.getFileNum());

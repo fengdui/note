@@ -12,12 +12,27 @@ import io.netty.channel.ChannelInboundHandlerAdapter;
 public class FileReciveTest extends ChannelInboundHandlerAdapter {
 
     @Override
-    public void channelInactive(ChannelHandlerContext ctx) throws Exception {
-        System.out.println("客户�? 链路建立成功 发�?�下载请�?");
+    public void channelRegistered(ChannelHandlerContext ctx) throws Exception {
+        System.out.println("注册");
+    }
+
+    @Override
+    public void channelUnregistered(ChannelHandlerContext ctx) throws Exception {
+        System.out.println("取消注册");
+    }
+
+    @Override
+    public void channelActive(ChannelHandlerContext ctx) throws Exception {
+        System.out.println("客户端发送请求");
         DownloadRequest downloadRequest = new DownloadRequest();
         downloadRequest.setFileNum(1);
         downloadRequest.setFileId(new int[]{2});
         ctx.writeAndFlush(downloadRequest);
+    }
+
+    @Override
+    public void channelInactive(ChannelHandlerContext ctx) throws Exception {
+        System.out.println("断开");
     }
 
     @Override
