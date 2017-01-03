@@ -3,6 +3,7 @@ package com.zheyue.encrypt.netty;
 import com.zheyue.encrypt.serialize.SerializeProtocol;
 import com.zheyue.encrypt.serialize.hessian.HessianDecoder;
 import com.zheyue.encrypt.serialize.hessian.HessianEncoder;
+import com.zheyue.encrypt.test.HessianHandler;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.socket.SocketChannel;
 
@@ -35,7 +36,7 @@ public class ServerChannelInitializer extends ChannelInitializer<SocketChannel> 
                 break;
             }
             case HESSIANSERIALIZE: {
-                ch.pipeline().addLast(new HessianDecoder()).addLast(new HessianEncoder());
+                ch.pipeline().addLast(new HessianDecoder()).addLast(new HessianEncoder()).addLast(new HessianHandler());
                 break;
             }
             case PROTOSTUFFSERIALIZE: {

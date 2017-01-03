@@ -24,6 +24,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -32,17 +33,20 @@ import java.util.Map;
  * @author FD
  * @date 2016/12/29
  */
+
 public class FileServer implements ApplicationContextAware{
 
     private static final Logger LOGGER = LoggerFactory.getLogger(RpcServer.class);
 
-//    @Value("${server.address}")
+    @Value("${file.server.address}")
     private String serverAddress;
 //    @Autowired
 //    private ServiceRegistry serviceRegistry;
 
     private int parallel;
-    private SerializeProtocol serializeProtocol;
+
+//    @Value("${serialize.protocol}")
+    private SerializeProtocol serializeProtocol = SerializeProtocol.HESSIANSERIALIZE;
 
     private EventLoopGroup boss = new NioEventLoopGroup();
 
@@ -69,7 +73,7 @@ public class FileServer implements ApplicationContextAware{
             String[] ipAddr = serverAddress.split(":");
             String host = ipAddr[0];
             int port = Integer.parseInt(ipAddr[1]);
-            System.out.println("fd");
+            System.out.println("你好");
             ChannelFuture future = b.bind(host, port).sync();
             LOGGER.debug("server started on port {}", port);
 //            if (serviceRegistry != null) {
