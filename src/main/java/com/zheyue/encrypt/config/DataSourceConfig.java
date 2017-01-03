@@ -27,6 +27,7 @@ public class DataSourceConfig {
 
     @Bean("dataSource")
     public DataSource dataSource() throws Exception {
+        System.out.println("ÄãºÃ");
         Properties props = new Properties();
         props.put("driverClassName", properties.getDriverClassName());
         props.put("url", properties.getUrl());

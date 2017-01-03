@@ -18,7 +18,7 @@ public class FileEncryptApplication {
 		public void run() {
 			while (!stoped) {
 				try {
-					System.out.println("运行中。。。");
+					System.out.println("你好");
 					Thread.sleep(3000);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
@@ -28,12 +28,14 @@ public class FileEncryptApplication {
 	}
 
 	public static void main(String[] args) {
+		System.out.println("你好");
 		SpringApplication.run(FileEncryptApplication.class, args);
+//		System.out.println("你好");
 //		new FileEncryptApplication().thread.start();
 //		Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
 //			@Override
 //			public void run() {
-//				System.out.println("系统退出");
+//				System.out.println("绯荤粺閫�鍑�");
 //			}
 //		}));
 	}
