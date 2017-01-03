@@ -16,7 +16,7 @@ import java.util.logging.Logger;
  */
 public class HessianDecoder extends ByteToMessageDecoder {
 
-    //使用一个int 3个人字节表示序列化的长度
+    //使用一个int 4个字节表示序列化的长度
     public static final int MESSAGE_LENGTH = 4;
 
     private HessianSerializePool pool = HessianSerializePool.getHessianPoolInstance();
