@@ -22,7 +22,7 @@ import java.util.Map;
 
 public class FileServer{
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(RpcServer.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(FileServer.class);
 
     @Value("${file.server.address}")
     private String serverAddress;
@@ -59,7 +59,6 @@ public class FileServer{
             String[] ipAddr = serverAddress.split(":");
             String host = ipAddr[0];
             int port = Integer.parseInt(ipAddr[1]);
-            System.out.println("你好");
             ChannelFuture future = b.bind(host, port).sync();
             LOGGER.debug("server started on port {}", port);
 //            if (serviceRegistry != null) {

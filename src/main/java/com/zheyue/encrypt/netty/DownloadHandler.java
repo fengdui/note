@@ -1,4 +1,4 @@
-package com.zheyue.encrypt.test;
+package com.zheyue.encrypt.netty;
 
 import com.zheyue.encrypt.concurrency.DownloadExecutor;
 import com.zheyue.encrypt.concurrency.DownloadTask;
@@ -12,7 +12,7 @@ import java.util.Arrays;
  * @author FD
  * @date 2016/12/30
  */
-public class HessianHandler extends ChannelInboundHandlerAdapter {
+public class DownloadHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
@@ -31,7 +31,7 @@ public class HessianHandler extends ChannelInboundHandlerAdapter {
         System.out.println(request.getFileNum());
         System.out.println(Arrays.toString(request.getFileId()));
         DownloadTask task = new DownloadTask(request, ctx);
-        DownloadExecutor.sbmit(task);
+        DownloadExecutor.submit(task);
     }
 
     @Override
