@@ -8,35 +8,16 @@ import java.io.Serializable;
  */
 public class DownloadRequest implements Serializable{
 
-    private int requestId;
-    private int fileNum;
-    private int[] fileIds;
+    private int id;
     private int userId;
     private int start;
-    private int end;
 
-    public int getRequestId() {
-        return requestId;
+    public int getId() {
+        return id;
     }
 
-    public void setRequestId(int requestId) {
-        this.requestId = requestId;
-    }
-
-    public int getFileNum() {
-        return fileNum;
-    }
-
-    public void setFileNum(int fileNum) {
-        this.fileNum = fileNum;
-    }
-
-    public int[] getFileIds() {
-        return fileIds;
-    }
-
-    public void setFileIds(int[] fileIds) {
-        this.fileIds = fileIds;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getUserId() {
@@ -53,13 +34,5 @@ public class DownloadRequest implements Serializable{
 
     public void setStart(int start) {
         this.start = start;
-    }
-
-    public int getEnd() {
-        return end;
-    }
-
-    public void setEnd(int end) {
-        this.end = end;
     }
 }

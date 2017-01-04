@@ -41,7 +41,7 @@ public class DownloadExecutor {
 //                        System.out.println("RPC Server Send message-id respone:" + request.getMessageId());
 //                    }
 //                });
-                System.out.println("下载成功");
+                System.out.println("end " + System.currentTimeMillis());
             }
 
             public void onFailure(Throwable t) {

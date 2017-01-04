@@ -1,6 +1,7 @@
 package com.zheyue.encrypt.service;
 
 import com.aliyun.oss.OSSClient;
+import com.aliyun.oss.model.GetObjectRequest;
 import com.aliyun.oss.model.OSSObject;
 import com.zheyue.encrypt.model.DownloadRequest;
 import com.zheyue.encrypt.model.DownloadResponse;
@@ -33,12 +34,17 @@ public class DownloadService {
     @Value("${oss.bucketName}")
     private String bucketName;
 
-
-
     public boolean downloadFromOss(DownloadRequest request, ChannelHandlerContext ctx) {
-
         String key = "fd.pdf";
-        OSSObject ossObject = client.getObject(bucketName, key);
+        return downloadFromOss(key, request.getStart(), ctx);
+
+
+    }
+    public boolean downloadFromOss(String key, int start, ChannelHandlerContext ctx) {
+
+        GetObjectRequest getObjectRequest = new GetObjectRequest(bucketName, key);
+        getObjectRequest.setRange(start, -1);
+        OSSObject ossObject = client.getObject(getObjectRequest);
         try(InputStream in = ossObject.getObjectContent()) {
             long startTime = System.currentTimeMillis();
             byte[] bytes = new byte[BLOCK_LENGTH];
