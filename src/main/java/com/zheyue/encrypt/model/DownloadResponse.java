@@ -13,6 +13,8 @@ public class DownloadResponse implements Serializable{
     private int id;
     //数据 每一块64kb
     private byte[] data;
+    //是否加密
+    private boolean isEncrypt;
     //字节数
     private int length;
     // x-y 代表第x文件的第y块
@@ -42,6 +44,14 @@ public class DownloadResponse implements Serializable{
 
     public void setData(byte[] data) {
         this.data = data;
+    }
+
+    public boolean isEncrypt() {
+        return isEncrypt;
+    }
+
+    public void setIsEncrypt(boolean isEncrypt) {
+        this.isEncrypt = isEncrypt;
     }
 
     public int getLength() {

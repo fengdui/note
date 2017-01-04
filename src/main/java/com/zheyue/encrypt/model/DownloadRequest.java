@@ -10,8 +10,10 @@ public class DownloadRequest implements Serializable{
 
     private int requestId;
     private int fileNum;
-    private int[] fileId;
+    private int[] fileIds;
     private int userId;
+    private int start;
+    private int end;
 
     public int getRequestId() {
         return requestId;
@@ -29,12 +31,12 @@ public class DownloadRequest implements Serializable{
         this.fileNum = fileNum;
     }
 
-    public int[] getFileId() {
-        return fileId;
+    public int[] getFileIds() {
+        return fileIds;
     }
 
-    public void setFileId(int[] fileId) {
-        this.fileId = fileId;
+    public void setFileIds(int[] fileIds) {
+        this.fileIds = fileIds;
     }
 
     public int getUserId() {
@@ -45,4 +47,19 @@ public class DownloadRequest implements Serializable{
         this.userId = userId;
     }
 
+    public int getStart() {
+        return start;
+    }
+
+    public void setStart(int start) {
+        this.start = start;
+    }
+
+    public int getEnd() {
+        return end;
+    }
+
+    public void setEnd(int end) {
+        this.end = end;
+    }
 }

@@ -33,7 +33,9 @@ public class DownloadService {
     @Value("${oss.bucketName}")
     private String bucketName;
 
-    public Boolean downloadFromOss(DownloadRequest request, ChannelHandlerContext ctx) {
+
+
+    public boolean downloadFromOss(DownloadRequest request, ChannelHandlerContext ctx) {
 
         String key = "fd.pdf";
         OSSObject ossObject = client.getObject(bucketName, key);

@@ -37,6 +37,7 @@ public class FileClient {
                     .handler(new ClientChannelInitializer(serializeProtocol))
                     .option(ChannelOption.SO_KEEPALIVE, true);
             ChannelFuture future = b.connect("localhost", 9999).sync();
+            future.channel().closeFuture().sync();
         }
         finally {
             boss.shutdownGracefully();

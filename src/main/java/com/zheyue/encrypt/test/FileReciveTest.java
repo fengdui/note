@@ -11,6 +11,7 @@ import io.netty.channel.ChannelInboundHandlerAdapter;
  */
 public class FileReciveTest extends ChannelInboundHandlerAdapter {
 
+    int len = 0;
     @Override
     public void channelRegistered(ChannelHandlerContext ctx) throws Exception {
         System.out.println("注册");
@@ -33,11 +34,16 @@ public class FileReciveTest extends ChannelInboundHandlerAdapter {
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
         System.out.println("断开");
+        System.out.println("read 完成 "+ len/1024.0/1024.0 + " M");
     }
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         DownloadResponse response = (DownloadResponse)msg;
-        System.out.println("f");
+        len += response.getLength();
+    }
+
+    @Override
+    public void channelReadComplete(ChannelHandlerContext ctx) throws Exception {
     }
 }
