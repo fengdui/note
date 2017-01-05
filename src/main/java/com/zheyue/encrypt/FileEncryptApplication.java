@@ -1,7 +1,6 @@
 package com.zheyue.encrypt;
 
 import com.zheyue.encrypt.server.FileServer;
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
