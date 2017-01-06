@@ -1,9 +1,9 @@
 package com.zheyue.encrypt.netty;
 
+import com.zheyue.encrypt.netty.handler.DownloadHandler;
 import com.zheyue.encrypt.serialize.SerializeProtocol;
 import com.zheyue.encrypt.serialize.hessian.HessianDecoder;
 import com.zheyue.encrypt.serialize.hessian.HessianEncoder;
-import com.zheyue.encrypt.test.FileReciveTest;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.socket.SocketChannel;
 

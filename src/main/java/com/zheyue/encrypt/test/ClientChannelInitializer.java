@@ -1,13 +1,10 @@
 package com.zheyue.encrypt.test;
 
-import com.zheyue.encrypt.netty.DownloadHandler;
 import com.zheyue.encrypt.serialize.SerializeProtocol;
 import com.zheyue.encrypt.serialize.hessian.HessianDecoder;
 import com.zheyue.encrypt.serialize.hessian.HessianEncoder;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.socket.SocketChannel;
-
-import java.util.Map;
 
 /**
  * @author FD

@@ -1,17 +1,13 @@
 package com.zheyue.encrypt.service;
 
-import com.zheyue.encrypt.coder.AESCoder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.security.Key;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicInteger;

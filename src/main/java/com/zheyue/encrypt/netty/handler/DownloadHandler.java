@@ -1,4 +1,4 @@
-package com.zheyue.encrypt.netty;
+package com.zheyue.encrypt.netty.handler;
 
 import com.zheyue.encrypt.concurrency.DownloadExecutor;
 import com.zheyue.encrypt.concurrency.DownloadTask;

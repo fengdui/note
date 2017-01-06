@@ -25,14 +25,22 @@ public class DownloadService {
     //默认一块64kb
     private static final int BLOCK_LENGTH = 64*1024;
 
+    private static final String key = "ffffffffdddddddd";
+
     @Autowired
     private OSSClient client;
-
+    @Autowired
+    private AesService aesService;
     @Value("${oss.endpoint}")
     private String endpoint;
 
     @Value("${oss.bucketName}")
     private String bucketName;
+
+    public byte[] getEncryptKey() {
+        return key.getBytes();
+    }
+
 
     public boolean downloadFromOss(DownloadRequest request, ChannelHandlerContext ctx) {
         String key = "fd.pdf";
@@ -48,11 +56,12 @@ public class DownloadService {
         try(InputStream in = ossObject.getObjectContent()) {
             long startTime = System.currentTimeMillis();
             byte[] bytes = new byte[BLOCK_LENGTH];
-            int len = 0;
+            int len;
             int sum = 0;
             int cnt = 0;
             while ((len = in.read(bytes)) != -1) {
                 DownloadResponse downloadResponse = new DownloadResponse();
+                bytes = encrypt(bytes);
                 downloadResponse.setData(bytes);
                 downloadResponse.setLength(len);
                 ctx.writeAndFlush(downloadResponse);
@@ -66,5 +75,10 @@ public class DownloadService {
             e.printStackTrace();
             return Boolean.FALSE;
         }
+    }
+
+    public byte[] encrypt(byte[] bytes) throws Exception{
+        aesService.encrypt(bytes, getEncryptKey());
+        return bytes;
     }
 }
