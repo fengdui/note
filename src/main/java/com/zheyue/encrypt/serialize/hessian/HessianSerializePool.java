@@ -9,7 +9,7 @@ import org.apache.commons.pool2.impl.GenericObjectPool;
 public class HessianSerializePool {
 
     private GenericObjectPool<HessianSerialize> hessianPool;
-    volatile private static HessianSerializePool poolFactory = null;
+    private volatile static HessianSerializePool poolFactory = null;
 
     private HessianSerializePool() {
         hessianPool = new GenericObjectPool<HessianSerialize>(new HessianSerializeFactory());

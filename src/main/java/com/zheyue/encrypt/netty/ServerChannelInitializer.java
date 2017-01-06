@@ -16,11 +16,9 @@ import java.util.Map;
 public class ServerChannelInitializer extends ChannelInitializer<SocketChannel> {
 
     private SerializeProtocol serializeProtocol;
-    private Map<String, Object> handlerMap;
 
-    public ServerChannelInitializer(SerializeProtocol serializeProtocol, Map<String, Object> handlerMap) {
+    public ServerChannelInitializer(SerializeProtocol serializeProtocol) {
         this.serializeProtocol = serializeProtocol;
-        this.handlerMap = handlerMap;
     }
 
     @Override

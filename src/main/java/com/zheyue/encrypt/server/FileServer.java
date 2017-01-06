@@ -26,44 +26,27 @@ public class FileServer{
 
     @Value("${file.server.address}")
     private String serverAddress;
-//    @Autowired
-//    private ServiceRegistry serviceRegistry;
 
+    @Value("${file.server.nThreads}")
     private int parallel;
 
-//    @Value("${serialize.protocol}")
     private SerializeProtocol serializeProtocol = SerializeProtocol.HESSIANSERIALIZE;
 
     private EventLoopGroup boss = new NioEventLoopGroup();
 
     private EventLoopGroup worker = new NioEventLoopGroup(10);
 
-    private Map<String, Object> handlerMap = new HashMap<>();
-
-//    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-//        Map<String, Object> serviceMap = applicationContext.getBeansWithAnnotation(RpcService.class);
-//        if (serviceMap != null && serviceMap.size() > 0) {
-//            for (Object serviceBean : serviceMap.values()) {
-//                String interfaceName = serviceBean.getClass().getAnnotation(RpcService.class).value().getName();
-//                handlerMap.put(interfaceName, serviceBean);
-//            }
-//        }
-//    }
 
     public void start() throws Exception {
         try {
             ServerBootstrap b = new ServerBootstrap();
             b.group(boss, worker).channel(NioServerSocketChannel.class)
-                    .childHandler(new ServerChannelInitializer(serializeProtocol, handlerMap))
+                    .childHandler(new ServerChannelInitializer(serializeProtocol))
                     .option(ChannelOption.SO_BACKLOG, 1024);
             String[] ipAddr = serverAddress.split(":");
             String host = ipAddr[0];
             int port = Integer.parseInt(ipAddr[1]);
-            ChannelFuture future = b.bind(9999).sync();
-//            if (serviceRegistry != null) {
-//                System.out.println("zhuce");
-//                serviceRegistry.register(serverAddress);
-//            }
+            ChannelFuture future = b.bind(host, port).sync();
             future.channel().closeFuture().sync();
         }
         finally {
