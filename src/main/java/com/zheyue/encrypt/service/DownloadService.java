@@ -25,8 +25,6 @@ public class DownloadService {
     //默认一块64kb
     private static final int BLOCK_LENGTH = 64*1024;
 
-    private static final String key = "ffffffffdddddddd";
-
     @Autowired
     private OSSClient client;
     @Autowired
@@ -37,21 +35,11 @@ public class DownloadService {
     @Value("${oss.bucketName}")
     private String bucketName;
 
-    public byte[] getEncryptKey() {
-        return key.getBytes();
-    }
-
-
     public boolean downloadFromOss(DownloadRequest request, ChannelHandlerContext ctx) {
+
         String key = "fd.pdf";
-        return downloadFromOss(key, request.getStart(), ctx);
-
-
-    }
-    public boolean downloadFromOss(String key, int start, ChannelHandlerContext ctx) {
-
         GetObjectRequest getObjectRequest = new GetObjectRequest(bucketName, key);
-        getObjectRequest.setRange(start, -1);
+        getObjectRequest.setRange(request.getStart(), -1);
         OSSObject ossObject = client.getObject(getObjectRequest);
         try(InputStream in = ossObject.getObjectContent()) {
             long startTime = System.currentTimeMillis();
@@ -61,7 +49,9 @@ public class DownloadService {
             int cnt = 0;
             while ((len = in.read(bytes)) != -1) {
                 DownloadResponse downloadResponse = new DownloadResponse();
-                bytes = encrypt(bytes);
+                bytes = encrypt(bytes, request.getUserId());
+//                aesService.getKey(request.getUserId());
+//                aesService.getEncryptCipher(request.getUserId());
                 downloadResponse.setData(bytes);
                 downloadResponse.setLength(len);
                 ctx.writeAndFlush(downloadResponse);
@@ -77,8 +67,8 @@ public class DownloadService {
         }
     }
 
-    public byte[] encrypt(byte[] bytes) throws Exception{
-        aesService.encrypt(bytes, getEncryptKey());
+    public byte[] encrypt(byte[] bytes, int userId) throws Exception{
+        aesService.encrypt(bytes, userId);
         return bytes;
     }
 }

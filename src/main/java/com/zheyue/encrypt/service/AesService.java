@@ -1,6 +1,8 @@
 package com.zheyue.encrypt.service;
 
 
+import org.springframework.aop.framework.AopContext;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.Cipher;
@@ -22,30 +24,40 @@ public class AesService {
 
     public static final String CIPHER_ALGORITHM = "AES/ECB/PKCS5Padding";
 
-    public Key getKey(byte[] key) {
-        SecretKey secretKey = new SecretKeySpec(key, KET_ALGORITHM);
+    private static final String key = "ffffffffdddddddd";
+
+    public byte[] getEncryptKey() {
+        return key.getBytes();
+    }
+
+    @Cacheable(key = "#userId", value = "userSecretKey")
+    public Key getKey(int userId) {
+        System.out.println("缓存了key " + userId);
+        SecretKey secretKey = new SecretKeySpec(getEncryptKey(), KET_ALGORITHM);
         return secretKey;
     }
 
-    public Cipher getDecryptCipher(byte[] key) throws Exception {
-        Key k = getKey(key);
-        Cipher cipher = Cipher.getInstance(CIPHER_ALGORITHM);
-        cipher.init(Cipher.DECRYPT_MODE, k);
-        return cipher;
-    }
-    public Cipher getEncryptCipher(byte[] key) throws Exception {
-        Key k = getKey(key);
+//    public Cipher getDecryptCipher(int userId) throws Exception {
+//        Key k = getKey(userId);
+//        Cipher cipher = Cipher.getInstance(CIPHER_ALGORITHM);
+//        cipher.init(Cipher.DECRYPT_MODE, k);
+//        return cipher;
+//    }
+    @Cacheable(key = "#userId", value = "userCipher")
+    public Cipher getEncryptCipher(int userId) throws Exception {
+        System.out.println("缓存了Cipher "+ userId);
+        Key k = getKey(userId);
         Cipher cipher = Cipher.getInstance(CIPHER_ALGORITHM);
         cipher.init(Cipher.ENCRYPT_MODE, k);
         return cipher;
     }
-    public byte[] decrypt(byte[] data, byte[] key) throws Exception{
-        Cipher cipher = getDecryptCipher(key);
-        return cipher.doFinal(data);
-    }
+//    public byte[] decrypt(byte[] data, int userId) throws Exception{
+//        Cipher cipher = getDecryptCipher(userId);
+//        return cipher.doFinal(data);
+//    }
 
-    public byte[] encrypt(byte[] data, byte[] key) throws Exception{
-        Cipher cipher = getEncryptCipher(key);
+    public byte[] encrypt(byte[] data, int userId) throws Exception{
+        Cipher cipher = ((AesService)AopContext.currentProxy()).getEncryptCipher(userId);
         return cipher.doFinal(data);
     }
 }

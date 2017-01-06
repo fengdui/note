@@ -28,6 +28,7 @@ public class FileReciveTest extends ChannelInboundHandlerAdapter {
         System.out.println("客户端发送请求");
         DownloadRequest downloadRequest = new DownloadRequest();
         downloadRequest.setId(1);
+        downloadRequest.setUserId(11);
         ctx.writeAndFlush(downloadRequest);
     }
 

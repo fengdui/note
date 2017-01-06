@@ -28,15 +28,13 @@ public class FileClient {
 
     private EventLoopGroup worker = new NioEventLoopGroup(10);
 
-    private Map<String, Object> handlerMap = new HashMap<>();
-
     public void start() throws Exception {
         try {
             Bootstrap b = new Bootstrap();
             b.group(worker).channel(NioSocketChannel.class)
                     .handler(new ClientChannelInitializer(serializeProtocol))
                     .option(ChannelOption.SO_KEEPALIVE, true);
-            ChannelFuture future = b.connect("localhost", 9999).sync();
+            ChannelFuture future = b.connect("localhost", 8000).sync();
             future.channel().closeFuture().sync();
         }
         finally {
