@@ -5,6 +5,7 @@ import com.zheyue.encrypt.serialize.hessian.HessianSerialize;
 
 import java.io.*;
 import java.net.Socket;
+import java.util.Arrays;
 
 /**
  * @author FD
@@ -12,8 +13,9 @@ import java.net.Socket;
  */
 public class HessianTest {
     public void main(String[] args) throws IOException {
-        Socket s1 = new Socket("127.0.0.1", 8000);
-        OutputStream outputStream = s1.getOutputStream();
+//        Socket s1 = new Socket("127.0.0.1", 8000);
+        OutputStream outputStream = new FileOutputStream("D:\\jmeter\\hessian.txt");
+        OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream, "utf-8");
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         ByteArrayOutputStream byteArrayOutputStream4Int = new ByteArrayOutputStream();
         DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream4Int);
@@ -27,10 +29,9 @@ public class HessianTest {
         outputStream.write(byteArrayOutputStream4Int.toByteArray());
         outputStream.write(data);
 
-        InputStream inputStream = s1.getInputStream();
+//        InputStream inputStream = s1.getInputStream();
 
-
-
-        s1.close();
+        outputStream.close();
+//        s1.close();
     }
 }

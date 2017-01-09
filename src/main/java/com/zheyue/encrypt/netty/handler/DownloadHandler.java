@@ -50,4 +50,10 @@ public class DownloadHandler extends ChannelInboundHandlerAdapter {
     public void channelUnregistered(ChannelHandlerContext ctx) throws Exception {
         System.out.println("取消注册");
     }
+
+    @Override
+    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
+        System.out.println("客户端断开");
+        ctx.close();
+    }
 }
