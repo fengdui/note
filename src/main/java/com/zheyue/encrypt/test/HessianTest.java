@@ -11,7 +11,7 @@ import java.net.Socket;
  * @date 2016/12/30
  */
 public class HessianTest {
-    public static void main(String[] args) throws IOException {
+    public void main(String[] args) throws IOException {
         Socket s1 = new Socket("127.0.0.1", 8000);
         OutputStream outputStream = s1.getOutputStream();
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();

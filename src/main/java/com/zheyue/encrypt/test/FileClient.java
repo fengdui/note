@@ -43,9 +43,9 @@ public class FileClient {
         }
     }
 
-    public static void main(String[] args) throws Exception {
-//        System.out.println(1483500827581-);
-        new FileClient().start();
-
-    }
+//    public static void main(String[] args) throws Exception {
+////        System.out.println(1483500827581-);
+//        new FileClient().start();
+//
+//    }
 }

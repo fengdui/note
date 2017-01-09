@@ -46,7 +46,7 @@ public class FileServer{
             String[] ipAddr = serverAddress.split(":");
             String host = ipAddr[0];
             int port = Integer.parseInt(ipAddr[1]);
-            ChannelFuture future = b.bind(host, port).sync();
+            ChannelFuture future = b.bind(port).sync();
             future.channel().closeFuture().sync();
         }
         finally {
