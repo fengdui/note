@@ -6,6 +6,8 @@ import com.aliyun.oss.model.OSSObject;
 import com.zheyue.encrypt.model.DownloadRequest;
 import com.zheyue.encrypt.model.DownloadResponse;
 import io.netty.channel.ChannelHandlerContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -21,6 +23,8 @@ import java.util.UUID;
 
 @Service
 public class DownloadService {
+
+    Logger LOGGER = LoggerFactory.getLogger(DownloadService.class);
 
     //默认一块64kb
     private static final int BLOCK_LENGTH = 64*1024;
@@ -54,15 +58,15 @@ public class DownloadService {
 //                aesService.getEncryptCipher(request.getUserId());
                 downloadResponse.setData(bytes);
                 downloadResponse.setLength(len);
+                downloadResponse.setRequestId(request.getRequestId());
                 ctx.writeAndFlush(downloadResponse);
                 sum += len;
                 cnt++;
             }
-            System.out.println("加密完成 大小 "+sum/1024.0+"KB 耗时 "+ (System.currentTimeMillis()-startTime) + " " + cnt+" 次大小 "+len);
-//            System.out.println("加密完成 大小 "+sum/1024.0/1024+"MB 耗时 "+ (System.currentTimeMillis()-startTime)+"  "+sum);
+            LOGGER.info("加密完成 大小 "+sum/1024.0+"KB 耗时 "+ (System.currentTimeMillis()-startTime) + " " + cnt+" 次大小 "+len);
             return Boolean.TRUE;
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.error(e.getMessage());
             return Boolean.FALSE;
         }
     }

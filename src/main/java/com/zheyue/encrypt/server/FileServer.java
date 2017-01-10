@@ -38,6 +38,7 @@ public class FileServer{
 
 
     public void start() throws Exception {
+        LOGGER.info("server start");
         try {
             ServerBootstrap b = new ServerBootstrap();
             b.group(boss, worker).channel(NioServerSocketChannel.class)

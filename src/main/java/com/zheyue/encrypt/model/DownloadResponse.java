@@ -19,6 +19,24 @@ public class DownloadResponse implements Serializable{
     //错误码
     private String code;
 
+    public String getRequestId() {
+        return requestId;
+    }
+
+    public void setRequestId(String requestId) {
+        this.requestId = requestId;
+    }
+
+    public boolean isEOF() {
+        return isEOF;
+    }
+
+    public void setIsEOF(boolean isEOF) {
+        this.isEOF = isEOF;
+    }
+
+    private String requestId;
+
     public int getId() {
         return id;
     }

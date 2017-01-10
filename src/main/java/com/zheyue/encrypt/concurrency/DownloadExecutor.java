@@ -1,9 +1,13 @@
 package com.zheyue.encrypt.concurrency;
 
 import com.google.common.util.concurrent.*;
+import com.zheyue.encrypt.model.DownloadRequest;
+import com.zheyue.encrypt.model.DownloadResponse;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.Callable;
 import java.util.concurrent.Executor;
@@ -16,9 +20,15 @@ import java.util.concurrent.Executors;
  */
 public class DownloadExecutor {
 
-    private volatile static ListeningExecutorService threadPoolExecutor;
+    Logger LOGGER = LoggerFactory.getLogger(DownloadExecutor.class);
 
-    public static ListeningExecutorService getThreadPoolExecutor(){
+    private volatile ListeningExecutorService threadPoolExecutor;
+
+    //下载文件线程池个数
+    private int threads = 10;
+
+
+    public ListeningExecutorService getThreadPoolExecutor(){
         if (threadPoolExecutor == null) {
             synchronized (DownloadExecutor.class) {
                 if (threadPoolExecutor == null) {
@@ -29,23 +39,31 @@ public class DownloadExecutor {
         return threadPoolExecutor;
     }
 
-    private static ExecutorService getJDkThreadPoolExecutor() {
-        return Executors.newFixedThreadPool(10);
+    private ExecutorService getJDkThreadPoolExecutor() {
+        return Executors.newFixedThreadPool(threads);
     }
-    public static void submit(Callable<Boolean> task) {
+    public void submit(Callable<Boolean> task, ChannelHandlerContext ctx) {
         ListenableFuture<Boolean> listenableFuture = getThreadPoolExecutor().submit(task);
         Futures.addCallback(listenableFuture, new FutureCallback<Boolean>() {
             public void onSuccess(Boolean result) {
-//                ctx.writeAndFlush(response).addListener(new ChannelFutureListener() {
-//                    public void operationComplete(ChannelFuture channelFuture) throws Exception {
-//                        System.out.println("RPC Server Send message-id respone:" + request.getMessageId());
-//                    }
-//                });
-                System.out.println("end " + System.currentTimeMillis());
+                DownloadRequest request= ((DownloadTask) task).getRequest();
+                if (result == Boolean.TRUE) {
+                    DownloadResponse response = new DownloadResponse();
+                    response.setIsEOF(true);
+                    response.setRequestId(request.getRequestId());
+                    ctx.writeAndFlush(response).addListener(new ChannelFutureListener() {
+                        public void operationComplete(ChannelFuture channelFuture) throws Exception {
+                            LOGGER.info(request.getUserId() + " " + request.getRequestId() + " " + "下载完毕");
+                        }
+                    });
+                }
+                else {
+
+                }
             }
 
             public void onFailure(Throwable t) {
-                t.printStackTrace();
+                LOGGER.error(t.getMessage());
             }
         }, threadPoolExecutor);
     }

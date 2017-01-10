@@ -5,44 +5,63 @@ import com.zheyue.encrypt.model.DownloadResponse;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+import java.util.Random;
+import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
+
 /**
  * @author FD
  * @date 2017/1/3
  */
 public class FileReciveTest extends ChannelInboundHandlerAdapter {
 
-    int len = 0;
-    long end;
+    private ConcurrentHashMap<String, OutputStream> requestMap;
+
+    public FileReciveTest(ConcurrentHashMap<String, OutputStream> requestMap) {
+        this.requestMap = requestMap;
+    }
+
     @Override
     public void channelRegistered(ChannelHandlerContext ctx) throws Exception {
-        System.out.println("注册");
     }
 
     @Override
     public void channelUnregistered(ChannelHandlerContext ctx) throws Exception {
-        System.out.println("取消注册");
     }
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        System.out.println("客户端发送请求");
-        DownloadRequest downloadRequest = new DownloadRequest();
-        downloadRequest.setId(1);
-        downloadRequest.setUserId(11);
-        ctx.writeAndFlush(downloadRequest);
+        //一个用户测试3次
+        int userId = new Random().nextInt()%1000;
+        for (int i = 0; i < 1; i++) {
+            String requestId = UUID.randomUUID().toString();
+            FileOutputStream fileOutputStream = new FileOutputStream("D:\\jmeter\\result\\"+requestId+"---"+userId);
+            DownloadRequest downloadRequest = new DownloadRequest();
+            downloadRequest.setUserId(userId);
+            downloadRequest.setFileId(2);
+            ctx.writeAndFlush(downloadRequest);
+            requestMap.putIfAbsent(requestId, fileOutputStream);
+        }
     }
 
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
-        System.out.println("断开");
     }
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         DownloadResponse response = (DownloadResponse)msg;
-        len += response.getLength();
-        end = System.currentTimeMillis();
-//        System.out.println("read 完成 "+ len/1024.0/1024.0 + " M" + "end "+ end);
+        String requestId = response.getRequestId();
+        FileOutputStream outputStream = (FileOutputStream) requestMap.get(requestId);
+        if (response.isEOF()) {
+            outputStream.close();
+            requestMap.remove(requestId);
+        }
+        else {
+            outputStream.write(response.getData());
+        }
     }
 
     @Override

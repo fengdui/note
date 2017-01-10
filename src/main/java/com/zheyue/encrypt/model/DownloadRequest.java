@@ -8,16 +8,25 @@ import java.io.Serializable;
  */
 public class DownloadRequest implements Serializable{
 
-    private int id;
+    private int fileId;
     private int userId;
     private int start;
+    private String requestId;
 
-    public int getId() {
-        return id;
+    public String getRequestId() {
+        return requestId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setRequestId(String requestId) {
+        this.requestId = requestId;
+    }
+
+    public int getFileId() {
+        return fileId;
+    }
+
+    public void setFileId(int fileId) {
+        this.fileId = fileId;
     }
 
     public int getUserId() {

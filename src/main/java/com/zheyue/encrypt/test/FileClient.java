@@ -13,8 +13,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 
+import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author FD
@@ -34,7 +36,7 @@ public class FileClient {
             b.group(worker).channel(NioSocketChannel.class)
                     .handler(new ClientChannelInitializer(serializeProtocol))
                     .option(ChannelOption.SO_KEEPALIVE, true);
-            ChannelFuture future = b.connect("116.62.47.151", 8000).sync();
+            ChannelFuture future = b.connect("localhost", 8000).sync();
             future.channel().closeFuture().sync();
         }
         finally {
@@ -43,7 +45,7 @@ public class FileClient {
         }
     }
 
-    public void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception {
 //        System.out.println(1483500827581-);
         new FileClient().start();
 
