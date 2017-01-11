@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.InputStream;
 import java.security.Key;
+import java.util.Arrays;
 import java.util.UUID;
 
 /**
@@ -53,12 +54,16 @@ public class DownloadService {
             int cnt = 0;
             while ((len = in.read(bytes)) != -1) {
                 DownloadResponse downloadResponse = new DownloadResponse();
-                bytes = encrypt(bytes, request.getUserId());
+                byte[] dataCopy = Arrays.copyOf(bytes, len);
+                dataCopy = encrypt(dataCopy, request.getUserId());
 //                aesService.getKey(request.getUserId());
 //                aesService.getEncryptCipher(request.getUserId());
-                downloadResponse.setData(bytes);
-                downloadResponse.setLength(len);
+//                System.out.println(dataCopy.length);
+//                dataCopy = aesService.decrypt(dataCopy, request.getUserId());
+                downloadResponse.setData(dataCopy);
+                downloadResponse.setLength(dataCopy.length);
                 downloadResponse.setRequestId(request.getRequestId());
+                downloadResponse.setUserId(request.getUserId());
                 ctx.writeAndFlush(downloadResponse);
                 sum += len;
                 cnt++;
@@ -72,7 +77,7 @@ public class DownloadService {
     }
 
     public byte[] encrypt(byte[] bytes, int userId) throws Exception{
-        aesService.encrypt(bytes, userId);
+        bytes = aesService.encrypt(bytes, userId);
         return bytes;
     }
 }

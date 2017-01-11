@@ -2,11 +2,15 @@ package com.zheyue.encrypt.test;
 
 import com.zheyue.encrypt.model.DownloadRequest;
 import com.zheyue.encrypt.model.DownloadResponse;
+import com.zheyue.encrypt.service.AesService;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.FileOutputStream;
 import java.io.OutputStream;
+import java.util.Date;
 import java.util.Random;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
@@ -17,12 +21,23 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class FileReciveTest extends ChannelInboundHandlerAdapter {
 
+
+    Logger LOGGER = LoggerFactory.getLogger(FileReciveTest.class);
+
     private ConcurrentHashMap<String, OutputStream> requestMap;
+
+    private AesService aesService = new AesService();
 
     public FileReciveTest(ConcurrentHashMap<String, OutputStream> requestMap) {
         this.requestMap = requestMap;
     }
 
+
+    public void sendRequest(ChannelHandlerContext ctx, DownloadRequest request) {
+        ctx.writeAndFlush(request);
+
+
+    }
     @Override
     public void channelRegistered(ChannelHandlerContext ctx) throws Exception {
     }
@@ -34,14 +49,18 @@ public class FileReciveTest extends ChannelInboundHandlerAdapter {
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         //一个用户测试3次
-        int userId = new Random().nextInt()%1000;
-        for (int i = 0; i < 1; i++) {
+        System.out.println(new Date(System.currentTimeMillis()));
+        int userId = new Random().nextInt(100);
+        for (int i = 0; i < 3; i++) {
             String requestId = UUID.randomUUID().toString();
-            FileOutputStream fileOutputStream = new FileOutputStream("D:\\jmeter\\result\\"+requestId+"---"+userId);
+            FileOutputStream fileOutputStream = new FileOutputStream("D:\\jmeter\\result\\"+requestId+"---"+userId+".pdf");
             DownloadRequest downloadRequest = new DownloadRequest();
             downloadRequest.setUserId(userId);
             downloadRequest.setFileId(2);
-            ctx.writeAndFlush(downloadRequest);
+            downloadRequest.setRequestId(requestId);
+
+            sendRequest(ctx, downloadRequest);
+
             requestMap.putIfAbsent(requestId, fileOutputStream);
         }
     }
@@ -58,9 +77,14 @@ public class FileReciveTest extends ChannelInboundHandlerAdapter {
         if (response.isEOF()) {
             outputStream.close();
             requestMap.remove(requestId);
+            System.out.println(new Date(System.currentTimeMillis()));
         }
         else {
-            outputStream.write(response.getData());
+//            byte[] data = response.getData();
+//            System.out.println(response.getData().length);
+//            System.out.println(response.getLength());
+            byte[] data = aesService.decrypt(response.getData(), response.getUserId());
+            outputStream.write(data);
         }
     }
 

@@ -35,13 +35,14 @@ public class AesService {
 
     @Cacheable(key = "#userId", value = "userSecretKey")
     public Key getKey(int userId) throws Exception{
-        LOGGER.info("缓存了key " + userId);
+//        LOGGER.info("缓存了key " + userId);
         SecretKey secretKey = new SecretKeySpec(getEncryptKey(), KET_ALGORITHM);
         return secretKey;
     }
 
     public Cipher getDecryptCipher(int userId) throws Exception {
         Key k = getKey(userId);
+//        Key k = ((AesService)AopContext.currentProxy()).getKey(userId);
         Cipher cipher = Cipher.getInstance(CIPHER_ALGORITHM);
         cipher.init(Cipher.DECRYPT_MODE, k);
         return cipher;
@@ -49,12 +50,13 @@ public class AesService {
     @Cacheable(key = "#userId", value = "userCipher")
     public Cipher getEncryptCipher(int userId) throws Exception {
         LOGGER.info("缓存了Cipher " + userId);
-        Key k = getKey(userId);
+        Key k = ((AesService)AopContext.currentProxy()).getKey(userId);
         Cipher cipher = Cipher.getInstance(CIPHER_ALGORITHM);
         cipher.init(Cipher.ENCRYPT_MODE, k);
         return cipher;
     }
     public byte[] decrypt(byte[] data, int userId) throws Exception{
+//        Cipher cipher = ((AesService)AopContext.currentProxy()).getDecryptCipher(userId);
         Cipher cipher = getDecryptCipher(userId);
         return cipher.doFinal(data);
     }

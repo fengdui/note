@@ -9,10 +9,7 @@ import io.netty.channel.ChannelHandlerContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.concurrent.Callable;
-import java.util.concurrent.Executor;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.concurrent.*;
 
 /**
  * @author FD
@@ -41,6 +38,7 @@ public class DownloadExecutor {
 
     private ExecutorService getJDkThreadPoolExecutor() {
         return Executors.newFixedThreadPool(threads);
+//        return new DownloadTaskThreadPool(threads, threads, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingQueue<Runnable>());
     }
     public void submit(Callable<Boolean> task, ChannelHandlerContext ctx) {
         ListenableFuture<Boolean> listenableFuture = getThreadPoolExecutor().submit(task);

@@ -45,9 +45,21 @@ public class FileClient {
         }
     }
 
+    public static class myThread implements Runnable {
+
+        @Override
+        public void run() {
+            try {
+                new FileClient().start();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
     public static void main(String[] args) throws Exception {
 //        System.out.println(1483500827581-);
-        new FileClient().start();
-
+        for (int i = 0; i < 1; i++) {
+            new Thread(new myThread()).start();
+        }
     }
 }
