@@ -1,6 +1,8 @@
 package com.zheyue.encrypt.server;
 
 import com.zheyue.encrypt.concurrency.DownloadExecutor;
+import com.zheyue.encrypt.concurrency.NamedThreadFactory;
+import com.zheyue.encrypt.concurrency.NettyThreadFactory;
 import com.zheyue.encrypt.netty.ServerChannelInitializer;
 import com.zheyue.encrypt.serialize.SerializeProtocol;
 import io.netty.bootstrap.ServerBootstrap;
@@ -13,9 +15,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @author FD
@@ -41,7 +40,9 @@ public class FileServer{
 
     //nThreads 默认是
     //Math.max(1, SystemPropertyUtil.getInt("io.netty.eventLoopThreads", Runtime.getRuntime().availableProcessors() * 2));
-    private EventLoopGroup worker = new NioEventLoopGroup();
+
+    private EventLoopGroup worker = new NioEventLoopGroup(Runtime.getRuntime().availableProcessors() * 2, new NettyThreadFactory());
+//    private EventLoopGroup worker = new NioEventLoopGroup();
 
 
     public void start() throws Exception {

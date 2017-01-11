@@ -51,7 +51,7 @@ public class FileReciveTest extends ChannelInboundHandlerAdapter {
         //一个用户测试3次
         System.out.println(new Date(System.currentTimeMillis()));
         int userId = new Random().nextInt(100);
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 1; i++) {
             String requestId = UUID.randomUUID().toString();
             FileOutputStream fileOutputStream = new FileOutputStream("D:\\jmeter\\result\\"+requestId+"---"+userId+".pdf");
             DownloadRequest downloadRequest = new DownloadRequest();

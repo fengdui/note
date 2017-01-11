@@ -37,8 +37,8 @@ public class DownloadExecutor {
     }
 
     private ExecutorService getJDkThreadPoolExecutor() {
-        return Executors.newFixedThreadPool(threads);
-//        return new DownloadTaskThreadPool(threads, threads, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingQueue<Runnable>());
+//        return Executors.newFixedThreadPool(threads);
+        return new DownloadTaskThreadPool(threads, threads, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingQueue<Runnable>(), new DownloadThreadFactory());
     }
     public void submit(Callable<Boolean> task, ChannelHandlerContext ctx) {
         ListenableFuture<Boolean> listenableFuture = getThreadPoolExecutor().submit(task);
