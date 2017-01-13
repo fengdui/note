@@ -36,7 +36,7 @@ public class FileServer{
 
     private SerializeProtocol serializeProtocol = SerializeProtocol.HESSIANSERIALIZE;
 
-    private EventLoopGroup boss = new NioEventLoopGroup();
+    private EventLoopGroup boss = new NioEventLoopGroup(10);
 
     //nThreads 默认是
     //Math.max(1, SystemPropertyUtil.getInt("io.netty.eventLoopThreads", Runtime.getRuntime().availableProcessors() * 2));
