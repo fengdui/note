@@ -2,6 +2,8 @@ package com.fengdui.dubbo.config;
 
 import com.alibaba.dubbo.config.*;
 import com.alibaba.dubbo.config.spring.AnnotationBean;
+import com.alibaba.dubbo.config.spring.ReferenceBean;
+import com.fengdui.dubbo.service.IDubboDemoService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -45,18 +47,18 @@ public class DubboConfig {
     private String packageName;
 
 
-//    @Bean
-//    public ReferenceBean referenceBean(ApplicationConfig application, RegistryConfig registry) {
-//        // 引用远程服务
-//        ReferenceBean<IDubboDemoService> reference = new ReferenceBean<IDubboDemoService>(); // 此实例很重，封装了与注册中心的连接以及与提供者的连接，请自行缓存，否则可能造成内存和连接泄漏
-//        reference.setApplication(application);
-//        reference.setRegistry(registry); // 多个注册中心可以用setRegistries()
-//        reference.setInterface(IDubboDemoService.class);
-//        reference.setVersion("1.0.0");
-//        // 和本地bean一样使用xxxService
-////        IDubboDemoService xxxService = reference.get(); // 注意：此代理对象内部封装了所有通讯细节，对象较重，请缓存复用
-//        return reference;
-//    }
+    @Bean
+    public ReferenceBean<IDubboDemoService> service(ApplicationConfig application, RegistryConfig registry) {
+        // 引用远程服务
+        ReferenceBean<IDubboDemoService> reference = new ReferenceBean<IDubboDemoService>(); // 此实例很重，封装了与注册中心的连接以及与提供者的连接，请自行缓存，否则可能造成内存和连接泄漏
+        reference.setApplication(application);
+        reference.setRegistry(registry); // 多个注册中心可以用setRegistries()
+        reference.setInterface(IDubboDemoService.class);
+        reference.setVersion("1.0.0");
+        // 和本地bean一样使用xxxService
+//        IDubboDemoService xxxService = reference.get(); // 注意：此代理对象内部封装了所有通讯细节，对象较重，请缓存复用
+        return reference;
+    }
 
 
     /**
@@ -72,13 +74,13 @@ public class DubboConfig {
         return applicationConfig;
     }
 
-    @Bean
-    public static AnnotationBean annotationBean(@Value("${dubbo.annotation.package}") String packageName) {
-
-        AnnotationBean annotationBean = new AnnotationBean();
-        annotationBean.setPackage(packageName);
-        return annotationBean;
-    }
+//    @Bean
+//    public static AnnotationBean annotationBean(@Value("${dubbo.annotation.package}") String packageName) {
+//
+//        AnnotationBean annotationBean = new AnnotationBean();
+//        annotationBean.setPackage(packageName);
+//        return annotationBean;
+//    }
 
     /**
      * 注入dubbo注册中心配置,基于zookeeper
