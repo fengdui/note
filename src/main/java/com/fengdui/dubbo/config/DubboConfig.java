@@ -72,7 +72,6 @@ public class DubboConfig {
      */
     @Bean
     public ApplicationConfig applicationConfig() {
-        System.out.println(delay);
         // 当前应用配置
         ApplicationConfig applicationConfig = new ApplicationConfig();
         applicationConfig.setName(this.applicationName);
