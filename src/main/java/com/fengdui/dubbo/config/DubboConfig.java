@@ -55,6 +55,7 @@ public class DubboConfig {
         reference.setRegistry(registry); // 多个注册中心可以用setRegistries()
         reference.setInterface(IDubboDemoService.class);
         reference.setVersion("1.0.0");
+        reference.setProtocol(protocolName);
         // 和本地bean一样使用xxxService
 //        IDubboDemoService xxxService = reference.get(); // 注意：此代理对象内部封装了所有通讯细节，对象较重，请缓存复用
         return reference;
@@ -107,8 +108,10 @@ public class DubboConfig {
         ProtocolConfig protocolConfig = new ProtocolConfig();
         protocolConfig.setName(protocolName);
         protocolConfig.setPort(protocolPort);
+//        //缺省使用netty
+//        protocolConfig.setServer("mina");
         protocolConfig.setThreads(200);
-        System.out.println("默认protocolConfig：" + protocolConfig.hashCode());
+        System.out.println(protocolConfig.getName());
         return protocolConfig;
     }
 
