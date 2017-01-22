@@ -3,8 +3,11 @@ package com.fengdui.dubbo.config;
 import com.alibaba.dubbo.config.*;
 import com.alibaba.dubbo.config.spring.AnnotationBean;
 import com.alibaba.dubbo.config.spring.ReferenceBean;
+import com.alibaba.dubbo.remoting.Dispatcher;
+import com.alibaba.dubbo.remoting.http.servlet.DispatcherServlet;
 import com.fengdui.dubbo.service.IDubboDemoService;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -135,4 +138,5 @@ public class DubboConfig {
         providerConfig.setProtocol(protocolConfig);
         return providerConfig;
     }
+
 }
