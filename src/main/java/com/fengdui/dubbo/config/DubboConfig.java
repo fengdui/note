@@ -3,10 +3,12 @@ package com.fengdui.dubbo.config;
 import com.alibaba.dubbo.config.*;
 import com.alibaba.dubbo.config.spring.AnnotationBean;
 import com.alibaba.dubbo.config.spring.ReferenceBean;
+import com.alibaba.dubbo.remoting.http.servlet.DispatcherServlet;
 import com.fengdui.dubbo.service.IDubboDemoService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.beans.factory.config.InstantiationAwareBeanPostProcessor;
+import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
@@ -112,6 +114,7 @@ public class DubboConfig {
         protocolConfig.setName(protocolName);
         protocolConfig.setPort(protocolPort);
         protocolConfig.setThreads(200);
+        protocolConfig.setSerialization("hessian2");
         System.out.println("默认protocolConfig：" + protocolConfig.hashCode());
         return protocolConfig;
     }
@@ -135,5 +138,14 @@ public class DubboConfig {
         providerConfig.setRegistry(registryConfig);
         providerConfig.setProtocol(protocolConfig);
         return providerConfig;
+    }
+
+    //hessian协议需要加入这个servlet
+    @Bean
+    public ServletRegistrationBean dispatcher() {
+        ServletRegistrationBean registrationBean = new ServletRegistrationBean();
+        registrationBean.setServlet(new DispatcherServlet());
+        registrationBean.addUrlMappings("/*");
+        return registrationBean;
     }
 }

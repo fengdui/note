@@ -13,5 +13,8 @@ public class DubboServerApplication {
 		SpringApplication application = new SpringApplication();
 		application.setWebEnvironment(false);
 		ConfigurableApplicationContext applicationContext = application.run(DubboServerApplication.class, args);
+//		while (true) {
+//
+//		}
 	}
 }
