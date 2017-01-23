@@ -2,18 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/authClient/authClient.iml" filepath="$PROJECT_DIR$/authClient/authClient.iml" />
-      <module fileurl="file://$PROJECT_DIR$/authServer/authServer.iml" filepath="$PROJECT_DIR$/authServer/authServer.iml" />
-      <module fileurl="file://$PROJECT_DIR$/anthServer/authServer.iml" filepath="$PROJECT_DIR$/anthServer/authServer.iml" />
-      <module fileurl="file://$PROJECT_DIR$/netty/netty.iml" filepath="$PROJECT_DIR$/netty/netty.iml" />
-      <module fileurl="file://$PROJECT_DIR$/remote/remote.iml" filepath="$PROJECT_DIR$/remote/remote.iml" />
-      <module fileurl="file://$PROJECT_DIR$/web/web.iml" filepath="$PROJECT_DIR$/web/web.iml" />
-      <module fileurl="file://$PROJECT_DIR$/zheyue.iml" filepath="$PROJECT_DIR$/zheyue.iml" />
-      <module fileurl="file://$PROJECT_DIR$/zheyue-config/zheyue-config.iml" filepath="$PROJECT_DIR$/zheyue-config/zheyue-config.iml" />
-      <module fileurl="file://$PROJECT_DIR$/zheyue-encrypt/zheyue-encrypt.iml" filepath="$PROJECT_DIR$/zheyue-encrypt/zheyue-encrypt.iml" />
-      <module fileurl="file://$PROJECT_DIR$/zheyue-rpc/zheyue-rpc.iml" filepath="$PROJECT_DIR$/zheyue-rpc/zheyue-rpc.iml" />
-      <module fileurl="file://$PROJECT_DIR$/zheyue-search/zheyue-search.iml" filepath="$PROJECT_DIR$/zheyue-search/zheyue-search.iml" />
-      <module fileurl="file://$PROJECT_DIR$/zheyue-security/zheyue-security.iml" filepath="$PROJECT_DIR$/zheyue-security/zheyue-security.iml" />
+      <module fileurl="file://$PROJECT_DIR$/shiro.iml" filepath="$PROJECT_DIR$/shiro.iml" />
     </modules>
   </component>
 </project>

@@ -22,33 +22,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
-        <module name="anthClient" />
-        <module name="anthServer" />
-        <module name="authClient" />
-        <module name="netty" />
-        <module name="remote" />
-        <module name="web" />
-        <module name="zheyue-config" />
-        <module name="zheyue-encrypt" />
-        <module name="zheyue-rpc" />
-        <module name="zheyue-search" />
-        <module name="zheyue-security" />
+        <module name="shiro" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="anthClient" target="1.5" />
-      <module name="anthServer" target="1.5" />
-      <module name="authClient" target="1.5" />
-      <module name="authServer" target="1.5" />
-      <module name="netty" target="1.5" />
-      <module name="remote" target="1.5" />
-      <module name="web" target="1.5" />
-      <module name="zheyue" target="1.5" />
-      <module name="zheyue-config" target="1.8" />
-      <module name="zheyue-encrypt" target="1.8" />
-      <module name="zheyue-rpc" target="1.8" />
-      <module name="zheyue-search" target="1.5" />
-      <module name="zheyue-security" target="1.8" />
+      <module name="shiro" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
