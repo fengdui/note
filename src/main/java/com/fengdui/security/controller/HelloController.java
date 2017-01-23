@@ -14,24 +14,24 @@ import org.springframework.web.servlet.ModelAndView;
 @RestController
 public class HelloController implements ApplicationContextAware {
 
-    @RequestMapping("hello")
+    @RequestMapping("/hello")
     public ModelAndView hello() {
         ModelAndView mv = new ModelAndView();
         mv.setViewName("hello");
         return mv;
     }
-    @RequestMapping("login")
+    @RequestMapping("/login")
     public ModelAndView login() {
         ModelAndView mv = new ModelAndView();
         mv.setViewName("login");
         return mv;
     }
-//    @RequestMapping("error")
-//    public ModelAndView error() {
-//        ModelAndView mv = new ModelAndView();
-//        mv.setViewName("error");
-//        return mv;
-//    }
+    @RequestMapping("/index")
+    public ModelAndView error() {
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("index");
+        return mv;
+    }
     ApplicationContext applicationContext;
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
