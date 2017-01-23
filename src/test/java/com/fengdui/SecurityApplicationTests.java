@@ -1,4 +1,4 @@
-package com.zheyue;
+package com.fengdui;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class ZheyueSecurityApplicationTests {
+public class SecurityApplicationTests {
 
 	@Test
 	public void contextLoads() {

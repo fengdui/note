@@ -1,4 +1,4 @@
-package com.zheyue.security.controller;
+package com.fengdui.security.controller;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
