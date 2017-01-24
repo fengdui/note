@@ -18,6 +18,8 @@ public class SecurityApplication {
 	public Principal user(Principal principal) {
 		return principal;
 	}
+
+
 	public static void main(String[] args) {
 //		SpringApplication.run(ZheyueSecurityApplication.class, args);
 		SpringApplication application = new SpringApplication(SecurityApplication.class);

@@ -14,6 +14,13 @@ import org.springframework.web.servlet.ModelAndView;
 @RestController
 public class HelloController implements ApplicationContextAware {
 
+    @RequestMapping("/")
+    public ModelAndView home() {
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("hello");
+        return mv;
+    }
+
     @RequestMapping("/hello")
     public ModelAndView hello() {
         ModelAndView mv = new ModelAndView();

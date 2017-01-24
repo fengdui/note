@@ -49,7 +49,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         //设置拦截规则
         //自定义accessDecisionManager访问控制器,并开启表达式语言
-        http.authorizeRequests().antMatchers("/user", "/index", "/hello").permitAll();
+        http.authorizeRequests().antMatchers("/user", "/index", "/hello", "/").permitAll();
         http.authorizeRequests().antMatchers("/**").authenticated();
         http.csrf().disable();
 
