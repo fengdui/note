@@ -10,6 +10,8 @@ import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
+import java.util.Arrays;
+
 @SpringBootApplication
 @EnableAspectJAutoProxy(proxyTargetClass = false, exposeProxy=true)
 @EnableCaching
@@ -19,7 +21,8 @@ public class FileEncryptApplication {
 
 
 	public static void main(String[] args) {
-
+		Arrays.sort();
+		System.out.println(3 / 2);
 		SpringApplication application = new SpringApplication();
 		application.setWebEnvironment(false);
 		ConfigurableApplicationContext applicationContext = application.run(FileEncryptApplication.class, args);
