@@ -36,7 +36,7 @@ public class FileClient {
             b.group(worker).channel(NioSocketChannel.class)
                     .handler(new ClientChannelInitializer(serializeProtocol))
                     .option(ChannelOption.SO_KEEPALIVE, true);
-            ChannelFuture future = b.connect("localhost", 8000).sync();
+            ChannelFuture future = b.connect("192.168.0.53", 8000).sync();
             future.channel().closeFuture().sync();
         }
         finally {
