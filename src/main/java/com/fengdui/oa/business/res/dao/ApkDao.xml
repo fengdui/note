@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper    
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"    
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xh.market.business.res.dao.ApkDao">
+
+	<resultMap type="Apk" id="resultMap">
+		<id property="id" column="ID" />
+		<id property="name" column="NAME" />
+		<id property="packageName" column="PACKAGE_NAME" />
+		<id property="versionCode" column="VERSION_CODE" />
+		<id property="versionName" column="VERSION_NAME" />
+		<id property="appId" column="APP_ID" />
+		<id property="status" column="STATUS" />
+		<id property="fileId" column="FILE_ID" />
+		<id property="fileSize" column="FILE_SIZE" />
+		<id property="fileMd5" column="FILE_MD5" />
+		<id property="description" column="DESCRIPTION" />
+		<result property="createUser" column="CREATE_USER" />
+		<result property="createTime" column="CREATE_TIME" />
+		<result property="modifyUser" column="MODIFY_USER" />
+		<result property="modifyTime" column="MODIFY_TIME" />
+		<result property="deleted" column="DELETED" />
+	</resultMap>
+
+	<sql id="table">
+		tbl_res_apk
+	</sql>
+	
+	<select id="getFileIdById" resultType="java.lang.String">
+		SELECT file_id
+		FROM <include refid="table" />
+		WHERE ID = #{id}
+	</select>
+	
+	<select id="getListOnLib" resultMap="resultMap">
+		SELECT *
+		FROM <include refid="table" />
+		WHERE
+			package_name = #{packageName}
+			AND (status = 1 OR status = 2)
+			AND deleted = FALSE
+		ORDER BY version_code
+	</select>
+	
+	<!-- ************************************************** 分割线 ************************************************** -->
+
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO <include refid="table" />
+		(
+		<trim suffixOverrides=",">
+			<if test="name != null"> name, </if>
+			<if test="packageName != null"> package_name, </if>
+			<if test="versionCode != null"> version_code, </if>
+			<if test="versionName != null"> version_name, </if>
+			<if test="appId != null"> app_id, </if>
+			<if test="status != null"> status, </if>
+			<if test="fileId != null"> file_id, </if>
+			<if test="fileSize != null"> file_size, </if>
+			<if test="fileMd5 != null"> file_md5, </if>
+			<if test="description != null"> description, </if>
+			<if test="createUser != null"> create_user, </if>
+			<if test="modifyUser != null"> modify_user, </if>
+		</trim>
+		) VALUES (
+		<trim suffixOverrides=",">
+			<if test="name != null"> #{name}, </if>
+			<if test="packageName != null"> #{packageName}, </if>
+			<if test="versionCode != null"> #{versionCode}, </if>
+			<if test="versionName != null"> #{versionName}, </if>
+			<if test="appId != null"> #{appId}, </if>
+			<if test="status != null"> #{status}, </if>
+			<if test="fileId != null"> #{fileId}, </if>
+			<if test="fileSize != null"> #{fileSize}, </if>
+			<if test="fileMd5 != null"> #{fileMd5}, </if>
+			<if test="description != null"> #{description}, </if>
+			<if test="createUser != null"> #{createUser}, </if>
+			<if test="modifyUser != null"> #{modifyUser}, </if>
+		</trim>
+		)
+	</insert>
+
+	<insert id="insertBySql" statementType="STATEMENT">
+		INSERT INTO <include refid="table" /> ${sql}
+	</insert>
+
+	<insert id="insertBatch" parameterType="java.util.List" useGeneratedKeys="true">
+		INSERT INTO <include refid="table" />
+			(name, package_name, version_code, version_name, app_id, status, file_id, file_size, file_md5, description, create_user, modify_user)
+		VALUES
+		<foreach collection="list" item="item" index="index" separator=",">
+			(#{item.name}, #{item.packageName}, #{item.versionCode}, #{item.versionName}, #{item.appId}, #{item.status}, #{item.fileId}, #{item.fileSize}, #{item.fileMd5}, #{item.description}, #{item.createUser}, #{item.modifyUser})
+		</foreach>
+	</insert>
+	
+	<delete id="deleteBySql" statementType="STATEMENT">
+		DELETE FROM <include refid="table" /> ${sql}
+	</delete>
+	
+	<delete id="deleteByMultiValue" statementType="STATEMENT">
+		DELETE FROM <include refid="table"/>
+		WHERE 
+		<foreach item="item" index="index" collection="cols" separator=" and">
+			${cols[index]} = ${vals[index]}
+		</foreach>
+	</delete>
+	
+	<update id="update">
+		UPDATE <include refid="table" />
+		<set>
+			name = #{name},
+			package_name = #{packageName},
+			version_code = #{versionCode},
+			version_name = #{versionName},
+			description = #{description},
+			modify_time = now(),
+			modify_user = #{modifyUser}
+		</set>
+		WHERE
+			ID = #{id}
+	</update>
+	
+	<update id="updateBySql" statementType="STATEMENT">
+		UPDATE <include refid="table" /> ${sql}
+	</update>
+	
+	<update id="updateMultiValueByMultiValue" statementType="STATEMENT">
+		UPDATE <include refid="table" />
+		SET
+		<foreach item="item" index="index" collection="cols" separator=" ,">
+			<if test="vals[index] != null">
+			${cols[index]} = ${vals[index]}
+			</if>
+			<if test="vals[index] == null">
+			${cols[index]} = null
+			</if>
+		</foreach>
+		WHERE
+		<foreach item="item" index="index" collection="keyCols" separator=" and">
+			${keyCols[index]} = ${keyVals[index]}
+		</foreach>
+	</update>
+
+	<select id="queryBySql" resultMap="resultMap" statementType="STATEMENT">
+		SELECT * FROM <include refid="table" /> 
+		<where>
+			<if test="sqls.length > 0">
+				<foreach item="item" index="index" collection="sqls" separator=" and">
+					${item}
+				</foreach>
+			</if>
+		</where>
+		<if test="orders != null">
+			<if test="orders.length > 0">
+				ORDER BY
+				<foreach item="item" index="index" collection="orders" separator=" ,">
+					${item}
+				</foreach>
+			</if>
+		</if>
+	</select>
+
+	<select id="queryUniqueByMultiValue" resultMap="resultMap" statementType="STATEMENT">
+		SELECT *
+		FROM <include refid="table" />
+		WHERE
+		<foreach index="index" item="item" collection="cols" separator=" and">
+			${cols[index]} = ${vals[index]}
+		</foreach>
+	</select>
+	
+	<select id="queryByMultiValue" resultMap="resultMap" statementType="STATEMENT">
+		SELECT *
+		FROM <include refid="table" />
+		WHERE
+		<foreach item="item" index="index" collection="cols" separator=" and">
+			${cols[index]} = ${vals[index]}
+		</foreach>
+	</select>
+	
+	<select id="queryByMultiValueByMultiOrder" resultMap="resultMap" statementType="STATEMENT">
+		SELECT * 
+		FROM <include refid="table"/>
+		WHERE
+		<foreach item="item" index="index" collection="cols" separator=" and">
+			${cols[index]} = ${vals[index]}
+		</foreach>
+		ORDER BY
+		<foreach item="item" index="index" collection="orderBys" separator=", ">
+			${orderBys[index]} ${orders[index]}
+		</foreach>
+	</select>
+	
+	<select id="queryCountByMultiValue" resultType="java.lang.Integer" statementType="STATEMENT">
+		SELECT count(1) 
+		FROM <include refid="table"/>
+		WHERE
+		<foreach item="item" index="index" collection="cols" separator=" and">
+			${cols[index]} = ${vals[index]}
+		</foreach>
+	</select>
+	
+	<select id="queryByPage" resultMap="resultMap" statementType="STATEMENT">
+		SELECT * 
+		FROM <include refid="table"/>
+		<where>
+			<if test="filters.size() > 0">
+				<foreach item="item" index="index" collection="filters" separator=" and">
+					<if test="filters[index].sql == null">
+						${filters[index].propertyName} ${filters[index].matchType} ${filters[index].propertyValue}
+					</if>
+					<if test="filters[index].sql != null">
+						${filters[index].sql}
+					</if>
+				</foreach>
+			</if>
+		</where>
+	</select>
+	
+	<select id="queryByLikeValue" resultMap="resultMap" statementType="STATEMENT">
+		SELECT * 
+		FROM <include refid="table"/>
+		WHERE ${col} LIKE CONCAT('%', '${val}', '%')
+	</select>
+
+	<select id="isUniqueByMultiValue" resultType="java.lang.Boolean" statementType="STATEMENT">
+		SELECT count(1) = 0
+		FROM <include refid="table" />
+		WHERE
+		<foreach item="item" index="index" collection="cols" separator=" and">
+			${cols[index]} = ${vals[index]}
+		</foreach>
+	</select>
+
+</mapper>
