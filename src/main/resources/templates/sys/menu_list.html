@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" class="full">
+
+<head>
+#include("/resources/common/header.html")
+#include("/resources/common/header_list.html")
+
+<link href="/resources/plugin/zTree_v3/css/zTreeStyle/zTreeStyle.css" rel="stylesheet">
+<script src="/resources/plugin/zTree_v3/js/jquery.ztree.all-3.5.min.js"></script>
+
+<script type="text/javascript">
+	var zTree, rMenu, treeNodeSel;
+	
+	function filter(treeId, parentNode, childNodes) {
+		return childNodes;
+	}
+	
+	function beforeDrag(treeId, treeNodes) {
+		var treeNode = treeNodes[0];
+		if (treeNode) {
+			return treeNode.drag;
+		} else {
+			return false;
+		}
+	}
+	
+	function beforeDrop(treeId, treeNodes, targetNode, moveType) {
+		if (!targetNode) {
+			return false;
+		}
+		
+		var treeNode = treeNodes[0];
+		// console.log(treeNode.fullName + " - " + targetNode.fullName + " - " + moveType + " - " + treeNodes.length);
+		if (targetNode.level == 0 && moveType != "inner") {
+			return false;
+		} else if (targetNode.level == MENU_LEVEL_MAX && moveType == "inner") {
+			return false;
+		}
+		if (confirm("确定要改变顺序吗？")) {
+			$.ajax({
+				type : "POST",
+				url : "${urlChangePos}/" + treeNode.id + "/" + targetNode.id + "/" + moveType,
+				success : function(data) {
+					var result = data.result;
+					var msg = data.msg;
+					var obj = data.obj;
+					if (result) {
+						showTipSuccess(msg, null, function() {
+							// window.location.href = "${urlList}?id=" + obj.id + "&level=" + obj.level;
+						});
+						refreshMenuTree(obj.id, obj.level);
+					} else {
+						showTipError(null, msg, function() {
+							// window.location.href = "${urlList}?id=" + obj.id + "&level=" + obj.level;
+						});
+						refreshMenuTree(obj.id, obj.level);
+					}
+					window.parent.menuEdit.location.href = "${urlEdit}";
+				}
+			});
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	function onRightClick(event, treeId, treeNode) {
+		zTree.selectNode(treeNode);
+		showRMenu(event.clientX, event.clientY, treeNode.level);
+	}
+	
+	function showRMenu(x, y, level) {
+		$("#rMenu ul").show();
+		if (level == 0) {
+			$("#m_edit").show();
+			$("#m_add").show();
+			$("#m_del").hide();
+		} else if (level > 0 && level < MENU_LEVEL_MAX) {
+			$("#m_edit").show();
+			$("#m_add").show();
+			$("#m_del").show();
+		} else if (level == MENU_LEVEL_MAX) {
+			$("#m_edit").show();
+			$("#m_del").show();
+			$("#m_add").hide();
+		}
+		rMenu.css({"top":y+"px", "left":x+"px", "visibility":"visible"});
+
+		$("body").off("mousedown").on("mousedown", onBodyMouseDown);
+	}
+	
+	function hideRMenu() {
+		if (rMenu) rMenu.css({"visibility": "hidden"});
+		$("body").off("mousedown", onBodyMouseDown);
+	}
+	
+	function onBodyMouseDown(event) {
+		if (!(event.target.id == "rMenu" || $(event.target).parents("#rMenu").length > 0)) {
+			rMenu.css({"visibility" : "hidden"});
+		}
+	}
+	
+	function showRemoveBtn(treeId, treeNode) {
+		if (treeNode.level > 0) {
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
+	function addHoverDom(treeId, treeNode) {
+		// setting内为全局控制，无法做到不同层级不同的操作icon显示
+		/**
+		 * mouserOver时改变样式
+		 * 使用zTree.selectNode(treeNode)，直接内存溢出
+		 */
+		if (treeNode.editNameFlag || $("#etBtn_" + treeNode.tId).length > 0) return;
+		
+		var nodes = zTree.getSelectedNodes();
+		for(var i = 0; i < nodes.length; i++) {
+			if (treeNode.tId != nodes[i].tId) {
+				zTree.cancelSelectedNode(nodes[i]);
+			}
+		}
+		
+		var sObj = $("#" + treeNode.tId + "_span");
+		var aObj = $("#" + treeNode.tId + "_a");
+		if (!aObj.hasClass("curSelectedNode")) {
+			aObj.addClass("curSelectedNode");
+		}
+
+		var _level = treeNode.level;
+		var addStr = "<span class='button add' id='addBtn_" + treeNode.tId + "' title='新增子菜单' onfocus='this.blur();'></span>";
+		var etStr = "<span class='button edit' id='etBtn_" + treeNode.tId + "' title='编辑' onfocus='this.blur();'></span>";
+
+		if (_level == 0) {
+			sObj.after(etStr);
+			sObj.after(addStr);
+		} else if (_level > 0 && _level < MENU_LEVEL_MAX) {
+			sObj.after(etStr);
+			sObj.after(addStr);
+		} else if (_level == MENU_LEVEL_MAX) {
+			sObj.after(etStr);
+		}
+		treeNodeSel = treeNode;
+		var addBtn = $("#addBtn_" + treeNode.tId);
+		var etBtn = $("#etBtn_" + treeNode.tId);
+		if (addBtn) {
+			addBtn.bind("click", function() {
+				addMenu();
+			});
+		}
+		if (etBtn) {
+			etBtn.bind("click", function() {
+				editMenu();
+			});
+		}
+	};
+	
+	function addMenu(treeNode) {
+		hideRMenu();
+		var nodes = zTree.getSelectedNodes();
+		if (nodes.length > 0) {
+			treeNode = nodes[0];
+		} else {
+			treeNode = treeNodeSel;
+		}
+		var nodeLevel = treeNode.level;
+		nodeLevel++;
+		window.parent.menuEdit.location.href = "${urlEdit}?parentId=" + treeNode.id + "&level=" + nodeLevel;
+	}
+
+	function editMenu(treeNode) {
+		hideRMenu();
+		var nodes = zTree.getSelectedNodes();
+		if (nodes.length > 0) {
+			treeNode = nodes[0];
+		} else {
+			treeNode = treeNodeSel;
+		}
+		window.parent.menuEdit.location.href = "${urlEdit}?id=" + treeNode.id;
+	}
+
+	function deleteMenu() {
+		beforeRemove(null, zTree.getSelectedNodes()[0]);
+	}
+	
+	function removeHoverDom(treeId, treeNode) {
+		var aObj = $("#" + treeNode.tId + "_a");
+		if (aObj.hasClass("curSelectedNode")) {
+			aObj.removeClass("curSelectedNode");
+		}
+
+		var addBtn = $("#addBtn_" + treeNode.tId);
+		var etBtn = $("#etBtn_" + treeNode.tId);
+		if (addBtn.length > 0) {addBtn.unbind().remove();}
+		if (etBtn.length > 0) {etBtn.unbind().remove();}
+	};
+	
+	function beforeRemove(treeId, treeNode) {
+		zTree.selectNode(treeNode);
+		hideRMenu();
+		bootbox.confirm("删除该菜单将删除下面所有的子节点，请谨慎删除<br>确定要删除吗？", function(result) {
+			if (result) {
+				$.ajax({
+					type : "POST",
+					url : "${urlDelete}/" + treeNode.id,
+					success : function(data) {
+						var result = data.result;
+						var msg = data.msg;
+						var obj = data.obj;
+						if (result) {
+							showTipSuccess(msg, null, function() {
+								// window.location.href = "${urlList}?id=" + obj.id + "&level=" + obj.level;
+							});
+							refreshMenuTree(obj.id, obj.level);
+							window.parent.menuEdit.location.href = "${urlEdit}";
+						} else {
+							showTipError(msg, obj, null);
+						}
+					}
+				});
+			}
+		});
+		/*showConfirm("删除该菜单将删除下面所有的子节点，请谨慎删除，确定要删除吗？", function() {
+			$.ajax({
+				type : "POST",
+				url : "${urlDelete}/" + treeNode.id,
+				success : function(data) {
+					var result = data.result;
+					var msg = data.msg;
+					var obj = data.obj;
+					if (result) {
+						showAlertSuccess($(".widget-body"), msg, null, function() {
+							window.location.href = "${urlList}?id=" + obj.id + "&level=" + obj.level;
+						});
+						window.parent.menuEdit.location.href = "${urlEdit}";
+					} else {
+						showAlertError($(".widget-body"), msg, obj, null);
+					}
+				}
+			});
+		}, null);*/
+		return false;
+	}
+	
+	function onAsyncSuccess(event, treeId, treeNode, msg) {
+		$(".editMenu").off("click").on("click", function() {
+			editMenu();
+		});
+	}
+	
+	function getFont(treeId, node) {
+		return node.font ? node.font : {};
+	}
+	
+	var setting = {
+		async : {
+			autoParam : ["id"],
+			dataFilter : filter,
+			enable : true,
+			type : "post",
+			url : "${urlListMore}",
+		},
+		callback : {
+			beforeDrag : beforeDrag,
+			beforeDrop : beforeDrop,
+			beforeRemove : beforeRemove,
+			onAsyncSuccess : onAsyncSuccess,
+			onRightClick : onRightClick
+		},
+		data : {
+			key : {
+				title : "fullName"
+			},
+			simpleData : {
+				enable : true,
+				idKey : "id",
+				pIdKey : "pId",
+				rootPId : null
+			},
+		},
+		edit : {
+			drag : {
+				isCopy : false,
+				isMove : true,
+				prev : true,
+				next : true,
+				inner : true,
+				autoOpenTime : 0
+			},
+			enable : true,
+			showRemoveBtn : showRemoveBtn,
+			showRenameBtn : false,
+		},
+		view : {
+			addHoverDom : addHoverDom,
+			fontCss : getFont,
+			nameIsHTML : true,
+			removeHoverDom : removeHoverDom,
+			selectedMulti : false,
+			showIcon : false,
+		},
+	};
+	
+	function refreshMenuTree(id, level) {
+		$.ajax({
+			type : "POST",
+			url : "${urlListAjax}?id=" + id + "&level=" + level,
+			success : function(data) {
+				var result = data.result;
+				var msg = data.msg;
+				var obj = data.obj;
+				if (result) {
+					$.fn.zTree.init($("#menuTree"), setting, obj);
+					zTree = $.fn.zTree.getZTreeObj("menuTree");
+				} else {
+					// bootbox.alert(msg);
+					showTipError(msg, obj, null);
+				}
+			}
+		});
+	}
+	
+	$(function() {
+		$.fn.zTree.init($("#menuTree"), setting, ${menuTree});
+		zTree = $.fn.zTree.getZTreeObj("menuTree");
+		rMenu = $("#rMenu");
+		
+		$(".editMenu").off("click").on("click", function() {
+			editMenu();
+		});
+	});
+</script>
+
+<style type="text/css">
+.page-body {
+	padding-right: 10px;
+}
+
+.menu-tree-div {
+	width: 100%;
+	height: 100%;
+	text-align: left;
+}
+
+.menu-tree-ul {
+	overflow-y: auto;
+}
+
+div#rMenu {
+	position: absolute;
+	visibility: hidden;
+	top: 0;
+	background-color: #555;
+	text-align: left;
+	padding: 2px;
+}
+
+div#rMenu ul {
+	border: 0 none;
+	margin: 0;
+	outline: 0 none;
+	padding: 0;
+}
+
+div#rMenu ul li {
+	margin: 1px 0;
+	padding: 0 5px;
+	cursor: pointer;
+	list-style: none outside none;
+	background-color: white;
+}
+
+div#rMenu ul li:HOVER {
+	background-color: #DFDFDF;
+}
+</style>
+
+</head>
+
+<body class="page-body full">
+	<div class="widget-body menu-tree-div">
+		<ul id="menuTree" class="ztree full menu-tree-ul"></ul>
+	</div>
+	<div id="rMenu">
+		<ul>
+			<li id="m_add" onclick="addMenu();">增加子菜单</li>
+			<li id="m_edit" onclick="editMenu();">编辑菜单</li>
+			<li id="m_del" onclick="deleteMenu();">删除菜单</li>
+		</ul>
+	</div>
+</body>
+
+</html>

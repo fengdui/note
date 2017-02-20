@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" class="full">
+
+<head>
+#include("/resources/common/header.html")
+#include("/resources/common/header_edit.html")
+</head>
+
+<body class="page-body full">
+	#if (entity.apkList != null)
+	<div class="widget collapsed" style="margin-bottom: 10px;">
+		<div class="widget-header">
+			<i class="widget-icon fa fa-arrows-v blue"></i>
+			<span class="widget-caption">APK 列表</span>
+			<div class="widget-buttons">
+				<a href="#" data-toggle="collapse"><i class="fa fa-plus blue"></i></a>
+			</div>
+		</div>
+		<div class="widget-body" style="padding: 0;">
+			<table class="table table-striped table-hover table-bordered">
+				<thead class="bordered-blue">
+					<tr>
+						<th class="center"></th>
+						<th class="center col-md-5" col="">名称</th>
+						<th class="center col-md-3" col="">显示版本号</th>
+						<th class="center col-md-3" col="">状态</th>
+					</tr>
+				</thead>
+				<tbody id="tableBody">
+					#for (apk : entity.apkList)
+					<tr>
+						<td class="center">
+							<label>
+								<input type="radio" name="apkSel" value="${apk.id}" class="apk-sel" />
+								<span class="text"></span>
+							</label>
+						</td>
+						<td class="center">${apk.name}</td>
+						<td class="center">${apk.versionName}</td>
+						<td class="center">${apk.statusShow}</td>
+					</tr>
+					#end
+				</tbody>
+			</table>
+		</div>
+	</div>
+	#end
+	<div class="widget-body full">
+		<form id="mainForm" class="full full-scroll" action="${urlSave}" method="post">
+			<input type="hidden" name="id" value="${entity.id}" />
+			<input type="hidden" id="apkId" name="apkId" value="${entity.apkId}" />
+			<input type="hidden" name="status" value="${entity.status}" />
+			<div id="formContent" class="full form-horizontal form-content-has-footer">
+				<div class="form-group no-margin-l no-margin-r">
+					<label class="col-xs-1 control-label">图标</label>
+					<div id="iconDiv" class="col-xs-11">
+						#for (icon : entity.iconList)
+						<div style="display: inline-block;">
+			            	<img style="vertical-align: bottom;" src="${icon.fileURL}">
+			            	<div style="text-align: center;">${icon.dpi}</div>
+			            	<div style="text-align: center;">${icon.width} × ${icon.height}</div>
+						</div>
+			            #end
+					</div>
+					<label class="col-xs-2 control-label control-label-tip"></label>
+				</div>
+				<div class="form-group no-margin-l no-margin-r">
+					<label class="col-xs-1 control-label">名称</label>
+					<div class="col-xs-9">
+						<input type="text" class="form-control" name="name" value="${entity.name}" 
+							maxlength="64" required data-bv-notempty-message="应用名称不能为空" 
+							data-bv-stringlength-min="1" data-bv-stringlength-message="应用名称个数要在1-64个字内" />
+					</div>
+					<label class="col-xs-2 control-label control-label-tip"></label>
+				</div>
+				<div class="form-group no-margin-l no-margin-r">
+					<label class="col-xs-1 control-label">包名</label>
+					<div class="col-xs-9">
+						<input type="hidden" id="packageName" name="packageName" value="${entity.packageName}" />
+						<input type="text" id="packageNameShow" class="form-control" value="${entity.packageName}" disabled/>
+					</div>
+					<label class="col-xs-2 control-label control-label-tip"></label>
+				</div>
+				<div class="form-group no-margin-l no-margin-r">
+					<label class="col-xs-1 control-label">
+						<a id="btnPre" href="javascript:preview();" class="btn btn-default">预览图片</a>
+					</label>
+					<div class="col-xs-10">
+						<div id="screenshotDiv" class="screenshot-div">
+							#for (screenshot : entity.screenshotList)
+							<div class="screenshot-part">
+								<img class="screenshot-img" src="${screenshot.fileURL}" >
+							</div>
+							#end
+						</div>
+					</div>
+					<label class="col-xs-2 control-label control-label-tip"></label>
+				</div>
+				<div class="form-group no-margin-l no-margin-r">
+					<label class="col-xs-1 control-label">描述</label>
+					<div class="col-xs-9">
+						<textarea class="form-control" name="description" rows="3"
+							maxlength="256" required data-bv-notempty-message="应用描述不能为空" 
+							data-bv-stringlength-min="1" data-bv-stringlength-message="应用描述个数要在1-256个字内">${entity.description}</textarea>
+					</div>
+					<label class="col-xs-2 control-label control-label-tip">应用描述</label>
+				</div>
+				<div class="form-group no-margin-l no-margin-r">
+					<label class="col-xs-1 control-label">新版本描述</label>
+					<div class="col-xs-9">
+						<textarea class="form-control" id="descriptionNew" rows="3" maxlength="256" disabled>${entity.apk.description}</textarea>
+					</div>
+					<label class="col-xs-2 control-label control-label-tip">新版本描述</label>
+				</div>
+			</div>
+			<div id="formFooter" class="widget-header form-footer form-footer-scroll">
+				<a href="javascript:history.go(-1);" class="btn btn-default">返回</a>
+				<button type="submit" id="btnSubmit" class="btn btn-primary">保存</button>
+			</div>
+		</form>
+	</div>
+	<script src="/resources/template/js/beyond.min.js"></script>
+</body>
+
+<script type="text/javascript">
+	$(function() {
+		var validResult = false;
+	
+		$("#mainForm").Validform({
+			ajaxPost:true,
+			callback:function(data) {
+				var result = data.result;
+				var msg = data.msg;
+				var obj = data.obj;
+				if (result) {
+					showTipSuccess(msg, null, function() {
+						if ("${urlExternal}") {
+							window.location.href = "${urlExternal}";
+						} else {
+							window.location.href = "${urlIndex}";
+						}
+					});
+				} else {
+					$("#btnSubmit").removeAttr("disabled");
+					showTipError(msg, obj, null);
+				}
+			},
+			beforeSubmit:function(curform) {
+				return validResult;
+			}
+		});
+		
+		$("#mainForm").bootstrapValidator({
+			feedbackIcons : {
+				valid : 'glyphicon glyphicon-ok',
+				invalid : 'glyphicon glyphicon-remove',
+				validating : 'glyphicon glyphicon-refresh'
+			},
+			onSuccess : function() {
+				validResult = true;
+			},
+			onError : function() {
+				validResult = false;
+			}
+		});
+		
+		$("#Validform_msg").remove();
+		
+		init();
+	});
+	
+	function init() {
+		#if (entity.apkList != null)
+		$(".apk-sel[value='${entity.apkId}']").attr("checked", "checked");
+		#end
+	}
+	
+	$(".apk-sel").change(function() {
+		var apkId = $(".apk-sel:checked").val();
+		$.ajax({
+			type : "POST",
+			url : "${urlGetApkInfo}/" + apkId,
+			success : function(data) {
+				var result = data.result;
+				var msg = data.msg;
+				var obj = data.obj;
+				if (result) {
+					$("#apkId").val(obj.id);
+					
+					var iconHtml = "";
+					for (var i = 0; i < obj.iconList.length; i++) {
+						var icon = obj.iconList[i];
+						iconHtml += '<div style="display: inline-block;"> ' + 
+										'<img style="vertical-align: bottom;" src="' + icon.fileURL + '"> ' + 
+										'<div style="text-align: center;">' + icon.dpi + '</div> ' + 
+										'<div style="text-align: center;">' + icon.width + ' × ' + icon.height + '</div> ' +
+									'</div>';
+					}
+					$("#iconDiv").html(iconHtml);
+					
+					var screenshotHtml = "";
+					for (var i = 0; i < obj.screenshotList.length; i++) {
+						var screenshot = obj.screenshotList[i][1];
+						screenshotHtml += '<div class="screenshot-part"> ' + 
+										  	'<img class="screenshot-img" src="' + screenshot.fileURL + '" > ' + 
+										  '</div>'
+					}
+					$("#screenshotDiv").html(screenshotHtml);
+					
+					$("#descriptionNew").val(obj.description);
+				} else {
+					bootbox.alert(obj);
+				}
+			}
+		});
+	});
+	
+	function preview() {
+		var screenshotObj = new Object();
+		screenshotObj.start = 0;
+		var data = new Array();
+		$(".screenshot-part").each(function() {
+			var dataItem = new Object();
+			dataItem.src = $(this).children(".screenshot-img").attr("src");
+			data.push(dataItem);
+		});
+		screenshotObj.data = data;
+		layer.photos({
+	        photos: screenshotObj,
+	        shade: 0.1,
+	        shift: 0,
+	        skin: 'demo-class'
+	    });
+	}
+</script>
+
+</html>

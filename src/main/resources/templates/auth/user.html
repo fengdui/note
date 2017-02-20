@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+#include("/resources/common/header.html")
+#include("/resources/common/header_list.html")
+
+<link href="/resources/plugin/chosen_v1.4.2/chosen.css" rel="stylesheet" />
+<script src="/resources/plugin/chosen_v1.4.2/chosen.jquery.js"></script>
+</head>
+
+<body class="page-body">
+	<form id="mainForm">
+		<input type="hidden" id="urlList" value="${urlList}" />
+		<div class="widget widget-main">
+			<div class="widget-header widget-header-search">
+				<div>
+					<span class="widget-caption">
+						<span class="search-item">
+							登录名或用户名：
+							<label class="search-input"><input type="text" class="form-control input-sm" name="filter#ILIKE#loginname#OR#username" /></label>
+						</span>
+						<a href="javascript:searchPage();" class="btn btn-default blue"><i class="fa fa-search"></i>搜索</a>
+					</span>
+				</div>
+				<div id="moreSearch" style="display: none;">
+					<span class="widget-caption"></span>
+				</div>
+			</div>
+			<div class="widget-body widget-body-operate">
+				<div class="table-toolbar">
+					<a href="${urlEdit}" class="btn btn-default">添加</a>
+					<a href="javascript:delItemBatch('${urlDelete}');" class="btn btn-primary">批量删除</a>
+					<span class="pageControl">#--include("/resources/common/page_control.html")--#</span>
+				</div>
+				#include("/resources/common/edit_table.html")
+				<div class="row DTTTFooter widget-footer-page">
+					<div class="col-sm-6 pageSummar">#--include("/resources/common/page_summar.html")--#</div>
+					<div class="col-sm-6 pageControl">#--include("/resources/common/page_control.html")--#</div>
+				</div>
+			</div>
+		</div>
+	</form>
+</body>
+
+<script type="text/javascript">
+	$(function() {
+		init();
+	});
+
+	function init() {
+		refreshTableList(true);
+		$(".roleSelTH .chosen-container").css("width", "100%");
+	}
+	
+	function getItemLineFormat(id) {
+		var itemLine = "<tr id='{0}'>";
+			if (id == 0) {
+				itemLine += "<td class='center'><label><input type='checkbox' class='checkItem' disabled='disabled'><span class='text'></span></label></td>";
+			} else {
+				itemLine += "<td class='center'><label><input type='checkbox' class='checkItem' onclick='onCheckItem(this);'><span class='text'></span></label></td>";
+			}
+		        itemLine += "<td class='center'>{1}</td>";
+		        itemLine += "<td class='center'>{2}</td>";
+		        itemLine += "<td class='center'><div class='ellipsis' style='max-width: 174px;' title='{3}'>{3}</div></td>";
+		        itemLine += "<td class='center'>{4}</td>";
+		        itemLine += "<td class='center'>{5}</td>";
+		        itemLine += "<td class='center'>";
+			    if (id == 0) {
+		            itemLine += "<a href='javascript:void(0);' class='btn btn-info btn-xs edit' disabled='disabled'><i class='fa fa-edit'></i>编辑</a> ";
+			    	itemLine += "<a href='javascript:void(0);' class='btn btn-danger btn-xs delete' disabled='disabled'><i class='fa fa-trash-o'></i>删除</a>";
+			    } else {
+		            itemLine += "<a href='${urlEdit}?id={0}' class='btn btn-info btn-xs edit'><i class='fa fa-edit'></i>编辑</a> ";
+				    itemLine += "<a href='javascript:delItem(\"${urlDelete}\", {0});' class='btn btn-danger btn-xs delete'><i class='fa fa-trash-o'></i>删除</a>";
+			    }
+		        itemLine += "</td>";
+		   itemLine += "</tr>";
+		return itemLine;
+	}
+	
+	function getItemLine(entity) {
+		return getItemLineFormat(entity.id).format(entity.id, entity.viewIdx, entity.loginname, entity.username, entity.roleName, entity.modifyTimeStr);
+	}
+	
+	function refreshTableListBefore() {
+		console.log("method refreshTableListBefore define");
+	}
+</script>
+
+</html>

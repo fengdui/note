@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" class="full">
+
+<head>
+#include("/resources/common/header.html")
+#include("/resources/common/header_edit.html")
+
+<link href="/resources/plugin/jquery-entropizer/css/jquery-entropizer.css" rel="stylesheet">
+
+<script src="/resources/plugin/jquery-entropizer/js/entropizer.js"></script>
+<script src="/resources/plugin/jquery-entropizer/js/jquery-entropizer.js"></script>
+</head>
+
+<body class="page-body full">
+	<div class="widget-body full">
+		<form id="mainForm" class="full full-scroll" action="${urlSavePersonal}" method="post">
+			<input type="hidden" name="id" value="${entity.id}" />
+			<input type="hidden" name="parentId" value="${entity.parentId}" />
+			<input type="hidden" id="password" name="password" value="${entity.password}" />
+			<input type="hidden" id="passwordNew" name="passwordNew" />
+			<input type="hidden" name="roleId" value="${entity.roleId}" />
+			<input type="hidden" name="menuListStr" value="${entity.menuListStr}" />
+			<div id="formHeader" class="widget-header form-header">
+				<a href="javascript:changePwd();" id="btnChangePwd" class="btn btn-info left">修改密码</a>
+			</div>
+			<div id="formContent" class="full form-horizontal form-content-has-header-footer">
+				<div class="form-group no-margin-l no-margin-r">
+					<label class="col-xs-1 control-label">登录名称<sup>*</sup></label>
+					<div class="col-xs-9">
+						<input type="hidden" id="loginname" name="loginname" value="${entity.loginname}" />
+						<input type="text" class="form-control" value="${entity.loginname}" disabled/>
+					</div>
+					<label class="col-xs-2 control-label control-label-tip">登录名称</label>
+				</div>
+				<div class="form-group no-margin-l no-margin-r">
+					<label class="col-xs-1 control-label">用户名称<sup>*</sup></label>
+					<div class="col-xs-9">
+						<input type="text" class="form-control" name="username" value="${entity.username}" 
+							maxlength="64" required data-bv-notempty-message="用户名称不能为空" 
+							data-bv-stringlength-min="1" data-bv-stringlength-message="用户名称个数要在1-64个字内" />
+					</div>
+					<label class="col-xs-2 control-label control-label-tip">用户名称(64个字以内)</label>
+				</div>
+				<div id="passwordOldDiv" class="form-group no-margin-l no-margin-r" style="display: none;">
+					<label class="col-xs-1 control-label">旧密码</label>
+					<div class="col-xs-9">
+						<input type="text" id="passwordOldInput" class="form-control" />
+						<small id="passwordOldErrorTip" class="help-block control-error-tip" style="display: none;"></small>
+					</div>
+					<a href="javascript:checkPwd();" class="btn btn-danger control-href-tip">验证密码</a>
+				</div>
+				<div id="passwordOneDiv" class="form-group no-margin-l no-margin-r" style="display: none;">
+					<label class="col-xs-1 control-label">密码</label>
+					<div class="col-xs-9">
+						<input type="text" id="passwordOneInput" class="form-control" name="passwordOne" 
+							maxlength="25" data-bv-identical="true" data-bv-identical-field="passwordTwo" data-bv-identical-message="两次输入的密码不一致" />
+						<div id="passwordCheck"></div>
+					</div>
+					<label class="col-xs-2 control-label control-label-tip">不填默认为原密码</label>
+				</div>
+				<div id="passwordTwoDiv" class="form-group no-margin-l no-margin-r" style="display: none;">
+					<label class="col-xs-1 control-label">确认密码</label>
+					<div class="col-xs-9">
+						<input type="password" id="passwordTwoInput" class="form-control" name="passwordTwo" 
+							maxlength="25" required data-bv-notempty-message="请确认密码" data-bv-identical="true" data-bv-identical-field="passwordOne" data-bv-identical-message="两次输入的密码不一致" />
+					</div>
+					<label class="col-xs-2 control-label control-label-tip">确认密码</label>
+				</div>
+			</div>
+			<div id="formFooter" class="widget-header form-footer form-footer-scroll">
+				<a href="${urlPersonal}" class="btn btn-default">返回</a>
+				<button type="submit" id="btnSubmit" class="btn btn-primary">保存</button>
+			</div>
+		</form>
+	</div>
+</body>
+
+<script type="text/javascript">
+	var changePwding = false;
+	
+	$(function() {
+		var validResult = false;
+	
+		$("#mainForm").Validform({
+			ajaxPost:true,
+			callback:function(data) {
+				var result = data.result;
+				var msg = data.msg;
+				var obj = data.obj;
+				if (result) {
+					var herf = "${urlPersonal}";
+					if ($("#passwordNew").val()) {
+						bootbox.alert("修改成功，将要跳转到登录界面...", function() {
+							// window.location.href = "${urlLogout}";
+							window.top.location.href = "${urlLogout}?loginnameRedirect=" + $("#loginname").val();
+						});
+					} else {
+						showTipSuccess(msg, null, function() {
+							window.location.href = "${urlPersonal}";
+						});
+					}
+				} else {
+					$("#btnSubmit").removeAttr("disabled");
+					showTipError(msg, obj, null);
+				}
+			},
+			beforeSubmit:function(curform) {
+				if (validResult) {
+					// 检查密码
+					var passwordOne = $("#passwordOneInput").val();
+					if (passwordOne) {
+						var passwordTwo = $("#passwordTwoInput").val();
+						if (passwordOne == passwordTwo) {
+							$("#passwordNew").val(passwordOne);
+						} else {
+							bootbox.alert("两次输入的密码不一致!");
+							$("#btnSubmit").removeAttr("disabled");
+							return false;
+						}
+					}
+				}
+				return validResult;
+			}
+		});
+		
+		$("#mainForm").bootstrapValidator({
+			feedbackIcons : {
+				valid : 'glyphicon glyphicon-ok',
+				invalid : 'glyphicon glyphicon-remove',
+				validating : 'glyphicon glyphicon-refresh'
+			},
+			onSuccess : function() {
+				validResult = true;
+			},
+			onError : function() {
+				validResult = false;
+			}
+		});
+		
+		$("#Validform_msg").remove();
+		
+		init();
+	});
+	
+	function init() {
+		var roleId = "${entity.roleId}";
+		if (roleId) {
+			
+		}
+		$("#passwordCheck").entropizer({
+			target: "#passwordOneInput",
+			buckets: [
+				{ max: 45, strength: '弱', color: '#e13' },
+				{ min: 45, max: 60, strength: '中', color: '#f80' },
+				{ min: 60, max: 75, strength: '强', color: '#8c0' },
+				{ min: 75, strength: '优秀', color: '#0c8' }
+			],
+			update: function(data, ui) {
+				ui.bar.css({
+					'background-color': data.color,
+					'width': data.percent + '%'
+				});
+				ui.text.html(data.strength);
+			},
+		});
+		$("#passwordOneInput").off("input propertychange").on("input propertychange", function() {
+			triggerPasswordTwo(this);
+		});
+		$("#passwordOldInput").off("input propertychange").on("input propertychange", function() {
+			$("#passwordOldErrorTip").html("");
+			$("#passwordOldErrorTip").hide();
+		});
+	}
+	
+	function changePwd() {
+		changePwding = !changePwding;
+		if (changePwding) {
+			$("#btnChangePwd").html("撤销修改");
+			$("#passwordOldDiv").show();
+		} else {
+			$("#btnChangePwd").html("修改密码");
+			$("#passwordOldDiv").hide();
+			$("#passwordOldInput").val("");
+			$("#passwordOldErrorTip").hide();
+			$("#passwordOneDiv").hide();
+			$("#passwordTwoDiv").hide();
+			$("#passwordOneInput").val("");
+			$("#passwordNew").val("");
+		}
+	}
+	
+	function checkPwd() {
+		var pwdOriginal = $("#password").val();
+		var pwd2Check = $("#passwordOldInput").val();
+		
+		$.ajax({
+			type : "POST",
+			url : "${urlCheckPwd}?pwdOriginal=" + pwdOriginal + "&pwd2Check=" + pwd2Check,
+			success : function(data) {
+				var result = data.result;
+				var msg = data.msg;
+				var obj = data.obj;
+				if (result) {
+					if (obj) {
+						$("#passwordOldDiv").hide();
+						$("#passwordOldErrorTip").hide();
+						$("#passwordOneDiv").show();
+					} else {
+						checkPwdError("验证密码失败");
+					}
+				} else {
+					checkPwdError("验证密码失败" + " - " + obj);
+				}
+			}
+		});
+	}
+	
+	function checkPwdError(msg) {
+		$("#passwordOldErrorTip").show();
+		$("#passwordOldErrorTip").html(msg);
+	}
+	
+	function triggerPasswordTwo(obj) {
+		if ($(obj).val()) {
+			$("#passwordTwoDiv").show();
+		} else {
+			$("#passwordTwoDiv").hide();
+			$("#btnSubmit").removeAttr("disabled");
+		}
+	}
+</script>
+
+</html>

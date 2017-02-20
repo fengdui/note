@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+#include("/resources/common/header.html")
+
+<link href="/resources/css/main_base.css" rel="stylesheet" />
+<link href="/resources/css/main.css" rel="stylesheet" />
+
+<script src="/resources/js/main_base.js"></script>
+</head>
+
+<body>
+	<div class="navbar">
+		<div class="navbar-inner">
+			<div class="navbar-container">
+				<div class="navbar-header pull-left">
+					<a href="javascript:void(0);" class="navbar-brand"><small><img src="/resources/image/logo.png" alt="" /></small></a>
+				</div>
+				<div id="sidebar-collapse" class="sidebar-collapse"><i class="collapse-icon fa fa-bars"></i></div>
+				<div class="navbar-header pull-right">
+					<div class="navbar-account">
+						<ul class="account-area">
+							<li>
+								#if (messageList && messageList.size() > 0)
+								<a class="dropdown-toggle wave in" data-toggle="dropdown" title="信息" href="javascript:void(0);"> 
+								#else
+								<a class="dropdown-toggle" data-toggle="dropdown" title="信息" href="javascript:void(0);"> 
+								#end
+									<i class="icon fa fa-warning"></i> 
+									#if (messageList && messageList.size() > 0)
+									<span class="badge">${messageList.size()}</span> 
+									#end
+								</a>
+								<ul class="pull-right dropdown-menu dropdown-arrow dropdown-notifications">
+									#if (messageList && messageList.size() > 0) 
+									#for (message : messageList)
+									<li>
+										<a href="javascript:void(0);">
+											<div class="clearfix">
+												<div class="notification-icon">
+													<i class="${message.icon}"></i>
+												</div>
+												<div class="notification-body">
+													<span class="title">${message.title}</span> <span class="description">${message.content}</span>
+												</div>
+												<div class="notification-extra">
+													<i class="fa fa-clock-o themeprimary"></i> <span class="description">${message.type}</span>
+												</div>
+											</div>
+										</a>
+									</li> 
+									#end 
+									#end 
+									<li class="dropdown-footer">
+										<span id="spanTime"></span> 
+										#if (weatherInfo && weatherInfo['HeWeather data service 3.0'])
+										#if (weatherInfo['HeWeather data service 3.0'][0]['now'])
+										<span class="pull-right"> ${weatherInfo['HeWeather data service 3.0'][0]['now']['tmp']}℃ <i class="wi wi-cloudy"></i></span>
+										#end
+										#end
+									</li>
+								</ul>
+							</li>
+							<li>
+								#if (emailList && emailList.size() > 0)
+								<a class="dropdown-toggle wave in" data-toggle="dropdown" title="邮件" href="javascript:void(0);"> 
+								#else
+								<a class="dropdown-toggle" data-toggle="dropdown" title="邮件" href="javascript:void(0);"> 
+								#end
+									<i class="icon fa fa-envelope"></i> 
+									#if (emailList && emailList.size() > 0)
+									<span class="badge">${emailList.size()}</span>
+									#end
+								</a>
+								<ul class="pull-right dropdown-menu dropdown-arrow dropdown-messages">
+									#if (emailList && emailList.size() > 0)
+									#for (email : emailList)
+									<li>
+										<a href="javascript:void(0);"> 
+											<img src="${email.icon}" width="42" height="42" class="message-avatar" alt="">
+											<div class="message">
+												<span class="message-sender">${email.sender}</span> 
+												<span class="message-time">${email.sendDateInterval}</span> 
+												<span class="message-subject">${email.title}</span> 
+												<span class="message-body" title="${email.content}">${email.content}</span>
+											</div>
+										</a>
+									</li>
+									#end
+									#end
+								</ul>
+							</li>
+							<li>
+								#if (taskList && taskList.size() > 0)
+								<a class="dropdown-toggle wave in" data-toggle="dropdown" title="任务" href="javascript:void(0);"> 
+								#else
+								<a class="dropdown-toggle" data-toggle="dropdown" title="任务" href="javascript:void(0);"> 
+								#end
+									<i class="icon fa fa-tasks"></i> 
+									#if (taskList && taskList.size() > 0)
+									<span class="badge">${taskList.size()}</span>
+									#end
+								</a>
+								<ul class="pull-right dropdown-menu dropdown-tasks dropdown-arrow ">
+									#if (taskList && taskList.size() > 0)
+									<li class="dropdown-header bordered-darkorange"><i class="fa fa-tasks"></i> ${taskList.size()} 个任务在进行中</li>
+									#for (task : taskList)
+									<li>
+										<a href="javascript:void(0);">
+											<div class="clearfix">
+												<span class="pull-left">${task.name}</span> <span class="pull-right">${task.progress}%</span>
+											</div>
+											<div class="progress progress-xs">
+												<div style="width:${task.progress}%" class="progress-bar"></div>
+											</div>
+										</a>
+									</li>
+									#end
+									#end
+									<li class="dropdown-footer"><a href="javascript:void(0);"> 查看所有任务 </a>
+										#--
+										<button class="btn btn-xs btn-default shiny darkorange icon-only pull-right">
+											<i class="fa fa-check"></i>
+										</button>
+										--#
+									</li>
+								</ul>
+							</li>
+							<li>
+								<a class="login-area dropdown-toggle login-area-custom" data-toggle="dropdown">
+									<div class="avatar" title="查看个人信息">
+										<span class="glyphicon glyphicon-user padding-right-small"></span>
+									</div>
+									<section>
+										##<h2><span class="profile"><span>${macroGet('m_loginname')}</span></span></h2>
+										##<h2><span class="profile"><span>${loginname}</span></span></h2>
+										<h2><span class="profile"><span class="ellipsis-profile" title="${macroGet('m_userName')}">${macroGet('m_userName')}</span></span></h2>
+									</section>
+								</a>
+								<ul class="pull-right dropdown-menu dropdown-arrow dropdown-login-area">
+									<li class="edit"><a href="javascript:void(0);" class="pull-left"><i class="fa fa-user"></i>修改资料</a></li>
+									<li class="edit"><a href="javascript:void(0);" class="pull-left"><i class="fa fa-gear"></i>系统设置</a></li>
+									<li class="edit edit_title"><a class="pull-left">风格选择</a></li>
+									<li class="theme-area">
+										<ul class="colorpicker" id="skin-changer">
+											<li><a class="colorpick-btn" href="javascript:void(0);" style="background-color:#5DB2FF;" rel="/resources/css/skins/blue.min.css"></a></li>
+											<li><a class="colorpick-btn" href="javascript:void(0);" style="background-color:#2dc3e8;" rel="/resources/css/skins/azure.min.css"></a></li>
+											<li><a class="colorpick-btn" href="javascript:void(0);" style="background-color:#03B3B2;" rel="/resources/css/skins/teal.min.css"></a></li>
+											<li><a class="colorpick-btn" href="javascript:void(0);" style="background-color:#53a93f;" rel="/resources/css/skins/green.min.css"></a></li>
+											<li><a class="colorpick-btn" href="javascript:void(0);" style="background-color:#FF8F32;" rel="/resources/css/skins/orange.min.css"></a></li>
+											<li><a class="colorpick-btn" href="javascript:void(0);" style="background-color:#cc324b;" rel="/resources/css/skins/pink.min.css"></a></li>
+											<li><a class="colorpick-btn" href="javascript:void(0);" style="background-color:#AC193D;" rel="/resources/css/skins/darkred.min.css"></a></li>
+											<li><a class="colorpick-btn" href="javascript:void(0);" style="background-color:#8C0095;" rel="/resources/css/skins/purple.min.css"></a></li>
+											<li><a class="colorpick-btn" href="javascript:void(0);" style="background-color:#0072C6;" rel="/resources/css/skins/darkblue.min.css"></a></li>
+											<li><a class="colorpick-btn" href="javascript:void(0);" style="background-color:#585858;" rel="/resources/css/skins/gray.min.css"></a></li>
+											<li><a class="colorpick-btn" href="javascript:void(0);" style="background-color:#474544;" rel="/resources/css/skins/black.min.css"></a></li>
+											<li><a class="colorpick-btn" href="javascript:void(0);" style="background-color:#001940;" rel="/resources/css/skins/deepblue.min.css"></a></li>
+										</ul>
+									</li>
+									<li class="dropdown-footer"><a href="javascript:logout();"><i class="fa fa-power-off"></i>退出</a></li>
+								</ul>
+							</li>
+						</ul>
+						<div class="setting"><a title="退出" href="javascript:logout();"> <i class="icon glyphicon glyphicon-off"></i></a></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="main-container container-fluid">
+		<div class="page-container">
+			<div class="page-sidebar" id="sidebar">
+				<div class="sidebar-header-wrapper">
+					<input type="text" class="searchinput" /> <i class="searchicon fa fa-search"></i>
+					<div class="searchhelper">搜索节点</div>
+				</div>
+				<ul class="nav sidebar-menu">
+					#if (menuList && menuList.size() > 0)
+					#for (menu : menuList)
+					<li>
+						#if (menu.subMenuList && menu.subMenuList.size() > 0)
+						<a href="javascript:void(0);" class="menu-dropdown"> 
+						#else
+						<a href="javascript:void(0);" key="${menu.key}" class="menuLink"> 
+						#end
+							<i class="menu-icon ${menu.icon}"></i> 
+							<span class="menu-text">${menu.name}</span>
+							#if (menu.subMenuList && menu.subMenuList.size() > 0)
+							<i class="menu-expand"></i>
+							#end
+						</a>
+						#if (menu.subMenuList && menu.subMenuList.size() > 0)
+						<ul class="submenu">
+							#for (menu : menu.subMenuList)
+							<li>
+								#if (menu.subMenuList && menu.subMenuList.size() > 0)
+								<a href="javascript:void(0);" class="menu-dropdown"> 
+								#else
+								<a href="javascript:void(0);" key="${menu.key}" class="menuLink"> 
+								#end
+									<span class="menu-text">${menu.name}</span>
+									#if (menu.subMenuList && menu.subMenuList.size() > 0)
+									<i class="menu-expand"></i>
+									#end
+								</a>
+								#if (menu.subMenuList && menu.subMenuList.size() > 0)
+								<ul class="submenu">
+									#for (menu : menu.subMenuList)
+									<li>
+										<a href="javascript:void(0);" key="${menu.key}" class="menuLink"> 
+											<span class="menu-text">${menu.name}</span>
+										</a>
+									</li>
+									#end
+								</ul>
+								#end
+							</li>
+							#end
+						</ul>
+						#end
+					</li>
+					#end
+					#end
+				</ul>
+			</div>
+			<div class="page-content">
+				<div id="page-header-nav" class="page-header position-relative">
+					<div class="page-breadcrumbs">
+						<ul id="menuNav" class="breadcrumb"></ul>
+					</div>
+					<div class="header-buttons">
+						<a class="sidebar-toggler" href="javascript:void(0);"> <i class="fa fa-arrows-h"></i></a> 
+						<a class="refresh" id="refresh-toggler" href="javascript:void(0);"> <i class="glyphicon glyphicon-refresh"></i></a> 
+						<a class="fullscreen" id="fullscreen-toggler" href="javascript:void(0);"> <i class="glyphicon glyphicon-fullscreen"></i></a>
+					</div>
+				</div>
+				<div class="page-body">
+					<iframe id="workspace" name="workspace" width="100%" height="100%" frameborder="0" src=""></iframe>
+					<div id="workspace_loading" class="loading" style="display: none;"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="/resources/js/main.js"></script>
+	<script type="text/javascript">
+		var menuObj;
+		var confirmExit = false;
+	
+		$(function() {
+			init();
+			adjustFrame();
+			userOnline();
+			refreshTime();
+		});
+
+		window.onresize = function() {
+			adjustFrame();
+		};
+		
+		$(document).keydown(function(e) {
+			var event = e || window.event;
+			var code = event.keyCode || event.which || event.charCode;
+			// F5 或 commond+R
+			if ((event.keyCode == 8) || (event.keyCode == 116) || (event.metaKey && event.keyCode == 82)) {
+				confirmExit = true;
+			}
+		});
+		
+		/*window.onbeforeunload = function (e) {
+			if (!confirmExit) {
+				e = e || window.event;
+				
+			  	// 兼容IE8和Firefox 4之前的版本
+				if (e) {
+					e.returnValue = '关闭提示';
+				}
+				
+			  	// Chrome, Safari, Firefox 4+, Opera 12+ , IE 9+
+				return '关闭提示';
+			}
+		};*/
+		
+		$("#refresh-toggler").click(function() {
+			openPage(null, $("#workspace").attr("src"));
+		});
+		
+		$(".menuLink").click(function() {
+			showFrame(this);
+		});
+		
+		function init() {
+			#if (menuObj)
+			menuObj = ${menuObj};
+			#end
+			showIndex();
+		}
+
+		function adjustFrame() {
+			var winHeight = document.documentElement.clientHeight - 88;
+			$("#workspace").attr("height", winHeight);
+			$("#workspace_loading").css("height", winHeight);
+		}
+
+		function userOnline() {
+			var websocket = initWebsocket(
+					"ws://${macroGet('m_serverName')}:${macroGet('m_onlineUserManagerServerPort')}/",
+					function() {
+						// websocket.send(ONLINE_USER_MANAGER_PRE_ONLINE + ONLINE_USER_MANAGER_SEPARATOR + "${macroGet('m_loginname')}");
+						websocket.send(ONLINE_USER_MANAGER_PRE_ONLINE + ONLINE_USER_MANAGER_SEPARATOR + "${loginname}");
+					},
+					function(type, msg) {
+						if (type == ONLINE_USER_MANAGER_TYPE_KICK_FORCE) {
+							
+						} else if (type == ONLINE_USER_MANAGER_TYPE_ONLINE_CONFLICT) {
+							bootbox.alert("注意！！！\nIP【" + msg + "】正在尝试使用此账号登录！！！");
+						} else if (type == ONLINE_USER_MANAGER_TYPE_KICK_CONFLICT) {
+							bootbox.alert("此账号已经登录,您暂时无法登录", function() {
+								window.top.location.href = "${urlLogout}";
+							});
+						} else {
+							
+						}
+					}, null, null);
+		}
+
+		function refreshTime() {
+			$("#spanTime").html(getTime(null));
+			window.setTimeout("refreshTime()", 1000);
+		}
+		
+		function showIndex() {
+			$("#menuNav").html("");
+			$("#page-header-nav").hide();
+			openPage(null, "${urlIndex}");
+		}
+		
+		function showFrame(obj) {
+			if (menuObj) {
+				var menu = menuObj[$(obj).attr("key")];
+				openPage(obj, menu.url);
+				
+				var menuNav = "<li><a href=\"javascript:void(0);\" onclick=\"showIndex();\"><i class=\"fa fa-home\" style=\"font-size: 20px;\"></i></a></li>";
+				// var menuNav = "<li><i class=\"fa fa-home\" style=\"font-size: 20px;\"></i></li>";
+				if (menu.path) {
+					var path = menu.path;
+					var pathArray = path.split("#");
+					var pathCount = pathArray.length;
+					for (var i = 0; i < pathCount; i++) {
+						// menuNav += "<li><a href=\"javascript:void(0);\">" + pathArray[i] + "</a></li>";
+						menuNav += "<li>" + pathArray[i] + "</li>";
+					}
+				}
+				menuNav += "<li class=\"active\">" + menu.name + "</li>";
+				$("#menuNav").html(menuNav);
+				$("#page-header-nav").show();
+			}
+		}
+		
+		function openPage(obj, url) {
+			$("#workspace").hide();
+			$("#workspace_loading").show();
+
+			if (obj) {
+				$(".sidebar-menu .active").removeAttr("class");
+				$(obj).parent().addClass("active");
+			}
+
+			$("#workspace").attr("src", url);
+			var count = 0;
+			$("#workspace").load(function() {
+				if (count == 0) {
+					$("#workspace").show();
+					$("#workspace_loading").hide();
+				}
+				count++;
+			});
+		}
+		
+		function logout() {
+			showConfirmByBootbox("您确定要退出吗?", function() {
+				confirmExit = true;
+				window.top.location.href = "${urlLogout}";
+			}, null);
+		}
+	</script>
+
+</body>
+
+</html>

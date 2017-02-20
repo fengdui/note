@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" class="full">
+
+<head>
+#include("/resources/common/header.html")
+#include("/resources/common/header_edit.html")
+
+<link href="/resources/plugin/zTree_v3/css/zTreeStyle/zTreeStyle.css"
+	rel="stylesheet">
+<script src="/resources/plugin/zTree_v3/js/jquery.ztree.all-3.5.min.js"></script>
+
+</head>
+
+<body class="page-body full">
+	<div class="widget-body full">
+		<form id="mainForm" class="full full-scroll" action="/app/appversion/save" method="post">
+			<input type="hidden" name="id" value="${entity.id}" />
+			<div id="formContent" class="full form-horizontal form-content-has-footer">
+				<div class="form-group no-margin-l no-margin-r">
+					<label class="col-xs-1 control-label">版本号<sup>*</sup></label>
+					<div class="col-xs-9">
+						<input type="text" id="versionNum" class="form-control" name="versionNum" value="${entity.versionNum}"/>
+					</div>
+					<div id="vaildVersionNum" class="col-xs-2 control-label control-label-tip" style="display: none;"></div>
+				</div>
+				<div class="form-group no-margin-l no-margin-r">
+					<label class="col-xs-1 control-label">更新描述</label>
+					<div class="col-xs-9">
+						<input type="text" class="form-control" name="message"
+							value="${entity.message}" maxlength="32" required
+							data-bv-notempty-message="更新描述不能为空" data-bv-stringlength-min="1"
+							data-bv-stringlength-message="更新描述要在1-32个字内" />
+					</div>
+					<label class="col-xs-2 control-label control-label-tip">任务描述(32个字以内)</label>
+				</div>
+				<div class="form-group no-margin-l no-margin-r">
+					<label class="col-xs-1 control-label">更新文件地址</label>
+					<div class="col-xs-9">
+						<input type="text" id="updateFile" class="form-control" name="updateFile" value="${entity.updateFile}" />
+					</div>
+					<div id="vaildUrl" class="col-xs-2 control-label control-label-tip" style="display: none;"></div>
+				</div>
+			</div>
+			<div id="formFooter"class="widget-header form-footer form-footer-scroll">
+				<a href="javascript:history.go(-1);" class="btn btn-default">返回</a>
+				<button type="submit" id="btnSubmit" class="btn btn-primary">保存</button>
+			</div>
+		</form>
+	</div>
+</body>
+
+<script type="text/javascript">
+	var validResult = false;
+	var ajaxBack = 0;
+	var resultOne = true;
+	var resultTwo = true;
+	$(function() {
+		resultOne = resultTwo = resultThree = false;
+		$("#mainForm").Validform({
+			ajaxPost : true,
+			callback : function(data) {
+				var result = data.result;
+				var msg = data.msg;
+				var obj = data.obj;
+				if (result) {
+					showTipSuccess(msg, null, function() {
+						window.location.href = "${urlIndex}";
+					});
+				} else {
+					$("#btnSubmit").removeAttr("disabled");
+					showTipError(msg, obj, null);
+				}
+			},
+			beforeSubmit : function(curform) {
+				if(validResult) {
+					if(ajaxBack > 0) {
+						bootbox.alert("正在验证..");
+						return false;
+					}
+					if(!resultOne || !resultTwo) {
+						bootbox.alert("输入有错请查看");
+						return false;
+					}
+					return true;
+				}
+				return validResult;
+			}
+		});
+
+		$("#mainForm").bootstrapValidator({
+			feedbackIcons : {
+				valid : 'glyphicon glyphicon-ok',
+				invalid : 'glyphicon glyphicon-remove',
+				validating : 'glyphicon glyphicon-refresh'
+			},
+			onSuccess : function() {
+				validResult = true;
+			},
+			onError : function() {
+				validResult = false;
+			}
+		});
+		$("#Validform_msg").remove();
+	});
+	$("#versionNum").blur(function() {
+		var versionNum = $("#versionNum").val();
+		if(versionNum == null || versionNum.replace(/\s/g, "") == "" || isNaN(versionNum)  || parseInt(versionNum) <= 0) {
+			$("#vaildVersionNum").show();
+			$("#vaildVersionNum").html("版本号为正整数");
+			resultOne = false;
+			return;
+		}
+		var vaildUrl = "/app/appversion/vaildVersion?versionNum=" + versionNum;
+		ajaxBack++;
+		$.ajax({
+			type : "GET",
+			url : vaildUrl,
+			success : function(data) {
+				var result = data.result;
+				var msg = data.msg;
+				var obj = data.obj;
+				ajaxBack--;
+				if (result) {
+					$("#vaildVersionNum").hide();
+					resultOne = true;
+				} else {
+					$("#vaildVersionNum").show();
+					$("#vaildVersionNum").html(msg);
+					resultOne = false;
+				}
+			}
+		});
+	});
+	$("#updateFile").blur(function() {
+		if(isURL($("#updateFile").val())) {
+			$("#vaildUrl").hide();
+			resultTwo = true;
+		}
+		else {
+			$("#vaildUrl").show();
+			$("#vaildUrl").html("地址不正确");
+			resultTwo = false;
+		}
+	});
+	function isURL(urlStr) {
+		var strRegex = "^((https|http|ftp|rtsp|mms)://)?[a-z0-9A-Z]{3}\.[a-z0-9A-Z][a-z0-9A-Z]{0,61}?[a-z0-9A-Z]\.com|net|cn|cc (:s[0-9]{1-4})?/$";
+		var re = new RegExp(strRegex);
+		if (re.test(urlStr)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+</script>
+
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" class="full">
+
+<head>
+#include("/resources/common/header.html")
+#include("/resources/common/header_edit.html")
+
+<link href="/resources/plugin/zTree_v3/css/zTreeStyle/zTreeStyle.css" rel="stylesheet">
+<script src="/resources/plugin/zTree_v3/js/jquery.ztree.all-3.5.min.js"></script>
+
+</head>
+
+<body class="page-body full">
+	<div class="widget-body full">
+		<form id="mainForm" class="full full-scroll" action="${urlSave}" method="post">
+			<input type="hidden" name="id" value="${entity.id}" />
+			<input type="hidden" id="menuListStr" name="menuListStr" value="${entity.menuListStr}" />
+			<div id="formContent" class="full form-horizontal form-content-has-footer">
+				<div class="form-group no-margin-l no-margin-r">
+					<label class="col-xs-1 control-label">名称<sup>*</sup></label>
+					<div class="col-xs-9">
+						<input type="text" class="form-control" name="name" value="${entity.name}" 
+							maxlength="32" required data-bv-notempty-message="角色组名称不能为空" 
+							data-bv-stringlength-min="1" data-bv-stringlength-message="角色组名称个数要在1-32个字内" />
+					</div>
+					<label class="col-xs-2 control-label control-label-tip">角色组名称(32个字以内)</label>
+				</div>
+				<div class="form-group no-margin-l no-margin-r">
+					<label class="col-xs-1 control-label">描述</label>
+					<div class="col-xs-9">
+						<textarea class="form-control" name="description" rows="3" maxlength="256">${entity.description}</textarea>
+					</div>
+					<label class="col-xs-2 control-label control-label-tip">角色组描述</label>
+				</div>
+				<div class="form-group no-margin-l no-margin-r">
+					<span class="col-xs-1 control-label">
+						选择菜单<br>
+						<label>
+	                        <input type="checkbox" id="boxCheckAll" onclick="checkAll(this)">
+	                        <span class="text" id="txtCheckAll">全选</span>
+	                    </label>
+                    </span>
+					<div class="col-xs-9">
+						<ul id="menuTree" class="ztree"></ul>
+					</div>
+					<label class="col-xs-2 control-label control-label-tip">菜单选择</label>
+				</div>
+			</div>
+			<div id="formFooter" class="widget-header form-footer form-footer-scroll">
+				<a href="javascript:history.go(-1);" class="btn btn-default">返回</a>
+				<button type="submit" id="btnSubmit" class="btn btn-primary">保存</button>
+			</div>
+		</form>
+	</div>
+</body>
+
+<script type="text/javascript">
+	$(function() {
+		var validResult = false;
+	
+		$("#mainForm").Validform({
+			ajaxPost:true,
+			callback:function(data) {
+				var result = data.result;
+				var msg = data.msg;
+				var obj = data.obj;
+				if (result) {
+					showTipSuccess(msg, null, function() {
+						window.location.href = "${urlIndex}";
+					});
+				} else {
+					$("#btnSubmit").removeAttr("disabled");
+					showTipError(msg, obj, null);
+				}
+			},
+			beforeSubmit:function(curform) {
+				if (validResult) {
+					var nodes = zTree.getCheckedNodes(true);
+					var length = nodes.length;
+					if (length > 0) {
+						var menuList = new Array();
+						for(var i = 0; i < length; i++) {
+							menuList.push(nodes[i].id);
+						}
+						$("#menuListStr").val(menuList);
+					} else {
+						bootbox.alert("请至少选择一个菜单!");
+						$("#btnSubmit").removeAttr("disabled");
+						return false;
+					}
+				}
+				return validResult;
+			}
+		});
+		
+		$("#mainForm").bootstrapValidator({
+			feedbackIcons : {
+				valid : 'glyphicon glyphicon-ok',
+				invalid : 'glyphicon glyphicon-remove',
+				validating : 'glyphicon glyphicon-refresh'
+			},
+			onSuccess : function() {
+				validResult = true;
+			},
+			onError : function() {
+				validResult = false;
+			}
+		});
+		
+		$("#Validform_msg").remove();
+	});
+</script>
+
+</html>

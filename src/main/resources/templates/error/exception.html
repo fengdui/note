@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+#include("/resources/common/header.html")
+
+<link href="/resources/plugin/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<link href="/resources/css/main_base.css" rel="stylesheet" />
+
+<script src="/resources/js/main_base.js"></script>
+
+<style type="text/css" title="">
+.container {
+	width: 100%;
+}
+
+h2 {
+	padding-bottom: 15px;
+}
+
+p {
+	white-space: nowrap;
+  	text-overflow: ellipsis;
+  	overflow: auto;
+  	line-height: 45px;
+  	cursor: pointer;
+}
+</style>
+</head>
+
+<body class="body-404">
+	<div class="error-header"></div>
+	<div class="container ">
+		<section class="error-container text-center">
+			<h1 style="font-size: 100px;">${exceNameEn}</h1>
+			<div class="error-divider">
+				<h2>${exceNameCn}</h2>
+				<p class="description" title="${exceDetail}">${exceDetail}</p>
+			</div>
+			<a href="/login" class="return-btn"><i class="fa fa-home"></i>主页</a>
+		</section>
+	</div>
+</body>
+
+</html>

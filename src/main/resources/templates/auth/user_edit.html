@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" class="full">
+
+<head>
+#include("/resources/common/header.html")
+#include("/resources/common/header_edit.html")
+
+<link href="/resources/plugin/chosen_v1.4.2/chosen.css" rel="stylesheet" />
+<link href="/resources/plugin/zTree_v3/css/zTreeStyle/zTreeStyle.css" rel="stylesheet">
+<link href="/resources/plugin/jquery-entropizer/css/jquery-entropizer.css" rel="stylesheet">
+
+<script src="/resources/plugin/chosen_v1.4.2/chosen.jquery.js"></script>
+<script src="/resources/plugin/zTree_v3/js/jquery.ztree.all-3.5.min.js"></script>
+<script src="/resources/plugin/jquery-entropizer/js/entropizer.js"></script>
+<script src="/resources/plugin/jquery-entropizer/js/jquery-entropizer.js"></script>
+
+<script type="text/javascript">
+	var zTree;
+	
+	function beforeCheck(treeId, treeNode) {
+		return (treeNode.doCheck !== false);
+	}
+	
+	function onCheck(e, treeId, treeNode) {
+		var uncheckedNodes = zTree.getCheckedNodes(false);
+		var uncheckedLength = uncheckedNodes.length;
+		if (uncheckedLength == 0) {
+			checkItemTrigger("boxCheckAll", true);
+			showCheckTip(true);
+		} else {
+			checkItemTrigger("boxCheckAll", false);
+			showCheckTip(false);
+		}
+	}
+	
+	var setting = {
+		view: {
+			selectedMulti: false
+		},
+		check: {
+			enable: true
+		},
+		data: {
+			simpleData: {
+				enable: true
+			}
+		},
+		callback: {
+			beforeCheck: beforeCheck,
+			onCheck: onCheck
+		}
+	};
+	
+	function checkAll(obj) {
+		if (obj.checked) {
+			zTree.checkAllNodes(true);
+			showCheckTip(true);
+		} else {
+			zTree.checkAllNodes(false);
+			showCheckTip(false);
+		}
+	}
+	
+	function showCheckTip(isChecked) {
+		if (isChecked) {
+			$("#txtCheckAll").html("反选");
+		} else {
+			$("#txtCheckAll").html("全选");
+		}
+	}
+</script>
+
+</head>
+
+<body class="page-body full">
+	<div class="widget-body full">
+		<form id="mainForm" class="full full-scroll" action="${urlSave}" method="post">
+			<input type="hidden" name="id" value="$!{entity.id}" />
+			<input type="hidden" name="parentId" value="${entity.parentId}" />
+			<input type="hidden" id="password" name="password" value="${entity.password}" />
+			<input type="hidden" id="passwordNew" name="passwordNew" />
+			<input type="hidden" id="menuListStr" name="menuListStr" value="${entity.menuListStr}" />
+			#if (entity.id != null)
+			<div id="formHeader" class="widget-header form-header">
+				<a href="javascript:changePwd();" id="btnChangePwd" class="btn btn-info left">修改密码</a>
+			</div>
+			<div id="formContent" class="full form-horizontal form-content-has-header-footer">
+			#else
+			<div id="formContent" class="full form-horizontal form-content-has-footer">
+			#end
+				<div class="form-group no-margin-l no-margin-r">
+					<label class="col-xs-1 control-label">登录名称<sup>*</sup></label>
+					<div class="col-xs-9">
+						#if (entity.id == null)
+						<input type="text" class="form-control" name="loginname" value="${entity.loginname}" 
+							maxlength="32" required data-bv-notempty-message="登录名称不能为空" 
+							data-bv-stringlength-min="1" data-bv-stringlength-message="登录名称个数要在1-32个字内" />
+						#else
+						<input type="hidden" name="loginname" value="${entity.loginname}" />
+						<input type="text" class="form-control" value="${entity.loginname}" disabled/>
+						#end
+					</div>
+					#if (entity.id == null)
+					<label class="col-xs-2 control-label control-label-tip">登录名称(32个字以内)</label>
+					#else
+					<label class="col-xs-2 control-label control-label-tip">登录名称</label>
+					#end
+				</div>
+				<div class="form-group no-margin-l no-margin-r">
+					<label class="col-xs-1 control-label">用户名称<sup>*</sup></label>
+					<div class="col-xs-9">
+						<input type="text" class="form-control" name="username" value="${entity.username}" 
+							maxlength="64" required data-bv-notempty-message="用户名称不能为空" 
+							data-bv-stringlength-min="1" data-bv-stringlength-message="用户名称个数要在1-64个字内" />
+					</div>
+					<label class="col-xs-2 control-label control-label-tip">用户名称(64个字以内)</label>
+				</div>
+				#if (entity.id == null)
+				<div class="form-group no-margin-l no-margin-r">
+				#else
+				<div id="passwordOneDiv" class="form-group no-margin-l no-margin-r" style="display: none;">
+				#end
+					<label class="col-xs-1 control-label">密码</label>
+					<div class="col-xs-9">
+						<input type="text" id="passwordOneInput" class="form-control" name="passwordOne" 
+							maxlength="25" data-bv-identical="true" data-bv-identical-field="passwordTwo" data-bv-identical-message="两次输入的密码不一致" />
+						<div id="passwordCheck"></div>
+					</div>
+					#if (entity.id == null)
+					<label class="col-xs-2 control-label control-label-tip">不填默认为123456</label>
+					#else
+					<label class="col-xs-2 control-label control-label-tip">不填默认为原密码</label>
+					#end
+				</div>
+				<div id="passwordTwoDiv" class="form-group no-margin-l no-margin-r" style="display: none;">
+					<label class="col-xs-1 control-label">确认密码</label>
+					<div class="col-xs-9">
+						<input type="password" id="passwordTwoInput" class="form-control" name="passwordTwo" 
+							maxlength="25" required data-bv-notempty-message="请确认密码" data-bv-identical="true" data-bv-identical-field="passwordOne" data-bv-identical-message="两次输入的密码不一致" />
+					</div>
+					<label class="col-xs-2 control-label control-label-tip">确认密码</label>
+				</div>
+				<div id="rolegroupDiv" class="form-group no-margin-l no-margin-r">
+					<label class="col-xs-1 control-label">角色组<sup>*</sup></label>
+					<div class="col-xs-9">
+						<select id="rolegroupSel" name="rolegroupId" class="form-control chosen-select" data-placeholder="请选择角色组" onchange="changeRolegroup(this);">
+							<option value=""></option>
+							#for (rolegroup : rolegroupList)
+				            	<option value="${rolegroup.id}">${rolegroup.name}</option>
+				            #end
+			        	</select>
+					</div>
+					<label class="col-xs-2 control-label control-label-tip">请选择角色组</label>
+				</div>
+				<div id="roleDiv" class="form-group no-margin-l no-margin-r" style="display: none;">
+					<label class="col-xs-1 control-label">角色<sup>*</sup></label>
+					<div class="col-xs-9">
+						<select id="roleSel" name="roleId" class="form-control chosen-select" data-placeholder="请选择角色" onchange="changeRole(this);">
+							<option value=""></option>
+							#for (role : roleList)
+				            	<option value="${role.id}">${role.name}</option>
+				            #end
+			        	</select>
+					</div>
+					<label class="col-xs-2 control-label control-label-tip">请选择角色</label>
+				</div>
+				<div id="menuDiv" class="form-group no-margin-l no-margin-r" style="display: none;">
+					<span class="col-xs-1 control-label">
+						选择菜单<br>
+						<label>
+	                        <input type="checkbox" id="boxCheckAll" onclick="checkAll(this)">
+	                        <span class="text" id="txtCheckAll">全选</span>
+	                    </label>
+                    </span>
+					<div class="col-xs-9">
+						<ul id="menuTree" class="ztree"></ul>
+					</div>
+					<label class="col-xs-2 control-label control-label-tip">菜单选择</label>
+				</div>
+			</div>
+			<div id="formFooter" class="widget-header form-footer form-footer-scroll">
+				<a href="javascript:history.go(-1);" class="btn btn-default">返回</a>
+				<button type="submit" id="btnSubmit" class="btn btn-primary">保存</button>
+			</div>
+		</form>
+	</div>
+</body>
+
+<script type="text/javascript">
+	var inited = false;
+	var changePwding = false;
+	
+	$(function() {
+		var validResult = false;
+	
+		$("#mainForm").Validform({
+			ajaxPost:true,
+			callback:function(data) {
+				var result = data.result;
+				var msg = data.msg;
+				var obj = data.obj;
+				if (result) {
+					showTipSuccess(msg, null, function() {
+						window.location.href = "${urlIndex}";
+					});
+				} else {
+					$("#btnSubmit").removeAttr("disabled");
+					showTipError(msg, obj, null);
+				}
+			},
+			beforeSubmit:function(curform) {
+				if (validResult) {
+					// 检查角色组是否已经选择
+					if (!$("#rolegroupSel").val()) {
+						bootbox.alert("请选择角色组!");
+						$("#btnSubmit").removeAttr("disabled");
+						return false;
+					}
+					
+					// 检查角色是否已经选择
+					if (!$("#roleSel").val()) {
+						bootbox.alert("请选择角色!");
+						$("#btnSubmit").removeAttr("disabled");
+						return false;
+					}
+					
+					// 检查菜单是否已经选择
+					var nodes = zTree.getCheckedNodes(true);
+					var length = nodes.length;
+					if (length > 0) {
+						var menuList = new Array();
+						for(var i = 0; i < length; i++) {
+							menuList.push(nodes[i].id);
+						}
+						$("#menuListStr").val(menuList);
+					} else {
+						bootbox.alert("请至少选择一个菜单!");
+						$("#btnSubmit").removeAttr("disabled");
+						return false;
+					}
+					
+					// 检查密码
+					var passwordOne = $("#passwordOneInput").val();
+					if (passwordOne) {
+						var passwordTwo = $("#passwordTwoInput").val();
+						if (passwordOne == passwordTwo) {
+							$("#passwordNew").val(passwordOne);
+						} else {
+							bootbox.alert("两次输入的密码不一致!");
+							$("#btnSubmit").removeAttr("disabled");
+							return false;
+						}
+					}
+				}
+				return validResult;
+			}
+		});
+		
+		$("#mainForm").bootstrapValidator({
+			feedbackIcons : {
+				valid : 'glyphicon glyphicon-ok',
+				invalid : 'glyphicon glyphicon-remove',
+				validating : 'glyphicon glyphicon-refresh'
+			},
+			onSuccess : function() {
+				validResult = true;
+			},
+			onError : function() {
+				validResult = false;
+			}
+		});
+		
+		$("#Validform_msg").remove();
+		
+		init();
+	});
+	
+	function init() {
+		if (${entity.isNew()}) {
+			if ("${macroGet('m_userIsRoot')}" != "true") {
+				var rolegroupId = ${macroGet('m_userRolegroupId')};
+				$("#rolegroupSel").val(rolegroupId);
+				$("#rolegroupSel").trigger("chosen:updated");
+				$("#rolegroupDiv").hide();
+				showRole(rolegroupId);
+			}
+		} else {
+			var rolegroupId = "${entity.rolegroupId}";
+			$("#rolegroupSel").val(rolegroupId);
+			$("#rolegroupSel").trigger("chosen:updated");
+			if ("${macroGet('m_userIsRoot')}" != "true") {
+				$("#rolegroupDiv").hide();
+			}
+			if (rolegroupId) {
+				showRole(rolegroupId);
+			}
+		}
+		
+		$("#passwordCheck").entropizer({
+			target: "#passwordOneInput",
+			buckets: [
+				{ max: 45, strength: '弱', color: '#e13' },
+				{ min: 45, max: 60, strength: '中', color: '#f80' },
+				{ min: 60, max: 75, strength: '强', color: '#8c0' },
+				{ min: 75, strength: '优秀', color: '#0c8' }
+			],
+			update: function(data, ui) {
+				ui.bar.css({
+					'background-color': data.color,
+					'width': data.percent + '%'
+				});
+				ui.text.html(data.strength);
+			},
+		});
+		$("#passwordOneInput").off("input propertychange").on("input propertychange", function() {
+			triggerPasswordTwo(this);
+		});
+	}
+	
+	function initRoleCheck() {
+		if (!inited) {
+			var roleId = "${entity.roleId}";
+			$("#roleSel").val(roleId);
+			$("#roleSel").trigger("chosen:updated");
+			if (roleId) {
+				showMenu(roleId);
+			}
+		}
+	}
+	
+	function initMenuCheck() {
+		if (!inited) {
+			var menuListStr = "${entity.menuListStr}";
+			if (menuListStr) {
+				zTree.checkAllNodes(false);
+				var menuList = menuListStr.split(",");
+				for(var i = 0; i < menuList.length; i++) {
+					var id = menuList[i];
+					var treeObj = zTree.getNodeByParam("id", id, null);
+					if (treeObj && !treeObj.isParent) {
+						zTree.checkNode(treeObj, true, true);
+					}
+				}
+				onCheck();
+			}
+			inited = true;
+		}
+	}
+	
+	function changePwd() {
+		changePwding = !changePwding;
+		if (changePwding) {
+			$("#btnChangePwd").html("撤销修改");
+			$("#passwordOneDiv").show();
+		} else {
+			$("#btnChangePwd").html("修改密码");
+			$("#passwordOneDiv").hide();
+			$("#passwordTwoDiv").hide();
+			$("#passwordOneInput").val("");
+			$("#passwordNew").val("");
+		}
+	}
+	
+	function triggerPasswordTwo(obj) {
+		if ($(obj).val()) {
+			$("#passwordTwoDiv").show();
+		} else {
+			$("#passwordTwoDiv").hide();
+			$("#btnSubmit").removeAttr("disabled");
+		}
+	}
+	
+	function changeRolegroup(obj) {
+		var rolegroupId = $(obj).val();
+		if (rolegroupId) {
+			showRole(rolegroupId);
+		} else {
+			$("#roleDiv").hide();
+			$("#menuDiv").hide();
+		}
+	}
+	
+	function changeRole(obj) {
+		var roleId = $(obj).val();
+		if (roleId) {
+			showMenu(roleId);
+		} else {
+			$("#menuDiv").hide();
+		}
+	}
+	
+	function showRole(rolegroupId) {
+		$.ajax({
+			type : "POST",
+			url : "${urlGetRoleList}/" + rolegroupId,
+			success : function(data) {
+				var result = data.result;
+				var msg = data.msg;
+				var obj = data.obj;
+				if (result) {
+					$("#roleDiv").show();
+					$("#menuDiv").hide();
+					
+					var roleSelHtml = "<option value=''></option>";
+					for (var i = 0; i < obj.length; i++) {
+						var role = obj[i];
+						roleSelHtml += "<option value='" + role.id + "'>" + role.name + "</option>";
+					}
+					resetChosen($("#roleSel"), roleSelHtml);
+					
+					initRoleCheck();
+				} else {
+					bootbox.alert(obj);
+				}
+			}
+		});
+	}
+	
+	function showMenu(roleId) {
+		$.ajax({
+			type : "POST",
+			url : "${urlGetMenuList}/" + roleId,
+			success : function(data) {
+				var result = data.result;
+				var msg = data.msg;
+				var obj = data.obj;
+				if (result) {
+					$("#menuDiv").show();
+					
+					$.fn.zTree.init($("#menuTree"), setting, obj);
+					zTree = $.fn.zTree.getZTreeObj("menuTree");
+					
+					zTree.checkAllNodes(true);
+					onCheck();
+					
+					initMenuCheck();
+				} else {
+					bootbox.alert(obj);
+				}
+			}
+		});
+	}
+</script>
+
+</html>

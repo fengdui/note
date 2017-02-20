@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+#include("/resources/common/header.html")
+#include("/resources/common/header_list.html")
+
+<link rel="stylesheet" type="text/css" href="/resources/plugin/webuploader-0.1.5/webuploader.css">
+<link href="/resources/plugin/chosen_v1.4.2/chosen.css" rel="stylesheet" />
+
+<script src="/resources/plugin/webuploader-0.1.5/webuploader.nolog.min.js"></script>
+<script src="/resources/plugin/chosen_v1.4.2/chosen.jquery.js"></script>
+</head>
+
+<body class="page-body">
+	<form id="mainForm">
+		<input type="hidden" id="urlList" value="${urlList}" />
+		<div class="widget widget-main">
+			<div class="widget-header widget-header-search">
+				<div>
+					<span class="widget-caption">
+						<span class="search-item">名称：<label class="search-input"><input type="text" class="form-control input-sm" name="filter#ILIKE#name" /></label></span>
+						<a href="javascript:searchPage();" class="btn btn-default blue"><i class="fa fa-search"></i>搜索</a>
+					</span>
+				</div>
+				<div id="moreSearch" style="display: none;">
+					<span class="widget-caption"></span>
+				</div>
+			</div>
+			<div class="widget-body widget-body-operate">
+				<div class="table-toolbar">
+					<a id="btnPicker" href="javascript:void(0);" class="btn webupload-picker">上传文件</a>
+					<a href="javascript:delItemBatch('${urlDelete}');" class="btn btn-primary">批量删除</a>
+					<span class="pageControl">#--include("/resources/common/page_control.html")--#</span>
+				</div>
+				#include("/resources/common/edit_table.html")
+				<div class="row DTTTFooter widget-footer-page">
+					<div class="col-sm-6 pageSummar">#--include("/resources/common/page_summar.html")--#</div>
+					<div class="col-sm-6 pageControl">#--include("/resources/common/page_control.html")--#</div>
+				</div>
+			</div>
+		</div>
+	</form>
+</body>
+
+<script type="text/javascript">
+	var uploader = null, uploadModal = null;
+
+	$(function() {
+		init();
+		$(".chosen-container").css("width", "100%");
+	});
+
+	function init() {
+		initUploader();
+		refreshTableList(true);
+	}
+	
+	function initUploader() {
+		uploader = WebUploader.create({
+			swf : '/resources/plugin/webuploader-0.1.5/Uploader.swf',// swf文件路径
+			server : '${urlApkUpload}',// 文件接收服务端
+			pick : '#btnPicker',// 选择文件的按钮,内部根据当前运行是创建，可能是input元素，也可能是flash.
+			dnd: '.page-body',// 指定Drag And Drop拖拽的容器
+			compress : false,// 不压缩image, 默认如果是jpeg，文件上传前会压缩一把再上传！
+			auto : true,// 设置为 true 后，不需要手动调用上传，有文件选择即开始上传
+			prepareNextFile: true,
+			fileSingleSizeLimit: 100 * 1024 * 1024,// 100M 验证单个文件大小是否超出限制, 超出则不允许加入队列
+			timeout: 25 * 60 * 1000,// 25分钟
+			accept : {
+				title : '选择 APK 文件',
+				extensions : 'apk',
+				mimeTypes : 'application/vnd.android.package-archive'
+			}
+		});
+		
+		// 当有文件被添加进队列的时候
+		uploader.on('fileQueued', function(file) {
+			if (!file.name.endWith(".apk")) return false;
+			if (!uploadModal) {
+				uploadModal = layer.open({
+			        type: 1,
+			        title: '文件上传',
+			        area : ['800px' , '320px'],
+			        shade: false,
+			        maxmin: false,
+			        moveType: 1,
+			        offset: 'rb',
+			        shift: 2,
+			        end: function() {
+			        	uploadModal = null;
+			        	uploader.reset();
+			        }
+			    });
+			}
+			$(".layui-layer-content").append('<div id="' + file.id + '" class="item_file">' + 
+												'<div class="file-mask"></div>' + 
+											 	'<i class="fa fa-android file_icon"></i>' + 
+											 	'<span class="file_content file_name ellipsis" title="' + file.name + '">' + file.name + '</span>' + 
+											 	'<span class="file_content file_size">' + WebUploader.formatSize(file.size) + '</span>' + 
+											 	'<span class="file_content file_state ellipsis" title="">等待上传...</span>' + 
+											 	'<a href="javascript:void(0);" class="btn btn-primary file_btn btnRemoveFile">删除</a>' + 
+											 '</div>');
+			
+			$(".btnRemoveFile").bind("click", function() {
+				var fileItem = $(this).parent();
+				uploader.removeFile($(fileItem).attr("id"), true);
+				$(fileItem).fadeOut(function() {
+					$(fileItem).remove();
+				});
+			});
+		});
+		
+		// 文件上传过程中创建进度条实时显示。
+		uploader.on('uploadProgress', function(file, percentage) {
+			var $li = $('#' + file.id);
+			var txtState = (percentage * 100).toFixed(0) + '%';
+			/*if (percentage >= 0.99) {
+				txtState = "正在处理文件...";
+				$li.find('.file_btn').hide();
+			}*/
+			$li.find('.file_state').text(txtState);
+			$li.find('.file_state').attr("title", txtState);
+			$li.find('.file-mask').css('width', percentage * 100 + '%');
+			$(".layui-layer-close").hide();
+		});
+
+		// 当文件上传成功时触发
+		uploader.on('uploadSuccess', function(file, data) {
+			var $li = $('#' + file.id);
+			if (data.result) {
+				uploadSuccess($li, "正在处理文件...");
+				$li.find('.file_btn').hide();
+				$.ajax({
+					type : "POST",
+					url : "${urlApkHandle}?fileName=" + $li.children(".file_name").html() + "&filePath=" + data.obj,
+					success : function(data) {
+						refreshTableList();
+						if (data.result) {
+							uploadSuccess($li, "上传成功");
+						} else {
+							uploadFail($li, data.msg);
+						}
+					}
+				});
+			} else {
+				uploadFail($li, data.msg);
+				// refreshTableList();
+			}
+		});
+
+		// 当文件上传出错时触发
+		uploader.on('uploadError', function(file) {
+			uploadFail($('#' + file.id), "上传出错");
+		});
+
+		// 不管成功或者失败，文件上传完成时触发
+		uploader.on('uploadComplete', function(file) {
+			if (uploader.getFiles("progress").length <= 0) {
+				$(".layui-layer-close").show();
+			}
+		});
+	}
+	
+	function uploadSuccess(item, msg) {
+		item.find('.file_state').text(msg);
+		item.find('.file_state').attr("title", msg);
+	}
+	
+	function uploadFail(item, msg) {
+		item.css('color', 'white');
+		item.find('.file_icon').css('color', 'white');
+		item.find('.file-mask').css('background', '#d9534f');
+		item.find('.file_state').text(msg);
+		item.find('.file_state').attr("title", msg);
+		item.find('.file_btn').show();
+	}
+	
+	function getItemLineFormat(entity) {
+		var itemLine = "<tr id='{0}'>";
+				itemLine += "<td class='center'><label><input type='checkbox' class='checkItem' onclick='onCheckItem(this);'><span class='text'></span></label></td>";
+		        itemLine += "<td class='center'>{1}</td>";
+		        itemLine += "<td class='center image'><img src='{2}' width='32'></td>";
+		        itemLine += "<td class='center'><div class='ellipsis' style='max-width: 174px;' title='{3}'>{3}</div></td>";
+		        itemLine += "<td class='left'><div class='ellipsis' style='max-width: 174px;' title='{4}'>{4}</div></td>";
+		        itemLine += "<td class='center'>{5}</td>";
+		        itemLine += "<td class='center'>{6}</td>";
+		        itemLine += "<td class='right'>{7}</td>";
+		        itemLine += "<td class='center'>{8}</td>";
+		        itemLine += "<td class='center'>";
+       	if (entity.screenshotCount > 0) {
+       		if (entity.status == 0) {
+       			if (entity.app) {
+       				itemLine += "<a href='javascript:operateItem(\"您确定要入库这个apk吗?\", \"${urlOnLib}\", \"{4}#{0}\");' class='btn btn-default btn-xs edit'><i class='fa fa-edit'></i>入库</a> ";
+       			} else {
+       				itemLine += "<a href='${urlOnLine}?apkId={0}' class='btn btn-warning btn-xs edit'><i class='fa fa-level-up'></i>上线</a> ";
+       			}
+       		} else if (entity.status == 1) {
+       				itemLine += "<a href='javascript:operateItem(\"您确定要出库这个apk吗?\", \"${urlOffLib}\", \"{0}\");' class='btn btn-warning btn-xs edit'><i class='fa fa-level-up'></i>出库</a> ";
+       		} else if (entity.status == 2) {
+       				itemLine += "<a href='${urlApkManage}?id={9}' class='btn btn-warning btn-xs edit'><i class='fa fa-cogs'></i>管理</a> ";
+       		}
+       	}
+		            itemLine += "<a href='${urlEdit}?id={0}' class='btn btn-info btn-xs edit'><i class='fa fa-edit'></i>编辑</a> ";
+		if (entity.status != 2) {
+				    itemLine += "<a href='javascript:delItem(\"${urlDelete}\", {0});' class='btn btn-danger btn-xs delete'><i class='fa fa-trash-o'></i>删除</a>";
+		}
+		        itemLine += "</td>";
+		   itemLine += "</tr>";
+		return itemLine;
+	}
+	
+	function getItemLine(entity) {
+		return getItemLineFormat(entity).format(entity.id, entity.viewIdx, entity.iconURL, entity.name, entity.packageName, entity.statusShow, entity.versionName, formatSize(entity.fileSize), entity.modifyTimeStr, entity.appId);
+	}
+</script>
+
+</html>

@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+#include("/resources/common/header.html")
+
+<link href="/resources/css/login.css" rel="stylesheet" />
+
+<script src="/resources/plugin/jquery/js/jquery.cookie.js"></script>
+<script src="/resources/plugin/notify/js/notify.min.js"></script>
+<script src="http://api.geetest.com/get.php"></script>
+</head>
+
+<body>
+	<form id="loginForm" method="post">
+		<div class="login-container animated fadeInDown">
+			<div class="loginbox bg-white">
+				<div class="loginbox-title">
+					<strong>旭航商店运营平台</strong>
+				</div>
+				<div class="loginbox-textbox">
+					<i class="loginbox-icon glyphicon glyphicon-user"></i><input type="text" id="loginname" name="loginname" class="form-control" placeholder="用户名" />
+				</div>
+				<div class="loginbox-textbox">
+					<i class="loginbox-icon glyphicon glyphicon-lock"></i><input type="password" id="password" name="password" class="form-control" placeholder="密码" />
+				</div>
+				<div id="div_verify" class="verifybox"></div>
+				<div id="div_captcha" class="loginbox-textbox">
+					<input type="text" id="captchaInput" class="form-control captchaInput" maxlength="4" /><img id="captchaImage" class="captchaImage" title="等待刷新" />
+				</div>
+				<div class="loginbox-textbox">
+					<div class="checkbox">
+						<label><input id="checkRemember" type="checkbox">记住密码</label>
+						<label class="label-right"><input id="checkPasswordVisible" type="checkbox">显示密码</label>
+					</div>
+				</div>
+				<div class="loginbox-submit">
+					<input type="button" id="btnLogin" class="btn btn-primary btn-block" disabled="disabled" value="登&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;录">
+				</div>
+			</div>
+		</div>
+		<p class="copyright">Copyright©2014 Hangzhou XuHang Technology Co. Ltd. All Rights Reserved.</p>
+	</form>
+</body>
+
+<script type="text/javascript">
+	var verifyResult = false;
+	var verifyDefault = true;
+	var tagKeepRemember = "keepRemember";
+	var tagLoginname = "loginname";
+	var tagPassword = "password";
+	var loginnameCookie, passwordCookie;
+
+	var notifyOptions4Show = {
+		autoHide : false,
+		position : "right",
+		className : "error",
+		style : "bootstrap",
+		showDuration : 400,
+		hideDuration : 200,
+	};
+
+	var notifyOptions4Hide = {
+		autoHide : true,
+		showDuration : 0,
+		hideDuration : 0,
+	};
+
+	$(function() {
+		// 重新跳转登录
+		// if (top.window.location.href != window.location.href) {
+		if (window != top) {
+			top.window.location.href = window.location.href;
+		}
+
+		var inited = initCookie();
+
+		var loginnameRedirect = "${loginnameRedirect}";
+		if (loginnameRedirect) {
+			$("#loginname").val(loginnameRedirect);
+			$("#password").val("");
+			$("#password").focus();
+		} else {
+			if (!inited) {
+				if ($("#loginname").val()) {
+					$("#password").focus();
+				} else {
+					$("#loginname").focus();
+				}
+			}
+		}
+
+		// get geetest server status, use the failback solution
+		$.ajax({
+			url : "${urlLoginVerifyPrepare}",
+			type : "get",
+			dataType : 'JSON',
+			success : function(result) {
+				$("#btnLogin").removeAttr("disabled");
+				if (result.success) {
+					verifyDefault = true;
+					$("#div_captcha").hide();
+
+					//1. use geetest capthca
+					window.gt_captcha_obj = new window.Geetest({
+						gt : result.gt,
+						challenge : result.challenge,
+						product : 'float'
+					});
+
+					gt_captcha_obj.appendTo("#div_verify");
+
+					//Ajax request demo,if you use submit form ,then ignore it 
+					gt_captcha_obj.onSuccess(function() {
+						geetest_ajax_results()
+					});
+
+					gt_captcha_obj.onStatusChange(function() {
+						$("#div_verify").notify("", notifyOptions4Hide);
+					});
+				} else {
+					//failback :use your own captcha template
+					//Geetest Server is down,Please use your own captcha system	in your web page
+					//or use the simple geetest failback solution
+					verifyDefault = false;
+					refreshCaptchaImage();
+				}
+
+			}
+		});
+		
+		$("#checkPasswordVisible").change(function() {
+			if (this.checked) {
+				$("#password").attr("type", "text");
+			} else {
+				$("#password").attr("type", "password");
+			}
+		});
+		
+		$("#loginname").off("input propertychange").on("input propertychange", function() {
+			$("#password").val("");
+			checkItemTrigger("checkRemember", false);
+			if ($(this).val() == loginnameCookie && passwordCookie) {
+				$("#password").val(passwordCookie);
+				checkItemTrigger("checkRemember", true);
+			}
+		});
+	});
+
+	/*$(document).keyup(function(e) {
+		var event = e || window.event;
+		var code = event.keyCode || event.which || event.charCode;
+		if (code == 13) {
+			login();
+		}
+	});*/
+
+	$(document).keydown(function(e) {
+		var event = e || window.event;
+		var code = event.keyCode || event.which || event.charCode;
+		if (code == 13) {
+			login();
+		} else {
+			if ($("#loginname").is(":focus")) {
+				$("#loginname").notify("", notifyOptions4Hide);
+			} else if ($("#password").is(":focus")) {
+				$("#password").notify("", notifyOptions4Hide);
+			} else {
+				if (!verifyDefault) {
+					if ($("#captchaInput").is(":focus")) {
+						$("#captchaImage").notify("", notifyOptions4Hide);
+					}
+				}
+			}
+		}
+	});
+
+	$("#btnLogin").click(function() {
+		login();
+	});
+
+	$("#captchaImage").click(function() {
+		refreshCaptchaImage();
+	});
+
+	function initCookie() {
+		var keepRemember = $.cookie(tagKeepRemember);
+		var loginname = loginnameCookie = $.cookie(tagLoginname);
+		var password = passwordCookie = $.cookie(tagPassword);
+		if (keepRemember == "true") {
+			// $("#checkRemember").attr("checked", true);
+			checkItemTrigger("checkRemember", true);
+			if (loginname) {
+				$("#loginname").val(loginname);
+				$("#password").val(password);
+				return true;
+			}
+		} else {
+			// $("#checkRemember").attr("checked", false);
+			checkItemTrigger("checkRemember", false);
+			if (loginname) {
+				$("#loginname").val(loginname);
+			}
+		}
+		return false;
+	}
+
+	function geetest_ajax_results() {
+		$.ajax({
+			url : "${urlLoginVerifyResult}",
+			type : "post",
+			data : gt_captcha_obj.getValidate(),
+			success : function(sdk_result) {
+				if (sdk_result.indexOf("success") >= 0) {
+					verifyResult = true;
+				}
+			}
+		});
+	}
+
+	function login() {
+		var loginname = $("#loginname").val();
+		if (!loginname) {
+			$("#loginname").notify("要填写用户名哟", notifyOptions4Show);
+			$("#loginname").focus();
+			return;
+		}
+
+		var password = $("#password").val();
+		if (!password) {
+			$("#password").notify("密码未填写", notifyOptions4Show);
+			$("#password").focus();
+			return;
+		}
+
+		if (verifyDefault) {
+			if (!verifyResult) {
+				gt_captcha_obj.refresh();
+				$("#div_verify").notify("请先通过验证", notifyOptions4Show);
+				return;
+			}
+		} else {
+			var captchaVal = $("#captchaInput").val();
+			if (!captchaVal) {
+				$("#captchaImage").notify("请输入验证码", notifyOptions4Show);
+				$("#captchaInput").focus();
+				return;
+			}
+		}
+
+		var dataSend = {};
+		dataSend["loginname"] = loginname;
+		dataSend["password"] = password;
+		dataSend["verifyDefault"] = verifyDefault;
+		dataSend["captchaVal"] = captchaVal;
+
+		$.ajax({
+			type : "POST",
+			url : "${urlLoginCheck}",
+			// data : $("#loginForm").serialize(), // 序列化
+			data : dataSend, // { 'loginname':'wander', 'password':'123456' },
+			success : function(data) {
+				var result = data.result;
+				var msg = data.msg;
+				var idSel = "#" + data.obj;
+				if (result) {
+					var keepRemember = $("#checkRemember").is(":checked");
+					if (keepRemember) {
+						$.cookie(tagKeepRemember, "true");
+						$.cookie(tagLoginname, loginname);
+						$.cookie(tagPassword, password);
+					} else {
+						$.cookie(tagKeepRemember, "false");
+						$.cookie(tagLoginname, loginname);
+					}
+					checkLoginConflict(loginname);
+				} else {
+					$(idSel).notify(msg, notifyOptions4Show);
+					if (data.obj == "captchaImage") {
+						$("#captchaInput").focus();
+					} else {
+						$(idSel).focus();
+					}
+				}
+			}
+		});
+	}
+
+	function refreshCaptchaImage() {
+		$("#captchaImage").hide().attr("src", "${urlLoginCaptchaImage}").fadeIn();
+	}
+
+	function checkLoginConflict(loginname) {
+		var websocket = initWebsocket(
+				// "ws://${macroGet('m_serverName')}:${macroGet('m_onlineUserManagerServerPort')}/",
+				"${urlWebsocket}",
+				function() {
+					websocket.send(ONLINE_USER_MANAGER_PRE_ONLINE + ONLINE_USER_MANAGER_SEPARATOR + loginname);
+				}, function(type, msg) {
+					if (type == ONLINE_USER_MANAGER_TYPE_ONLINE) {
+						$("#btnLogin").attr("disabled", true);
+						window.location.href = "${urlMain}";
+					} else {
+						$("#loginname").notify("此账号已经登录,您暂时无法登录", notifyOptions4Show);
+						$("#loginname").focus();
+					}
+				}, null, null);
+	}
+</script>
+
+</html>
