@@ -1,7 +1,7 @@
 package com.fengdui.oa.framework.orm;
 
-import com.xh.market.framework.util.http.HttpUtil;
-import com.xh.market.framework.util.string.StringUtil;
+import com.fengdui.oa.framework.util.http.HttpUtil;
+import com.fengdui.oa.framework.util.string.StringUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
@@ -32,13 +32,6 @@ public class PageFilter {
 	/** sql 语句 */
 	private String sql = null;
 
-	/**
-	 * 构造函数三种写法
-	 * 
-	 * @param new PageFilter("name = 'test'");
-	 * @param new PageFilter("name", "=", "test");
-	 * @param new PageFilter("filter#EQ#name", "test");
-	 */
 	public PageFilter() {
 
 	}

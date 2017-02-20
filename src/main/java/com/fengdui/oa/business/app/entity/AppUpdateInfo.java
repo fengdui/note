@@ -1,7 +1,8 @@
 package com.fengdui.oa.business.app.entity;
 
-import com.xh.market.framework.orm.EntityExtend;
-import com.xh.market.framework.orm.TagLogicDelete;
+
+import com.fengdui.oa.framework.orm.EntityExtend;
+import com.fengdui.oa.framework.orm.TagLogicDelete;
 
 /**
  * @author fd
@@ -9,7 +10,7 @@ import com.xh.market.framework.orm.TagLogicDelete;
  * @desc AppUpdateInfo.java
  */
 @TagLogicDelete
-public class AppUpdateInfo extends EntityExtend{
+public class AppUpdateInfo extends EntityExtend {
 	
 	private static final long serialVersionUID = -5970068157567804382L;
 	private static final Integer STRATEGY_MUST = 1;//必须更新

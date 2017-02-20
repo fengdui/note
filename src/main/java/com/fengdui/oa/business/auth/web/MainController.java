@@ -1,14 +1,13 @@
 package com.fengdui.oa.business.auth.web;
 
-import com.xh.market.business.sys.entity.Menu;
-import com.xh.market.business.sys.entity.Role;
-import com.xh.market.business.sys.service.MenuService;
-import com.xh.market.framework.constant.ConstantSession;
-import com.xh.market.framework.orm.MybatisService;
-import com.xh.market.framework.util.http.WeatherUtil;
-import com.xh.market.framework.web.BaseController;
+import com.fengdui.oa.business.sys.entity.Menu;
+import com.fengdui.oa.business.sys.entity.Role;
+import com.fengdui.oa.business.sys.service.MenuService;
+import com.fengdui.oa.framework.constant.ConstantSession;
+import com.fengdui.oa.framework.orm.MybatisService;
+import com.fengdui.oa.framework.util.http.WeatherUtil;
+import com.fengdui.oa.framework.web.BaseController;
 import net.sf.json.JSONObject;
-import org.apache.shiro.SecurityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

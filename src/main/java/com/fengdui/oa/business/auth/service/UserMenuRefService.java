@@ -1,9 +1,9 @@
 package com.fengdui.oa.business.auth.service;
 
-import com.xh.market.business.auth.dao.UserDao;
-import com.xh.market.business.auth.dao.UserMenuRefDao;
-import com.xh.market.business.auth.entity.UserMenuRef;
-import com.xh.market.framework.orm.MybatisService;
+import com.fengdui.oa.business.auth.dao.UserDao;
+import com.fengdui.oa.business.auth.dao.UserMenuRefDao;
+import com.fengdui.oa.business.auth.entity.UserMenuRef;
+import com.fengdui.oa.framework.orm.MybatisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,12 +1,12 @@
 package com.fengdui.oa.business.app.web;
 
-import com.xh.market.business.app.entity.AppVersionInfo;
-import com.xh.market.business.app.service.AppVersionInfoService;
-import com.xh.market.framework.constant.Cue;
-import com.xh.market.framework.orm.MybatisService;
-import com.xh.market.framework.web.BaseController;
-import com.xh.market.framework.web.PageRespData;
-import com.xh.market.framework.web.TableHeadInfo;
+import com.fengdui.oa.business.app.entity.AppVersionInfo;
+import com.fengdui.oa.business.app.service.AppVersionInfoService;
+import com.fengdui.oa.framework.constant.Cue;
+import com.fengdui.oa.framework.orm.MybatisService;
+import com.fengdui.oa.framework.web.BaseController;
+import com.fengdui.oa.framework.web.PageRespData;
+import com.fengdui.oa.framework.web.TableHeadInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,7 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/app/appversion")
-public class AppVersionInfoController extends BaseController<AppVersionInfo>{
+public class AppVersionInfoController extends BaseController<AppVersionInfo> {
 	private static final Logger logger = LoggerFactory.getLogger(AppVersionInfoController.class);
 	@Autowired
 	private AppVersionInfoService appVersionInfoService;

@@ -1,15 +1,15 @@
 package com.fengdui.oa.business.auth.service;
 
-import com.xh.market.business.auth.dao.UserDao;
-import com.xh.market.business.auth.entity.User;
-import com.xh.market.business.auth.entity.UserMenuRef;
-import com.xh.market.business.sys.dao.RoleDao;
-import com.xh.market.business.sys.entity.Role;
-import com.xh.market.framework.constant.ConstantColumn;
-import com.xh.market.framework.constant.ConstantCommon;
-import com.xh.market.framework.constant.ConstantSession;
-import com.xh.market.framework.orm.MybatisService;
-import com.xh.market.framework.util.string.StringUtil;
+import com.fengdui.oa.business.auth.dao.UserDao;
+import com.fengdui.oa.business.auth.entity.User;
+import com.fengdui.oa.business.auth.entity.UserMenuRef;
+import com.fengdui.oa.business.sys.dao.RoleDao;
+import com.fengdui.oa.business.sys.entity.Role;
+import com.fengdui.oa.framework.constant.ConstantColumn;
+import com.fengdui.oa.framework.constant.ConstantCommon;
+import com.fengdui.oa.framework.constant.ConstantSession;
+import com.fengdui.oa.framework.orm.MybatisService;
+import com.fengdui.oa.framework.util.string.StringUtil;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;

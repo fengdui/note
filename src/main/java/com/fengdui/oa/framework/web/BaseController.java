@@ -1,10 +1,9 @@
 package com.fengdui.oa.framework.web;
 
-import com.xh.market.framework.constant.Cue;
-import com.xh.market.framework.orm.MybatisService;
-import com.xh.market.framework.orm.PageFilter;
-import com.xh.market.framework.util.string.StringUtil;
-import org.apache.shiro.authz.UnauthorizedException;
+import com.fengdui.oa.framework.constant.Cue;
+import com.fengdui.oa.framework.orm.MybatisService;
+import com.fengdui.oa.framework.orm.PageFilter;
+import com.fengdui.oa.framework.util.string.StringUtil;
 import org.slf4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.ServletRequestDataBinder;
@@ -31,17 +30,17 @@ public abstract class BaseController<T extends Serializable> {
 
 	}
 
-	@ExceptionHandler({ UnauthorizedException.class })
+//	@ExceptionHandler({ UnauthorizedException.class })
 	@ResponseStatus(value = HttpStatus.UNAUTHORIZED)
 	public ModelAndView handleException(NativeWebRequest request, Exception exception) {
 		Map<String, Object> valMap = new HashMap<String, Object>();
-		if (exception instanceof UnauthorizedException) {
-			valMap.put("exceNameEn", "UnauthorizedException");
-			valMap.put("exceNameCn", "授权异常");
-		} else {
-			valMap.put("exceNameEn", "UnknownException");
-			valMap.put("exceNameCn", "未知异常");
-		}
+//		if (exception instanceof UnauthorizedException) {
+//			valMap.put("exceNameEn", "UnauthorizedException");
+//			valMap.put("exceNameCn", "授权异常");
+//		} else {
+//			valMap.put("exceNameEn", "UnknownException");
+//			valMap.put("exceNameCn", "未知异常");
+//		}
 		valMap.put("exceDetail", exception.getMessage());
 		return new ModelAndView("error/exception", valMap);
 	}

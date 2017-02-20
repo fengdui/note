@@ -1,9 +1,8 @@
 package com.fengdui.oa.business.common.web;
 
-import com.xh.market.framework.filesystem.FileSystemManage;
-import com.xh.market.framework.orm.MybatisService;
-import com.xh.market.framework.util.encrypt.EncryptUtil;
-import com.xh.market.framework.web.BaseController;
+import com.fengdui.oa.framework.orm.MybatisService;
+import com.fengdui.oa.framework.util.encrypt.EncryptUtil;
+import com.fengdui.oa.framework.web.BaseController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -59,7 +58,8 @@ public class FileController extends BaseController<Serializable> {
 		//		headers.add("Content-Disposition", "filename=" + fileId.substring(fileId.lastIndexOf("/") + 1));
 		//		headers.add("Last-Modified", String.valueOf(System.currentTimeMillis()));
 		//		return new ResponseEntity<byte[]>(FileSystemManage.download(fileId), headers, HttpStatus.NOT_MODIFIED);
-		return FileSystemManage.download(fileId);
+//		return FileSystemManage.download(fileId);
+		return null;
 	}
 
 }

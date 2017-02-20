@@ -1,7 +1,7 @@
 package com.fengdui.oa.framework.orm;
 
-import com.xh.market.framework.util.reflection.ReflectionUtil;
-import com.xh.market.framework.web.PageInfo;
+import com.fengdui.oa.framework.util.reflection.ReflectionUtil;
+import com.fengdui.oa.framework.web.PageInfo;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.executor.ErrorContext;
 import org.apache.ibatis.executor.ExecutorException;

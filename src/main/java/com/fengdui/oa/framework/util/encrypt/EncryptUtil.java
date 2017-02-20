@@ -1,7 +1,6 @@
 package com.fengdui.oa.framework.util.encrypt;
 
 import org.apache.commons.codec.binary.Base64;
-import org.apache.shiro.crypto.hash.Sha256Hash;
 
 import java.security.MessageDigest;
 
@@ -20,7 +19,8 @@ public class EncryptUtil {
 	public static final String SHA512 = "SHA-512";
 
 	public static String encryptBySha256(String source) {
-		return new Sha256Hash(source, "wander", 2).toString();
+//		return new Sha256Hash(source, "wander", 2).toString();
+		return "";
 	}
 
 	public static String encryptBySHA1(String origin) {

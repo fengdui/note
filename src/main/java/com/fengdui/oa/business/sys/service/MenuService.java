@@ -1,16 +1,11 @@
 package com.fengdui.oa.business.sys.service;
 
-import com.xh.market.business.auth.entity.User;
-import com.xh.market.business.auth.entity.UserMenuRef;
-import com.xh.market.business.auth.service.UserMenuRefService;
-import com.xh.market.business.auth.service.UserService;
-import com.xh.market.business.sys.dao.MenuDao;
-import com.xh.market.business.sys.entity.*;
-import com.xh.market.framework.constant.ConstantColumn;
-import com.xh.market.framework.constant.ConstantCommon;
-import com.xh.market.framework.constant.ConstantSession;
-import com.xh.market.framework.orm.MybatisService;
-import com.xh.market.framework.util.string.StringUtil;
+import com.fengdui.oa.business.auth.service.UserMenuRefService;
+import com.fengdui.oa.business.auth.service.UserService;
+import com.fengdui.oa.business.sys.dao.MenuDao;
+import com.fengdui.oa.business.sys.entity.Menu;
+import com.fengdui.oa.framework.constant.ConstantColumn;
+import com.fengdui.oa.framework.orm.MybatisService;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.apache.commons.collections.CollectionUtils;

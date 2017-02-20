@@ -1,7 +1,7 @@
 package com.fengdui.oa.business.common;
 
-import com.xh.market.framework.util.date.DateUtil;
-import com.xh.market.framework.util.file.FileUtil;
+import com.fengdui.oa.framework.util.date.DateUtil;
+import com.fengdui.oa.framework.util.file.FileUtil;
 import org.springframework.web.context.ContextLoader;
 import org.springframework.web.multipart.MultipartFile;
 

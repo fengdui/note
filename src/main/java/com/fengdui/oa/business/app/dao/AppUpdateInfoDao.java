@@ -1,7 +1,7 @@
 package com.fengdui.oa.business.app.dao;
 
-import com.xh.market.business.app.entity.AppUpdateInfo;
-import com.xh.market.framework.orm.MybatisDao;
+import com.fengdui.oa.business.app.entity.AppUpdateInfo;
+import com.fengdui.oa.framework.orm.MybatisDao;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -14,6 +14,6 @@ import java.util.List;
  */
 
 @Repository
-public interface AppUpdateInfoDao extends MybatisDao<AppUpdateInfo, Integer>{
+public interface AppUpdateInfoDao extends MybatisDao<AppUpdateInfo, Integer> {
 	public List<AppUpdateInfo> queryByVersion(@Param("sql") String sql);
 }

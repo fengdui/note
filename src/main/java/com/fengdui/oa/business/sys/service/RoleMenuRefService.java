@@ -1,10 +1,11 @@
 package com.fengdui.oa.business.sys.service;
 
-import com.xh.market.business.auth.service.UserMenuRefService;
-import com.xh.market.business.sys.dao.RoleDao;
-import com.xh.market.business.sys.dao.RoleMenuRefDao;
-import com.xh.market.business.sys.entity.RoleMenuRef;
-import com.xh.market.framework.orm.MybatisService;
+
+import com.fengdui.oa.business.auth.service.UserMenuRefService;
+import com.fengdui.oa.business.sys.dao.RoleDao;
+import com.fengdui.oa.business.sys.dao.RoleMenuRefDao;
+import com.fengdui.oa.business.sys.entity.RoleMenuRef;
+import com.fengdui.oa.framework.orm.MybatisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

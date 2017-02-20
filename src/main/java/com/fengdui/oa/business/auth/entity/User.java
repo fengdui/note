@@ -1,9 +1,9 @@
 package com.fengdui.oa.business.auth.entity;
 
-import com.xh.market.framework.orm.EntityExtend;
-import com.xh.market.framework.orm.TagLogicDelete;
-import com.xh.market.framework.orm.TagUniqueColumn;
-import com.xh.market.framework.util.encrypt.EncryptUtil;
+import com.fengdui.oa.framework.orm.EntityExtend;
+import com.fengdui.oa.framework.orm.TagLogicDelete;
+import com.fengdui.oa.framework.orm.TagUniqueColumn;
+import com.fengdui.oa.framework.util.encrypt.EncryptUtil;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 

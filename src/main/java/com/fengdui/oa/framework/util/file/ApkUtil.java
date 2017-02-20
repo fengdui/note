@@ -1,11 +1,10 @@
 package com.fengdui.oa.framework.util.file;
 
-import com.xh.market.business.common.Constant;
-import com.xh.market.business.res.entity.Apk;
-import com.xh.market.business.res.entity.ApkIcon;
-import com.xh.market.business.res.entity.ApkInfo;
-import com.xh.market.framework.filesystem.FileSystemManage;
-import com.xh.market.framework.util.ImageUtil;
+import com.fengdui.oa.business.common.Constant;
+import com.fengdui.oa.business.res.entity.Apk;
+import com.fengdui.oa.business.res.entity.ApkIcon;
+import com.fengdui.oa.business.res.entity.ApkInfo;
+import com.fengdui.oa.framework.util.ImageUtil;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.web.context.ContextLoader;
@@ -101,7 +100,7 @@ public class ApkUtil {
 				try {
 					iconFile = getApkIconFile(apkFile, density, iconPathOfZip);
 					Map<String, Integer> dimensions = ImageUtil.getImageDimensions(iconFile);
-					apkIconList.add(new ApkIcon(i + 1, FileSystemManage.upload4Image(iconFile), iconFile, dimensions.get(ImageUtil.KEY_WIDTH), dimensions.get(ImageUtil.KEY_HEIGHT)));
+//					apkIconList.add(new ApkIcon(i + 1, FileSystemManage.upload4Image(iconFile), iconFile, dimensions.get(ImageUtil.KEY_WIDTH), dimensions.get(ImageUtil.KEY_HEIGHT)));
 				} catch (Exception e) {
 					if (null != iconFile && iconFile.exists()) {
 						iconFile.delete();
@@ -111,7 +110,7 @@ public class ApkUtil {
 							apkIcon.getFile().delete();
 						}
 						if (null != apkIcon.getFileId()) {
-							FileSystemManage.delete(apkIcon.getFileId());
+//							FileSystemManage.delete(apkIcon.getFileId());
 						}
 					}
 					throw e;

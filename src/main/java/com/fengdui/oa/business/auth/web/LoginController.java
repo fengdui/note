@@ -1,20 +1,15 @@
 package com.fengdui.oa.business.auth.web;
 
-import com.xh.market.business.auth.entity.User;
-import com.xh.market.business.auth.service.UserService;
-import com.xh.market.business.auth.verify.GeetestConfig;
-import com.xh.market.business.auth.verify.GeetestLib;
-import com.xh.market.framework.constant.ConstantCommon;
-import com.xh.market.framework.constant.ConstantSession;
-import com.xh.market.framework.orm.MybatisService;
-import com.xh.market.framework.util.http.HttpUtil;
-import com.xh.market.framework.web.BaseController;
-import com.xh.market.framework.web.PageRespData;
+import com.fengdui.oa.business.auth.entity.User;
+import com.fengdui.oa.business.auth.service.UserService;
+import com.fengdui.oa.business.auth.verify.GeetestConfig;
+import com.fengdui.oa.business.auth.verify.GeetestLib;
+import com.fengdui.oa.framework.constant.ConstantSession;
+import com.fengdui.oa.framework.orm.MybatisService;
+import com.fengdui.oa.framework.util.http.HttpUtil;
+import com.fengdui.oa.framework.web.BaseController;
+import com.fengdui.oa.framework.web.PageRespData;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.AuthenticationException;
-import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.security.auth.Subject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;

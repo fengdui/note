@@ -1,6 +1,7 @@
 package com.fengdui.oa.framework.orm;
 
-import com.xh.market.framework.constant.ConstantSession;
+
+import com.fengdui.oa.framework.constant.ConstantSession;
 
 /**
  * @author Wander.Zeng

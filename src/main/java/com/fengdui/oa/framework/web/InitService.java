@@ -1,11 +1,9 @@
 package com.fengdui.oa.framework.web;
 
-import com.xh.market.business.time.entity.TimeTask;
-import com.xh.market.business.time.service.QuartzScheduleManager;
-import com.xh.market.business.time.service.TimeTaskService;
-import com.xh.market.framework.communication.socket.OnlineUserManagerServer;
+import com.fengdui.oa.business.time.service.QuartzScheduleManager;
+import com.fengdui.oa.business.time.service.TimeTaskService;
+import com.fengdui.oa.framework.communication.socket.OnlineUserManagerServer;
 import org.java_websocket.WebSocketImpl;
-import org.quartz.SchedulerException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +34,7 @@ public class InitService {
 	private QuartzScheduleManager quartzScheduleManager;
 	public void init() {
 		this.startOnlineUserManagerServer();
-		selfStartJob();
+//		selfStartJob();
 	}
 
 	private void startOnlineUserManagerServer() {
@@ -56,16 +54,16 @@ public class InitService {
 	public OnlineUserManagerServer getManagerServer() {
 		return managerServer;
 	}
-	private void selfStartJob() {
-		List<TimeTask> list = timeTaskService.queryAll();
-		for(TimeTask t : list) {
-			if(t.getSelfStart()) {
-				try {
-					quartzScheduleManager.startJob(t);
-				} catch (SchedulerException e) {
-					logger.error("Job selfStart error" + e);
-				}
-			}
-		}
-	}
+//	private void selfStartJob() {
+//		List<TimeTask> list = timeTaskService.queryAll();
+//		for(TimeTask t : list) {
+//			if(t.getSelfStart()) {
+//				try {
+//					quartzScheduleManager.startJob(t);
+//				} catch (SchedulerException e) {
+//					logger.error("Job selfStart error" + e);
+//				}
+//			}
+//		}
+//	}
 }

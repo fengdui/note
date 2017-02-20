@@ -1,7 +1,7 @@
 package com.fengdui.oa.business.app.dao;
 
-import com.xh.market.business.app.entity.AppVersionInfo;
-import com.xh.market.framework.orm.MybatisDao;
+import com.fengdui.oa.business.app.entity.AppVersionInfo;
+import com.fengdui.oa.framework.orm.MybatisDao;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -10,6 +10,6 @@ import org.springframework.stereotype.Repository;
  * @desc AppVersionInfoDao.java
  */
 @Repository
-public interface AppVersionInfoDao extends MybatisDao<AppVersionInfo, Integer>{
+public interface AppVersionInfoDao extends MybatisDao<AppVersionInfo, Integer> {
 
 }

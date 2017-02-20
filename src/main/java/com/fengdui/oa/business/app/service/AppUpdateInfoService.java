@@ -1,8 +1,8 @@
 package com.fengdui.oa.business.app.service;
 
-import com.xh.market.business.app.dao.AppUpdateInfoDao;
-import com.xh.market.business.app.entity.AppUpdateInfo;
-import com.xh.market.framework.orm.MybatisService;
+import com.fengdui.oa.business.app.dao.AppUpdateInfoDao;
+import com.fengdui.oa.business.app.entity.AppUpdateInfo;
+import com.fengdui.oa.framework.orm.MybatisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +14,7 @@ import java.util.List;
  * @desc AppUpdateInfoService.java
  */
 @Service
-public class AppUpdateInfoService extends MybatisService<AppUpdateInfo, Integer, AppUpdateInfoDao>{
+public class AppUpdateInfoService extends MybatisService<AppUpdateInfo, Integer, AppUpdateInfoDao> {
 
 	@Autowired
 	private AppUpdateInfoDao appUpdateInfoDao;

@@ -1,6 +1,6 @@
 package com.fengdui.oa.framework.constant;
 
-import com.xh.market.business.auth.entity.User;
+import com.fengdui.oa.business.auth.entity.User;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 

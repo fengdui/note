@@ -1,7 +1,7 @@
 package com.fengdui.oa.framework.orm;
 
-import com.xh.market.framework.constant.ConstantSession;
-import com.xh.market.framework.util.date.DateUtil;
+import com.fengdui.oa.framework.constant.ConstantSession;
+import com.fengdui.oa.framework.util.date.DateUtil;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.Serializable;
