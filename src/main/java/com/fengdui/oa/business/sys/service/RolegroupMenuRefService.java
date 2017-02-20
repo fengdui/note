@@ -1,8 +1,8 @@
 package com.fengdui.oa.business.sys.service;
 
-import com.xh.market.business.sys.dao.RolegroupMenuRefDao;
-import com.xh.market.business.sys.entity.RolegroupMenuRef;
-import com.xh.market.framework.orm.MybatisService;
+import com.fengdui.oa.business.sys.dao.RolegroupMenuRefDao;
+import com.fengdui.oa.business.sys.entity.RolegroupMenuRef;
+import com.fengdui.oa.framework.orm.MybatisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

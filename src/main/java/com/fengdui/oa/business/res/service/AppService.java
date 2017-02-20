@@ -1,9 +1,9 @@
 package com.fengdui.oa.business.res.service;
 
-import com.xh.market.business.res.dao.AppDao;
-import com.xh.market.business.res.entity.Apk;
-import com.xh.market.business.res.entity.App;
-import com.xh.market.framework.orm.MybatisService;
+import com.fengdui.oa.business.res.dao.AppDao;
+import com.fengdui.oa.business.res.entity.Apk;
+import com.fengdui.oa.business.res.entity.App;
+import com.fengdui.oa.framework.orm.MybatisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

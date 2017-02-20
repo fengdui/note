@@ -1,17 +1,16 @@
 package com.fengdui.oa.business.res.service;
 
-import com.xh.market.business.common.Constant;
-import com.xh.market.business.res.dao.ApkDao;
-import com.xh.market.business.res.dao.AppDao;
-import com.xh.market.business.res.entity.Apk;
-import com.xh.market.business.res.entity.ApkIcon;
-import com.xh.market.business.res.entity.ApkInfo;
-import com.xh.market.business.res.entity.ApkScreenshot;
-import com.xh.market.framework.filesystem.FileSystemManage;
-import com.xh.market.framework.orm.MybatisService;
-import com.xh.market.framework.util.ImageUtil;
-import com.xh.market.framework.util.file.ApkUtil;
-import com.xh.market.framework.util.file.FileUtil;
+import com.fengdui.oa.business.common.Constant;
+import com.fengdui.oa.business.res.dao.ApkDao;
+import com.fengdui.oa.business.res.dao.AppDao;
+import com.fengdui.oa.business.res.entity.Apk;
+import com.fengdui.oa.business.res.entity.ApkIcon;
+import com.fengdui.oa.business.res.entity.ApkInfo;
+import com.fengdui.oa.business.res.entity.ApkScreenshot;
+import com.fengdui.oa.framework.orm.MybatisService;
+import com.fengdui.oa.framework.util.ImageUtil;
+import com.fengdui.oa.framework.util.file.ApkUtil;
+import com.fengdui.oa.framework.util.file.FileUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -77,7 +76,7 @@ public class ApkService extends MybatisService<Apk, Integer, ApkDao> {
 			apkIconList = ApkUtil.getApkIcon(fileTemp, apkInfo.getApplicationIcon());
 
 			apk = new Apk(apkInfo);
-			apk.setFileId(FileSystemManage.upload4APK(fileName, fileTemp));
+//			apk.setFileId(FileSystemManage.upload4APK(fileName, fileTemp));
 			apk.setFileSize(fileTemp.length());
 			apk.setFileMd5(fileMD5);
 			saveOrUpdate(apk);
@@ -88,12 +87,12 @@ public class ApkService extends MybatisService<Apk, Integer, ApkDao> {
 			}
 		} catch (Exception e) {
 			if (null != apk) {
-				FileSystemManage.delete(apk.getFileId());
+//				FileSystemManage.delete(apk.getFileId());
 			}
 			if (null != apkIconList) {
 				for (ApkIcon apkIcon : apkIconList) {
 					if (null != apkIcon.getFileId()) {
-						FileSystemManage.delete(apkIcon.getFileId());
+//						FileSystemManage.delete(apkIcon.getFileId());
 					}
 				}
 			}
@@ -201,13 +200,13 @@ public class ApkService extends MybatisService<Apk, Integer, ApkDao> {
 				ImageUtil.resizeImageByLib(fileTemp, fileTar, zoom);
 				File screenFile = new File(fileTar);
 				Map<String, Integer> dimensionsNew = ImageUtil.getImageDimensions(screenFile);
-				screenshotList.add(new ApkScreenshot(FileSystemManage.upload4Image(screenFile), (i + 1), dimensionsNew.get(ImageUtil.KEY_WIDTH), dimensionsNew.get(ImageUtil.KEY_HEIGHT)));
+//				screenshotList.add(new ApkScreenshot(FileSystemManage.upload4Image(screenFile), (i + 1), dimensionsNew.get(ImageUtil.KEY_WIDTH), dimensionsNew.get(ImageUtil.KEY_HEIGHT)));
 				screenFileList.add(screenFile);
 			}
 			return screenshotList;
 		} catch (Exception e) {
 			for (ApkScreenshot screenshot : screenshotList) {
-				FileSystemManage.delete(screenshot.getFileId());
+//				FileSystemManage.delete(screenshot.getFileId());
 			}
 			throw new Exception(e);
 		} finally {
@@ -261,7 +260,7 @@ public class ApkService extends MybatisService<Apk, Integer, ApkDao> {
 			delete(id);
 			apkIconService.deleteApkIcon(id);
 			apkScreenshotService.deleteScreenshot(id);
-			FileSystemManage.delete(apkFileId);
+//			FileSystemManage.delete(apkFileId);
 		}
 	}
 

@@ -1,11 +1,10 @@
 package com.fengdui.oa.business.res.service;
 
-import com.xh.market.business.res.dao.ApkIconDao;
-import com.xh.market.business.res.entity.Apk;
-import com.xh.market.business.res.entity.ApkIcon;
-import com.xh.market.framework.constant.ConstantColumn;
-import com.xh.market.framework.filesystem.FileSystemManage;
-import com.xh.market.framework.orm.MybatisService;
+import com.fengdui.oa.business.res.dao.ApkIconDao;
+import com.fengdui.oa.business.res.entity.Apk;
+import com.fengdui.oa.business.res.entity.ApkIcon;
+import com.fengdui.oa.framework.constant.ConstantColumn;
+import com.fengdui.oa.framework.orm.MybatisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -43,7 +42,7 @@ public class ApkIconService extends MybatisService<ApkIcon, Integer, ApkIconDao>
 		List<String> iconFileIdList = getIconFileIdListByApkId(apkId);
 		deleteByValue("apk_id", apkId);
 		for (String iconFileId : iconFileIdList) {
-			FileSystemManage.delete(iconFileId);
+//			FileSystemManage.delete(iconFileId);
 		}
 	}
 }

@@ -1,7 +1,7 @@
 package com.fengdui.oa.business.res.entity;
 
-import com.xh.market.framework.orm.EntityBase;
-import com.xh.market.framework.orm.TagLogicDelete;
+import com.fengdui.oa.framework.orm.EntityBase;
+import com.fengdui.oa.framework.orm.TagLogicDelete;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 

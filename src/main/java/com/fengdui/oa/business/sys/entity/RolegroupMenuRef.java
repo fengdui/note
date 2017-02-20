@@ -1,6 +1,6 @@
 package com.fengdui.oa.business.sys.entity;
 
-import com.xh.market.framework.orm.EntityExtend;
+import com.fengdui.oa.framework.orm.EntityExtend;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 

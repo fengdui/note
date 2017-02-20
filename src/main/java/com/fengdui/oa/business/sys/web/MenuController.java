@@ -1,15 +1,11 @@
 package com.fengdui.oa.business.sys.web;
 
-import com.xh.market.business.sys.entity.Menu;
-import com.xh.market.business.sys.entity.Role;
-import com.xh.market.business.sys.service.MenuService;
-import com.xh.market.framework.constant.Cue;
-import com.xh.market.framework.orm.MybatisService;
-import com.xh.market.framework.web.BaseController;
-import com.xh.market.framework.web.PageRespData;
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authz.UnauthorizedException;
-import org.apache.shiro.subject.Subject;
+import com.fengdui.oa.business.sys.entity.Menu;
+import com.fengdui.oa.business.sys.service.MenuService;
+import com.fengdui.oa.framework.constant.Cue;
+import com.fengdui.oa.framework.orm.MybatisService;
+import com.fengdui.oa.framework.web.BaseController;
+import com.fengdui.oa.framework.web.PageRespData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,12 +67,12 @@ public class MenuController extends BaseController<Menu> {
 
 	@Override
 	protected void indexExtra() {
-		Subject currentUser = SecurityUtils.getSubject();
-		if (null != currentUser) {
-			if (!currentUser.hasRole(String.valueOf(Role.ID_ROOT))) {
-				throw new UnauthorizedException();
-			}
-		}
+//		Subject currentUser = SecurityUtils.getSubject();
+//		if (null != currentUser) {
+//			if (!currentUser.hasRole(String.valueOf(Role.ID_ROOT))) {
+//				throw new UnauthorizedException();
+//			}
+//		}
 	}
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)

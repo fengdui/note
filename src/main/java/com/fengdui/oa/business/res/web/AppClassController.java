@@ -1,12 +1,12 @@
 package com.fengdui.oa.business.res.web;
 
-import com.xh.market.business.res.entity.AppClass;
-import com.xh.market.business.res.service.AppClassService;
-import com.xh.market.framework.orm.MybatisService;
-import com.xh.market.framework.orm.PageFilter;
-import com.xh.market.framework.web.BaseController;
-import com.xh.market.framework.web.PageInfo;
-import com.xh.market.framework.web.TableHeadInfo;
+import com.fengdui.oa.business.res.entity.AppClass;
+import com.fengdui.oa.business.res.service.AppClassService;
+import com.fengdui.oa.framework.orm.MybatisService;
+import com.fengdui.oa.framework.orm.PageFilter;
+import com.fengdui.oa.framework.web.BaseController;
+import com.fengdui.oa.framework.web.PageInfo;
+import com.fengdui.oa.framework.web.TableHeadInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,7 +62,6 @@ public class AppClassController extends BaseController<AppClass> {
 	 * @Title: editExtra
 	 * @Description:
 	 * @param valMap
-	 * @see com.xh.market.framework.web.BaseController#editExtra(Map)
 	 */
 	@Override
 	protected void editExtra(Map<String, Object> valMap) {
@@ -110,7 +109,6 @@ public class AppClassController extends BaseController<AppClass> {
 	 * @Title: prepareModel
 	 * @Description:
 	 * @return
-	 * @see com.xh.market.framework.web.BaseController#prepareModel()
 	 */
 	@Override
 	protected Map<String, Object> prepareModel() {

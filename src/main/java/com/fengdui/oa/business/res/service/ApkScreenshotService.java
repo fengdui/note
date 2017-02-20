@@ -1,11 +1,10 @@
 package com.fengdui.oa.business.res.service;
 
-import com.xh.market.business.res.dao.ApkScreenshotDao;
-import com.xh.market.business.res.entity.Apk;
-import com.xh.market.business.res.entity.ApkScreenshot;
-import com.xh.market.framework.constant.ConstantColumn;
-import com.xh.market.framework.filesystem.FileSystemManage;
-import com.xh.market.framework.orm.MybatisService;
+import com.fengdui.oa.business.res.dao.ApkScreenshotDao;
+import com.fengdui.oa.business.res.entity.Apk;
+import com.fengdui.oa.business.res.entity.ApkScreenshot;
+import com.fengdui.oa.framework.constant.ConstantColumn;
+import com.fengdui.oa.framework.orm.MybatisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -79,7 +78,7 @@ public class ApkScreenshotService extends MybatisService<ApkScreenshot, Integer,
 		List<String> fileIdList = getDao().getFileIdListByApkId(apkId);
 		deleteByValue("apk_id", apkId);
 		for (String fileId : fileIdList) {
-			FileSystemManage.delete(fileId);
+//			FileSystemManage.delete(fileId);
 		}
 	}
 

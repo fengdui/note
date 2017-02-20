@@ -1,24 +1,22 @@
 package com.fengdui.oa.business.sys.web;
 
-import com.xh.market.business.sys.entity.Role;
-import com.xh.market.business.sys.entity.Rolegroup;
-import com.xh.market.business.sys.service.MenuService;
-import com.xh.market.business.sys.service.RoleService;
-import com.xh.market.business.sys.service.RolegroupService;
-import com.xh.market.framework.constant.ConstantColumn;
-import com.xh.market.framework.orm.MybatisService;
-import com.xh.market.framework.orm.PageFilter;
-import com.xh.market.framework.web.BaseController;
-import com.xh.market.framework.web.TableHeadInfo;
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authz.UnauthorizedException;
-import org.apache.shiro.subject.Subject;
+import com.fengdui.oa.business.sys.entity.Role;
+import com.fengdui.oa.business.sys.entity.Rolegroup;
+import com.fengdui.oa.business.sys.service.MenuService;
+import com.fengdui.oa.business.sys.service.RoleService;
+import com.fengdui.oa.business.sys.service.RolegroupService;
+import com.fengdui.oa.framework.constant.ConstantColumn;
+import com.fengdui.oa.framework.orm.MybatisService;
+import com.fengdui.oa.framework.orm.PageFilter;
+import com.fengdui.oa.framework.web.BaseController;
+import com.fengdui.oa.framework.web.TableHeadInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.security.auth.Subject;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -64,12 +62,12 @@ public class RolegroupController extends BaseController<Rolegroup> {
 
 	@Override
 	protected void indexExtra() {
-		Subject currentUser = SecurityUtils.getSubject();
-		if (null != currentUser) {
-			if (!currentUser.hasRole(String.valueOf(Role.ID_ROOT))) {
-				throw new UnauthorizedException();
-			}
-		}
+//		Subject currentUser = SecurityUtils.getSubject();
+//		if (null != currentUser) {
+//			if (!currentUser.hasRole(String.valueOf(Role.ID_ROOT))) {
+//				throw new UnauthorizedException();
+//			}
+//		}
 	}
 
 	@Override

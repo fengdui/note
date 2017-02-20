@@ -1,7 +1,7 @@
 package com.fengdui.oa.business.sys.entity;
 
-import com.xh.market.framework.orm.EntityBase;
-import com.xh.market.framework.util.date.DateUtil;
+import com.fengdui.oa.framework.orm.EntityBase;
+import com.fengdui.oa.framework.util.date.DateUtil;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 

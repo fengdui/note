@@ -1,8 +1,7 @@
 package com.fengdui.oa.business.res.entity;
 
-import com.xh.market.framework.filesystem.FileSystemManage;
-import com.xh.market.framework.orm.EntityExtend;
-import com.xh.market.framework.orm.TagUniqueColumn;
+import com.fengdui.oa.framework.orm.EntityExtend;
+import com.fengdui.oa.framework.orm.TagUniqueColumn;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
@@ -49,7 +48,8 @@ public class ApkScreenshot extends EntityExtend {
 	}
 
 	public String getFileURL() throws Exception {
-		return FileSystemManage.getFileURL(fileId);
+		return "";
+//		return FileSystemManage.getFileURL(fileId);
 	}
 
 	public void setFileId(String fileId) {

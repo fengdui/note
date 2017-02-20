@@ -1,7 +1,7 @@
 package com.fengdui.oa.business.res.dao;
 
-import com.xh.market.business.res.entity.ApkIcon;
-import com.xh.market.framework.orm.MybatisDao;
+import com.fengdui.oa.business.res.entity.ApkIcon;
+import com.fengdui.oa.framework.orm.MybatisDao;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 

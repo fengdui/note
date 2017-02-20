@@ -1,7 +1,7 @@
 package com.fengdui.oa.business.sys.dao;
 
-import com.xh.market.business.sys.entity.Menu;
-import com.xh.market.framework.orm.MybatisDao;
+import com.fengdui.oa.business.sys.entity.Menu;
+import com.fengdui.oa.framework.orm.MybatisDao;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 

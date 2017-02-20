@@ -1,15 +1,15 @@
 package com.fengdui.oa.business.sys.service;
 
-import com.xh.market.business.auth.entity.User;
-import com.xh.market.business.auth.service.UserMenuRefService;
-import com.xh.market.business.auth.service.UserService;
-import com.xh.market.business.sys.dao.RoleDao;
-import com.xh.market.business.sys.dao.RolegroupDao;
-import com.xh.market.business.sys.entity.Role;
-import com.xh.market.business.sys.entity.RoleMenuRef;
-import com.xh.market.framework.constant.ConstantColumn;
-import com.xh.market.framework.orm.MybatisService;
-import com.xh.market.framework.util.string.StringUtil;
+import com.fengdui.oa.business.auth.entity.User;
+import com.fengdui.oa.business.auth.service.UserMenuRefService;
+import com.fengdui.oa.business.auth.service.UserService;
+import com.fengdui.oa.business.sys.dao.RoleDao;
+import com.fengdui.oa.business.sys.dao.RolegroupDao;
+import com.fengdui.oa.business.sys.entity.Role;
+import com.fengdui.oa.business.sys.entity.RoleMenuRef;
+import com.fengdui.oa.framework.constant.ConstantColumn;
+import com.fengdui.oa.framework.orm.MybatisService;
+import com.fengdui.oa.framework.util.string.StringUtil;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

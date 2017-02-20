@@ -1,10 +1,9 @@
 package com.fengdui.oa.business.res.entity;
 
-import com.xh.market.framework.common.IdNamePair;
-import com.xh.market.framework.filesystem.FileSystemManage;
-import com.xh.market.framework.orm.EntityExtend;
-import com.xh.market.framework.orm.TagLogicDelete;
-import com.xh.market.framework.orm.TagUniqueColumn;
+import com.fengdui.oa.framework.common.IdNamePair;
+import com.fengdui.oa.framework.orm.EntityExtend;
+import com.fengdui.oa.framework.orm.TagLogicDelete;
+import com.fengdui.oa.framework.orm.TagUniqueColumn;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
@@ -126,7 +125,8 @@ public class App extends EntityExtend {
 	}
 
 	public String getIconURL() throws Exception {
-		return FileSystemManage.getFileURL(iconId);
+		return "";
+// 	return FileSystemManage.getFileURL(iconId);
 	}
 
 	public void setIconId(String iconId) {
