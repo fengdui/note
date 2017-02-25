@@ -57,9 +57,12 @@ public class FileClient {
         }
     }
     public static void main(String[] args) throws Exception {
+        int i = 5_30;
+        int x = 0b110;
+        System.out.println(x);
 //        System.out.println(1483500827581-);
-        for (int i = 0; i < 2; i++) {
-            new Thread(new myThread()).start();
-        }
+//        for (int i = 0; i < 2; i++) {
+//            new Thread(new myThread()).start();
+//        }
     }
 }
