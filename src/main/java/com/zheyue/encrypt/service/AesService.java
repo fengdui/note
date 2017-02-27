@@ -17,6 +17,7 @@ import java.security.NoSuchAlgorithmException;
 /**
  * @author FD
  * @date 2016/11/30
+ * aes加密，使用springcache缓存
  */
 
 @Service

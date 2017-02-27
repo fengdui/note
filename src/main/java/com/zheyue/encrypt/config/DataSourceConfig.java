@@ -17,7 +17,7 @@ import java.util.Properties;
  * @author FD
  * @date 2016/11/28
  */
-@Configuration
+//@Configuration
 public class DataSourceConfig {
 
     @Autowired

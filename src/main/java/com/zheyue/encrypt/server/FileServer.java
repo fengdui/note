@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Value;
 /**
  * @author FD
  * @date 2016/12/29
+ * netty服务启动
  */
 
 public class FileServer{

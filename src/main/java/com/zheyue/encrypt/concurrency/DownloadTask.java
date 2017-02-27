@@ -10,6 +10,7 @@ import java.util.concurrent.Callable;
 /**
  * @author FD
  * @date 2017/1/3
+ * 下载任务
  */
 public class DownloadTask implements Callable<Boolean>{
 
@@ -30,6 +31,13 @@ public class DownloadTask implements Callable<Boolean>{
         this.request = request;
     }
 
+
+    /**
+     * 提交至线程池之后，会调用call方法（）
+     * 获取spring容器中的DownloadService开始下载
+     * @return
+     * @throws Exception
+     */
     @Override
     public Boolean call() throws Exception {
         try {

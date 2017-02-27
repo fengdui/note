@@ -24,103 +24,23 @@
 		<java.version>1.8</java.version>
 	</properties>
 	<dependencies>
-		<!-- spring boot相关 -->
 
+		<!-- spring boot相关 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
-			<!--<exclusions>-->
-				<!--<exclusion>-->
-					<!--<groupId>org.springframework.boot</groupId>-->
-					<!--<artifactId>spring-boot-starter-logging</artifactId>-->
-				<!--</exclusion>-->
-			<!--</exclusions>-->
 		</dependency>
-		<!--<dependency>-->
-			<!--<groupId>org.springframework.boot</groupId>-->
-			<!--<artifactId>spring-boot-starter-log4j2</artifactId>-->
-		<!--</dependency>-->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-actuator</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.mybatis.spring.boot</groupId>
-			<artifactId>mybatis-spring-boot-starter</artifactId>
-			<version>1.1.1</version>
-		</dependency>
+		<!-- 缓存 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-cache</artifactId>
 		</dependency>
+		<!-- aop -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-aop</artifactId>
 		</dependency>
-		<!-- curator-x-discovery -->
-		<dependency>
-			<groupId>org.apache.curator</groupId>
-			<artifactId>curator-x-discovery</artifactId>
-			<version>3.2.1</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.mybatis.spring.boot/mybatis-spring-boot-starter -->
-		<dependency>
-			<groupId>org.mybatis.spring.boot</groupId>
-			<artifactId>mybatis-spring-boot-starter</artifactId>
-			<version>1.2.0</version>
-		</dependency>
 
-		<!-- eureka -->
-		<!--<dependency>-->
-			<!--<groupId>org.springframework.cloud</groupId>-->
-			<!--<artifactId>spring-cloud-starter-eureka</artifactId>-->
-		<!--</dependency>-->
-		<!--<dependency>-->
-			<!--<groupId>org.springframework.cloud</groupId>-->
-			<!--<artifactId>spring-cloud-starter-eureka-server</artifactId>-->
-		<!--</dependency>-->
-		<!-- consul -->
-		<!--<dependency>-->
-			<!--<groupId>org.springframework.cloud</groupId>-->
-			<!--<artifactId>spring-cloud-starter-consul-discovery</artifactId>-->
-		<!--</dependency>-->
-		<!--<dependency>-->
-			<!--<groupId>org.springframework.boot</groupId>-->
-			<!--<artifactId>spring-boot-starter-web</artifactId>-->
-		<!--</dependency>-->
-		<!--<dependency>-->
-			<!--<groupId>org.springframework.boot</groupId>-->
-			<!--<artifactId>spring-boot-starter-thymeleaf</artifactId>-->
-		<!--</dependency>-->
-
-		<!-- LiveReload server is running on port 35729 -->
-		<!--<dependency>-->
-			<!--<groupId>org.springframework.boot</groupId>-->
-			<!--<artifactId>spring-boot-devtools</artifactId>-->
-			<!--<optional>true</optional>&lt;!&ndash; optional=true,依赖不会传递，该项目依赖devtools；之后依赖myboot项目的项目如果想要使用devtools，需要重新引入 &ndash;&gt;-->
-		<!--</dependency>-->
-
-
-		<!-- LoadBalance -->
-		<dependency>
-			<groupId>org.apache.zookeeper</groupId>
-			<artifactId>zookeeper</artifactId>
-			<version>3.4.9</version>
-			<exclusions>
-				<exclusion>
-					<groupId>org.slf4j</groupId>
-					<artifactId>slf4j-api</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.slf4j</groupId>
-					<artifactId>slf4j-log4j12</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
 		<!-- netty -->
 		<dependency>
 			<groupId>io.netty</groupId>
@@ -203,17 +123,6 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>org.springframework.cloud</groupId>
-				<artifactId>spring-cloud-dependencies</artifactId>
-				<version>Camden.SR3</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
 	<build>
 		<plugins>
 			<plugin>

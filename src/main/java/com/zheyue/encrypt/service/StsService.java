@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 /**
  * @author FD
  * @date 2016/12/15
+ * 客户端获取sts凭证
  */
 
 @Service

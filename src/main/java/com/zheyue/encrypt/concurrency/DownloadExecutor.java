@@ -15,6 +15,7 @@ import java.util.concurrent.*;
 /**
  * @author FD
  * @date 2017/1/3
+ * 线程调度池
  */
 public class DownloadExecutor {
 
@@ -22,10 +23,11 @@ public class DownloadExecutor {
 
     private volatile ListeningExecutorService threadPoolExecutor;
 
-    //下载文件线程池个数
+    //下载文件线程池个数 可以配置
     private int threads = 10;
 
 
+    //单例 使用getJDkThreadPoolExecutor获取之后使用guava分装
     public ListeningExecutorService getThreadPoolExecutor(){
         if (threadPoolExecutor == null) {
             synchronized (DownloadExecutor.class) {
@@ -41,6 +43,12 @@ public class DownloadExecutor {
 //        return Executors.newFixedThreadPool(threads);
         return new DownloadTaskThreadPool(threads, threads, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingQueue<Runnable>(), new DownloadThreadFactory());
     }
+
+    /**
+     * 提交一个 Callable类型的task到线程池，实现回调
+     * @param task
+     * @param ctx
+     */
     public void submit(Callable<Boolean> task, ChannelHandlerContext ctx) {
         ListenableFuture<Boolean> listenableFuture = getThreadPoolExecutor().submit(task);
         Futures.addCallback(listenableFuture, new FutureCallback<Boolean>() {

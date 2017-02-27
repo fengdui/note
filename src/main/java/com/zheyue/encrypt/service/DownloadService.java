@@ -40,8 +40,15 @@ public class DownloadService {
     @Value("${oss.bucketName}")
     private String bucketName;
 
+    /**
+     * 从oss下载一个文件片段
+     * @param request
+     * @param ctx
+     * @return
+     */
     public boolean downloadFromOss(DownloadRequest request, ChannelHandlerContext ctx) {
 
+        // TODO 应该根据一个key去oss下载，这里写死了，因为没有需求不知道怎么定义key
         String key = "fd.pdf";
         GetObjectRequest getObjectRequest = new GetObjectRequest(bucketName, key);
         getObjectRequest.setRange(request.getStart(), -1);
@@ -56,10 +63,6 @@ public class DownloadService {
                 DownloadResponse downloadResponse = new DownloadResponse();
                 byte[] dataCopy = Arrays.copyOf(bytes, len);
                 dataCopy = encrypt(dataCopy, request.getUserId());
-//                aesService.getKey(request.getUserId());
-//                aesService.getEncryptCipher(request.getUserId());
-//                System.out.println(dataCopy.length);
-//                dataCopy = aesService.decrypt(dataCopy, request.getUserId());
                 downloadResponse.setData(dataCopy);
                 downloadResponse.setLength(dataCopy.length);
                 downloadResponse.setRequestId(request.getRequestId());

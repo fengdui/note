@@ -10,6 +10,7 @@ import java.io.ByteArrayOutputStream;
 /**
  * @author FD
  * @date 2016/12/30
+ * hessian序列化编码码
  */
 public class HessianEncoder extends MessageToByteEncoder<Object>{
 

@@ -8,6 +8,7 @@ import java.util.concurrent.*;
 /**
  * @author FD
  * @date 2017/1/11
+ * 现在任务线程池
  */
 public class DownloadTaskThreadPool extends ThreadPoolExecutor {
 

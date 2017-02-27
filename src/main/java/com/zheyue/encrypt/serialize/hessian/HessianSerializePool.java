@@ -5,6 +5,7 @@ import org.apache.commons.pool2.impl.GenericObjectPool;
 /**
  * @author FD
  * @date 2016/12/30
+ * hessian序列化池 包含若干个HessianSerialize
  */
 public class HessianSerializePool {
 
