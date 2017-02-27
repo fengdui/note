@@ -14,6 +14,7 @@ import java.util.Map;
 /**
  * @author FD
  * @date 2016/12/30
+ * netty初始化，配置序列化方式
  */
 public class ServerChannelInitializer extends ChannelInitializer<SocketChannel> {
 
@@ -27,6 +28,11 @@ public class ServerChannelInitializer extends ChannelInitializer<SocketChannel> 
         this.downloadExecutor = downloadExecutor;
     }
 
+    /**
+     * 目前只实现hessian
+     * @param ch
+     * @throws Exception
+     */
     @Override
     protected void initChannel(SocketChannel ch) throws Exception {
         if (serializeProtocol == null) {

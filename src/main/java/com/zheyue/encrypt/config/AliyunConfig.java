@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Configuration;
 /**
  * @author FD
  * @date 2016/12/14
+ * 阿里云相关的配置文件
  */
 @Configuration
 public class AliyunConfig {

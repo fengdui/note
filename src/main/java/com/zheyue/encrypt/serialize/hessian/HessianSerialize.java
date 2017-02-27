@@ -12,6 +12,7 @@ import java.io.OutputStream;
 /**
  * @author FD
  * @date 2016/12/30
+ * hessian序列化实现
  */
 public class HessianSerialize implements Serialize {
 

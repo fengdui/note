@@ -14,6 +14,7 @@ import java.util.Arrays;
 /**
  * @author FD
  * @date 2016/12/30
+ * netty 处理，经过解码之后会到此
  */
 public class DownloadHandler extends ChannelInboundHandlerAdapter {
 
@@ -34,6 +35,12 @@ public class DownloadHandler extends ChannelInboundHandlerAdapter {
     public void channelRegistered(ChannelHandlerContext ctx) throws Exception {
     }
 
+    /**
+     * hessian解码之后，直接强转成DownloadRequest
+     * @param ctx
+     * @param msg
+     * @throws Exception
+     */
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         DownloadRequest request = (DownloadRequest) msg;
