@@ -1,0 +1,55 @@
+<configuration>
+	<!-- 输出到控制台 -->
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<!-- 输出格式 -->
+			<pattern>
+				%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+
+	<!-- error级别单独记录 -->
+	<appender name="errorAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">  
+		<file>log/error-today.log</file>
+		以day为单位自动回滚  
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">  
+			<fileNamePattern>log/error/error-%d{yyyy-MM-dd}.log.gz</fileNamePattern>  
+		</rollingPolicy>  
+		<encoder>  
+			<pattern>%d{HH:mm:ss.SSS} %-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>  
+		</encoder>
+		error级别过滤器
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>ERROR</level>  
+			<onMatch>ACCEPT</onMatch>  
+			<onMismatch>DENY</onMismatch>
+		</filter>  
+	</appender> 
+	
+	<appender name="infoAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">  
+		<file>log/info-today.log</file>  
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">  
+			<fileNamePattern>log/info/info-%d{yyyy-MM-dd}.log.gz</fileNamePattern>  
+		</rollingPolicy>  
+		<encoder>  
+			<pattern>%d{HH:mm:ss.SSS} %-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>  
+		</encoder>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>INFO</level>  
+			<onMatch>ACCEPT</onMatch>  
+			<onMismatch>DENY</onMismatch>
+		</filter>  
+	</appender> 
+	
+    <logger name="cn.com.bsfit.mapper" level="DEBUG" additivity="false" >
+    	<appender-ref ref="STDOUT"/>
+    </logger>
+    	
+	<!-- 根，所有logger的祖先 -->
+	<root level="INFO">
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="errorAppender" />
+		<appender-ref ref="infoAppender" />
+	</root>
+</configuration>

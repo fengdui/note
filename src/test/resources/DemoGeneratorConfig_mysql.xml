@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+	<properties resource="DemoGeneratorConfig_mysql.properties" />
+
+	<classPathEntry location="${jdbc.path}" />
+
+	<context id="spring-boot-ext-demo" targetRuntime="MyBatis3">
+		<!-- <plugin type="cn.com.bsfit.frms.policy.plugins.mysql.PaginationPlugin" /> -->
+		<plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin" />
+		<plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
+		<plugin type="org.mybatis.generator.plugins.CaseInsensitiveLikePlugin" />
+
+		<commentGenerator type="cn.com.bsfit.frms.demo.plugins.mysql.CommentPlugin">
+			<property name="suppressDate" value="true" />
+			<!--去除自动生成注释 -->
+			<property name="suppressAllComments" value="false" />
+		</commentGenerator>
+
+		<jdbcConnection driverClass="${jdbc.driverClassName}"
+			connectionURL="${jdbc.url}" userId="${jdbc.username}" password="${jdbc.password}">
+		</jdbcConnection>
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		<javaModelGenerator targetPackage="cn.com.bsfit.pojo"
+			targetProject="spring-boot-ext-demo/src/main/java">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+		<sqlMapGenerator targetPackage="cn.com.bsfit.sqlmap"
+			targetProject="spring-boot-ext-demo/src/main/resources">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+
+		<javaClientGenerator type="XMLMAPPER"
+			targetProject="spring-boot-ext-demo" targetPackage="cn.com.bsfit.mapper">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+		
+		<table schema="test" tableName="user" domainObjectName="User">
+			<property name="useActualColumnNames" value="false" />
+			<property name="constructorBased" value="true" />
+			<property name="ignoreQualifiersAtRuntime" value="true" />
+		</table>
+	</context>
+</generatorConfiguration>
