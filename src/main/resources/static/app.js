@@ -4,14 +4,14 @@ Ext.application({
     name: 'AM',
     appFolder: 'app',
     controllers: [
-        'IpController'
+        'RoleController'
     ],
     launch: function() {
         Ext.create('Ext.container.Viewport', {
             layout: 'fit',
             items: [
                 {
-                    xtype : 'ipView'
+                    xtype : 'roleView'
                 }
             ]
         });

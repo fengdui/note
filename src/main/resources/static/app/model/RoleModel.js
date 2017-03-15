@@ -1,4 +1,4 @@
-Ext.define('AM.model.IpModel', {
+Ext.define('AM.model.RoleModel', {
     extend : 'Ext.data.Model',
     fields : ['ip', 'address'],
     proxy: {

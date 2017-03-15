@@ -1,12 +1,12 @@
-Ext.define('AM.store.IpStore', {
+Ext.define('AM.store.RoleStore', {
     extend : 'Ext.data.Store',
-    fields : ['ip', 'address'],
+    fields : ['role', 'description'],
     // model : 'IpModel'
-
+    autoLoad : true,
     proxy: {
         type: 'ajax',
         // url : 'http://ip.taobao.com/service/getIpInfo.php',
-        url : 'ip/query',
+        url : 'role/query',
         reader: {
             type: 'json',
             root: 'data'

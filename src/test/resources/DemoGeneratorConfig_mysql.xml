@@ -8,7 +8,7 @@
 
 	<classPathEntry location="${jdbc.path}" />
 
-	<context id="spring-boot-ext-demo" targetRuntime="MyBatis3">
+	<context id="fengdui-extjs" targetRuntime="MyBatis3">
 		<!-- <plugin type="cn.com.bsfit.frms.policy.plugins.mysql.PaginationPlugin" /> -->
 		<plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin" />
 		<plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
@@ -27,23 +27,23 @@
 			<property name="forceBigDecimals" value="false" />
 		</javaTypeResolver>
 
-		<javaModelGenerator targetPackage="cn.com.bsfit.pojo"
-			targetProject="spring-boot-ext-demo/src/main/java">
+		<javaModelGenerator targetPackage="com.fengdui.extjs.pojo"
+			targetProject="fengdui-extjs/src/main/java">
 			<property name="enableSubPackages" value="true" />
 			<property name="trimStrings" value="true" />
 		</javaModelGenerator>
 
-		<sqlMapGenerator targetPackage="cn.com.bsfit.sqlmap"
-			targetProject="spring-boot-ext-demo/src/main/resources">
+		<sqlMapGenerator targetPackage="com.fengdui.extjs.sqlmap"
+			targetProject="fengdui-extjs/src/main/resources">
 			<property name="enableSubPackages" value="true" />
 		</sqlMapGenerator>
 
 		<javaClientGenerator type="XMLMAPPER"
-			targetProject="spring-boot-ext-demo" targetPackage="cn.com.bsfit.mapper">
+			targetProject="fengdui-extjs" targetPackage="com.fengdui.extjs.mapper">
 			<property name="enableSubPackages" value="true" />
 		</javaClientGenerator>
 		
-		<table schema="test" tableName="user" domainObjectName="User">
+		<table schema="test" tableName="role" domainObjectName="Role">
 			<property name="useActualColumnNames" value="false" />
 			<property name="constructorBased" value="true" />
 			<property name="ignoreQualifiersAtRuntime" value="true" />
