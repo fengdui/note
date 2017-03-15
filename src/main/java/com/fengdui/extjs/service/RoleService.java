@@ -1,7 +1,5 @@
 package com.fengdui.extjs.service;
 
-import com.fengdui.extjs.pojo.Role;
-
 import java.util.List;
 
 /**

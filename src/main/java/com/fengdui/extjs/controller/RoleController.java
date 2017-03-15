@@ -1,6 +1,5 @@
 package com.fengdui.extjs.controller;
 
-import com.fengdui.extjs.pojo.Role;
 import com.fengdui.extjs.utils.ExtJSResponse;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

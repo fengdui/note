@@ -13,8 +13,9 @@
 		<plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin" />
 		<plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
 		<plugin type="org.mybatis.generator.plugins.CaseInsensitiveLikePlugin" />
-
-		<commentGenerator type="com.fengdui.extjs.mysql.CommentPlugin">
+		<!--<plugin type="com.fengdui.extjs.mysql.CommentPlugin" />-->
+		<!--<commentGenerator type="com.fengdui.extjs.mysql.CommentPlugin">-->
+		<commentGenerator>
 			<property name="suppressDate" value="true" />
 			<!--去除自动生成注释 -->
 			<property name="suppressAllComments" value="false" />
@@ -28,18 +29,18 @@
 		</javaTypeResolver>
 
 		<javaModelGenerator targetPackage="com.fengdui.extjs.pojo"
-			targetProject="fengdui-extjs/src/main/java">
+			targetProject="src/main/java">
 			<property name="enableSubPackages" value="true" />
-			<property name="trimStrings" value="true" />
+			<!--<property name="trimStrings" value="true" />-->
 		</javaModelGenerator>
 
 		<sqlMapGenerator targetPackage="com.fengdui.extjs.sqlmap"
-			targetProject="fengdui-extjs/src/main/resources">
+			targetProject="src/main/resources">
 			<property name="enableSubPackages" value="true" />
 		</sqlMapGenerator>
 
 		<javaClientGenerator type="XMLMAPPER"
-			targetProject="fengdui-extjs" targetPackage="com.fengdui.extjs.mapper">
+			targetProject="src/main/java" targetPackage="com.fengdui.extjs.mapper">
 			<property name="enableSubPackages" value="true" />
 		</javaClientGenerator>
 		
