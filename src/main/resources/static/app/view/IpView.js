@@ -26,15 +26,15 @@ Ext.define('AM.view.IpView', {
                 name : 'ipAddress',
                 labelAlign : 'right',
                 fieldLabel : '请输入ip'
-            },
-                {
+            }, {
                 xtype : 'tbseparator',
                 // itemId : 'add_separator'
             },
                 {
-                xtype : 'button',
-                text : '解析ip',
-                tooltip : '点击分析ip归属地'
+                    xtype : 'button',
+                    text : '解析ip',
+                    tooltip : '点击分析ip归属地',
+                    itemId : 'queryItem'
             }],
         },
         bbar: {
