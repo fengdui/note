@@ -4,6 +4,7 @@ import com.fengdui.extjs.pojo.Role;
 import com.fengdui.extjs.service.RoleService;
 import com.fengdui.extjs.utils.ExtJSResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -39,7 +40,8 @@ public class RoleController {
         return ExtJSResponse.successRes4Find(roles, roles.size());
     }
     @RequestMapping("/add")
-    public ExtJSResponse add(Role role)  {
+    public ExtJSResponse add(@RequestBody Role role)  {
+        System.out.println(role.getRole() +" "+role.getDescription());
         roleService.add(role);
         return ExtJSResponse.success();
     }

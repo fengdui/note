@@ -11,10 +11,10 @@ Ext.define('AM.store.RoleStore', {
             type: 'json',
             root: 'data'
         }
-    },
+    }
 
-    data : [
-        {ip : '111', address : '杭州'},
-        {ip : '222', address : '嘉兴'}
-    ]
+    // data : [
+    //     {ip : '111', address : '杭州'},
+    //     {ip : '222', address : '嘉兴'}
+    // ]
 });

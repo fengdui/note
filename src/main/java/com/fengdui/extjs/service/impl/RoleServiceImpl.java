@@ -25,7 +25,7 @@ public class RoleServiceImpl implements RoleService{
     public List<Role> list(String roleName) {
         RoleExample example = new RoleExample();
         if (!StringUtils.isEmpty(roleName)) {
-            example.createCriteria().andRoleLike(roleName);
+            example.createCriteria().andRoleLike("%"+roleName+"%");
         }
         return roleMapper.selectByExample(example);
     }

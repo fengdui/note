@@ -29,7 +29,7 @@ Ext.define('AM.view.RoleAddView', {
                 allowBlank : false,
                 labelAlign : "right",
                 afterLabelTextTpl : required,
-                name : 'roleName'
+                name : 'role'
             }, {
                 fieldLabel : '描述',
                 xtype : 'textfield',

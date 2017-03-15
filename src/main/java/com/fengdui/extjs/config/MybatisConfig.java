@@ -1,6 +1,7 @@
 package com.fengdui.extjs.config;
 
 import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.context.annotation.Configuration;
 
 /**
  * sqlSessionFactory在MybatisAutoConfiguration已经自动创建
@@ -9,7 +10,8 @@ import org.mybatis.spring.annotation.MapperScan;
  * @author FD
  * @date 2017/3/13
  */
-@MapperScan("com.fengdui.extjs.mapper")
+@Configuration
+@MapperScan(basePackages = {"com.fengdui.extjs.mapper"})
 public class MybatisConfig {
 
 }
