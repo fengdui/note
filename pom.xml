@@ -37,6 +37,13 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-jdbc</artifactId>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-hornetq -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-hornetq</artifactId>
+			<version>1.4.5.RELEASE</version>
+		</dependency>
+
 		<!--mysql驱动 -->
 		<dependency>
 			<groupId>mysql</groupId>
