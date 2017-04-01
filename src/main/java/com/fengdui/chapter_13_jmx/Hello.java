@@ -25,27 +25,27 @@ public class Hello implements HelloMBean {
         System.out.println("Hello World, " + name);
     }
 
-    public static void main(String[] args) {
-        try {
-//            MBeanServer server = MBeanServerFactory.createMBeanServer();
-            MBeanServer server = ManagementFactory.getPlatformMBeanServer();
-            server.registerMBean(new Hello(), new ObjectName("fd:name=hello"));
-
-//            HtmlAdaptorServer adapter = new HtmlAdaptorServer();
-//            server.registerMBean(adapter, new ObjectName("fd:name=adapter"));
+//    public static void main(String[] args) {
+//        try {
+////            MBeanServer server = MBeanServerFactory.createMBeanServer();
+//            MBeanServer server = ManagementFactory.getPlatformMBeanServer();
+//            server.registerMBean(new Hello(), new ObjectName("fd:name=hello"));
 //
-//            adapter.start();
-            while (true) {
-
-            }
-        } catch (InstanceAlreadyExistsException e) {
-            e.printStackTrace();
-        } catch (MBeanRegistrationException e) {
-            e.printStackTrace();
-        } catch (NotCompliantMBeanException e) {
-            e.printStackTrace();
-        } catch (MalformedObjectNameException e) {
-            e.printStackTrace();
-        }
-    }
+////            HtmlAdaptorServer adapter = new HtmlAdaptorServer();
+////            server.registerMBean(adapter, new ObjectName("fd:name=adapter"));
+////
+////            adapter.start();
+//            while (true) {
+//
+//            }
+//        } catch (InstanceAlreadyExistsException e) {
+//            e.printStackTrace();
+//        } catch (MBeanRegistrationException e) {
+//            e.printStackTrace();
+//        } catch (NotCompliantMBeanException e) {
+//            e.printStackTrace();
+//        } catch (MalformedObjectNameException e) {
+//            e.printStackTrace();
+//        }
+//    }
 }
