@@ -9,12 +9,16 @@
         <module name="eureka-consumer" />
         <module name="eureka-provider" />
         <module name="eureka-server" />
+        <module name="eureka-server2" />
+        <module name="eureka-server3" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="eureka-consumer" target="1.7" />
       <module name="eureka-provider" target="1.7" />
       <module name="eureka-server" target="1.7" />
+      <module name="eureka-server2" target="1.7" />
+      <module name="eureka-server3" target="1.7" />
     </bytecodeTargetLevel>
   </component>
 </project>
