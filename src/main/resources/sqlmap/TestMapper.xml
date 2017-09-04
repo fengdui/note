@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mycat.test.model.Test">
+
+	<resultMap type="com.mycat.test.model.Test" id="testResultMap">
+		<result property="id" column="id_"/>
+  		<result property="name" column="name_"/>
+  		<result property="userId" column="user_id"/>
+	</resultMap>
+
+    <select id="selectAll" resultMap="testResultMap">
+        select * from sam_test
+    </select>
+
+    <select id="selectSome" parameterType="java.util.Map" resultMap="testResultMap">
+        select * from sam_test limit #{offset},#{limit}
+    </select>
+
+    <select id="getObject" resultMap="testResultMap" parameterType="java.lang.Object">
+        select * from sam_test where id_ = #{id}
+    </select>
+
+    <insert id="insert" parameterType="com.mycat.test.model.Test">
+        INSERT INTO sam_test(
+        name_,
+        user_id
+        )
+        VALUES(
+            #{name,jdbcType=VARCHAR},
+            #{userId,jdbcType=BIGINT}
+        )
+        <selectKey resultType="java.lang.Long" order="AFTER" keyProperty="id">
+            select last_insert_id() as id
+        </selectKey>
+    </insert>
+
+    <update id="update" parameterType="com.mycat.test.model.Test">
+        update sam_test
+        <set>
+            <if test="name != null and name != ''">
+              name_ = #{name},
+            </if>
+            <if test="userId != null">
+              user_id = #{userId},
+            </if>
+        </set>
+        where id_=#{id}
+    </update>
+
+    <delete id="delete" parameterType="java.lang.Object">
+        delete from sam_test where id = #{id}
+    </delete>
+
+    <select id="findOneByMap" resultMap="testResultMap">
+        select * from sam_test where 1=1 AND
+        <foreach item="param" index="key" collection="list"  open="" separator="AND" close="">
+            ${param.name} = #{param.value}
+        </foreach>
+        limit 0, 1
+    </select>
+
+    <select id="findOneByObject" parameterType="com.mycat.test.model.Test" resultMap="testResultMap">
+        select * from sam_test
+        <where>
+                <if test="name != null">
+                    and name_=#{name}
+                </if>
+                <if test="userId != null">
+                    and user_id=#{userId}
+                </if>
+        </where>
+        limit 0, 1
+    </select>
+
+    <select id="findByMap" resultMap="testResultMap">
+        select * from sam_test where 1=1 AND
+        <foreach item="param" index="key" collection="list" open="" separator="AND" close="">
+            ${param.name} = #{param.value}
+        </foreach>
+    </select>
+
+    <select id="findByObject" parameterType="com.mycat.test.model.Test" resultMap="testResultMap">
+        select * from sam_test
+        <where>
+            <if test="name != null">
+                and name_=#{name}
+            </if>
+            <if test="userId != null">
+                and user_id=#{userId}
+            </if>
+        </where>
+    </select>
+
+    <select id="findByIn" resultMap="testResultMap">
+        select * from sam_test where 1=1 AND
+        <foreach item="param" index="key" collection="list"  open="" separator="AND" close="">
+            ${param.name} IN (#{param.value})
+        </foreach>
+    </select>
+
+    <select id="findByLike" resultMap="testResultMap">
+        select * from sam_test where 1=1 AND
+        <foreach item="param" index="key" collection="list"  open="" separator="AND" close="">
+            ${param.name} LIKE #{param.value}
+        </foreach>
+    </select>
+
+    <select id="getTotalCount" resultType="int">
+        select count(1) from sam_test
+    </select>
+
+    <select id="getCount" parameterType="java.util.Map" resultType="int">
+        select count(1) from sam_test where 1=1
+        <if test="whereClause != null">
+        ${whereClause}
+        </if>
+    </select>
+
+    <select id="query" parameterType="java.util.Map" resultMap="testResultMap">
+        select ${fieldsClause} from sam_test where 1=1
+        <if test="whereClause != null">
+        ${whereClause}
+        </if>
+        <if test="orderClause != null">
+        ${orderClause}
+        </if>
+        limit ${limit} offset ${offset}
+    </select>
+
+</mapper>
