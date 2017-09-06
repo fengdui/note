@@ -2,25 +2,22 @@
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
-    <title>修改信息</title>
+    <title>新增用户信息</title>
 </head>
 <body>
-<form id="editForm" method="post" action="${request.contextPath}/test/edit">
+<form id="addForm" method="post" action="${request.contextPath}/user/add">
     <table border="1" bordercolor="#cccccc" cellpadding="0" cellspacing="0">
         <tr>
-            <td colspan="4" bgcolor="#1d98db"><font size="3">修改信息</font></td>
+            <td colspan="4" bgcolor="#1d98db"><font size="3">新增用户信息</font></td>
         </tr>
-        <input type="text" name="id" value="${test.id}">
         <tr>
             <td>姓名:</td>
             <td>
-                <input type="text" name="name" value="${test.name}">
+                <input type="text" name="name">
             </td>
-        </tr>
-        <tr>
-            <td>用户ID:</td>
+            <td>角色id:</td>
             <td>
-                <input type="text" name="userId" value="${test.userId}">
+                <input type="text" name="roleId">
             </td>
         </tr>
     </table>

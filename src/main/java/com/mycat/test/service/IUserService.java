@@ -2,17 +2,14 @@ package com.mycat.test.service;
 
 import com.base.exception.ServiceException;
 import com.base.service.IBasicService;
-import com.mycat.test.model.Test;
+import com.mycat.test.model.User;
 
 import java.util.List;
 
 /**
-* @ClassName:ITestService
-* @Description: test
-* @author: suxl
-* @date:2015-01-19 16:40:14
-*/
-public interface ITestService extends IBasicService<Test>{
+ *
+ */
+public interface IUserService extends IBasicService<User>{
 
     /**
     * 获取用户所属信息
@@ -20,6 +17,6 @@ public interface ITestService extends IBasicService<Test>{
     * @return
     * @throws com.base.exception.ServiceException
     */
-    public List<Test> getListByUserId(Long userId) throws ServiceException;
+    public List<User> getListByUserId(Long userId) throws ServiceException;
 
 }

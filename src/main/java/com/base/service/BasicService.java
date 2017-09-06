@@ -22,7 +22,7 @@ public abstract class BasicService<T> implements IBasicService<T> {
 
     public abstract IBasicDao<T> getDao();
 
-    @Transactional(propagation= Propagation.NOT_SUPPORTED)
+//    @Transactional(propagation= Propagation.NOT_SUPPORTED)
     public List<T> getAll() throws ServiceException {
         try{
             return getDao().getAll();

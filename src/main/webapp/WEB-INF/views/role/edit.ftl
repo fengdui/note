@@ -2,24 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
-    <title>新增信息</title>
+    <title>修改角色信息</title>
 </head>
 <body>
-<form id="addForm" method="post" action="${request.contextPath}/test/add">
+<form id="editForm" method="post" action="${request.contextPath}/role/edit">
     <table border="1" bordercolor="#cccccc" cellpadding="0" cellspacing="0">
         <tr>
-            <td colspan="4" bgcolor="#1d98db"><font size="3">新增信息</font></td>
+            <td colspan="4" bgcolor="#1d98db"><font size="3">修改角色信息</font></td>
         </tr>
+        <input type="text" name="roleId" value="${role.roleId}">
         <tr>
             <td>姓名:</td>
             <td>
-                <input type="text" name="name">
-            </td>
-        </tr>
-        <tr>
-            <td>用户ID:</td>
-            <td>
-                <input type="text" name="userId">
+                <input type="text" name="name" value="${role.name}">
             </td>
         </tr>
     </table>

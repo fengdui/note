@@ -4,6 +4,7 @@
     <title>index</title>
 </head>
 <body>
-<a href="/test/">查看数据列表</a>
+<a href="/role/">查看角色列表</a> <a href="/role/toAdd">添加角色</a> <br/>
+<a href="/user/">查看用户列表</a> <a href="/user/toAdd">添加用户</a>
 </body>
 </html>

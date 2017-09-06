@@ -302,6 +302,7 @@
                         <contextPath>/</contextPath>
                         <defaultsDescriptor>src/main/resources/webdefault.xml</defaultsDescriptor>
                     </webAppConfig>
+
                 </configuration>
             </plugin>
         </plugins>
