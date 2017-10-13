@@ -1,4 +1,4 @@
-package com.fengdui.java8.chap2;
+package com.fengdui.note.java8action.chap2;
 
 /**
  * @author FD

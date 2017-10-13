@@ -4,12 +4,16 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.fengdui</groupId>
-	<artifactId>note</artifactId>
+	<artifactId>learn</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<name>note</name>
-	<description>我的读书笔记</description>
+	<description>
+		我的读书笔记以及没有相关书籍的框架学习
+		读书笔记groupId以com.fengdui.note开头
+		没有书籍的框架以com.fengdui.test开头
+	</description>
 
 	<modules>
 		<module>spring-action</module>
@@ -17,6 +21,6 @@
 		<module>netty-action</module>
 		<module>framework</module>
 		<module>core-java</module>
-		<!--<module>java8-action</module>-->
+		<module>java8-action</module>
 	</modules>
 </project>

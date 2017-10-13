@@ -1,4 +1,4 @@
-package com.fengdui.java8.chap2;
+package com.fengdui.note.java8action.chap2;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="core-java" />
         <module name="framework" />
+        <module name="java8-action" />
         <module name="jiangzhioffer" />
         <module name="netty-action" />
         <module name="spring-action" />

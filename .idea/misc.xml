@@ -7,6 +7,7 @@
         <option value="$PROJECT_DIR$/netty-action/pom.xml" />
         <option value="$PROJECT_DIR$/framework/pom.xml" />
         <option value="$PROJECT_DIR$/core-java/pom.xml" />
+        <option value="$PROJECT_DIR$/java8-action/pom.xml" />
       </list>
     </option>
   </component>
