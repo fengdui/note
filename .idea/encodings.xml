@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" native2AsciiForPropertiesFiles="true" defaultCharsetForPropertiesFiles="UTF-8">
+    <file url="file://$PROJECT_DIR$/src/main/java/aio/AIOClient.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/aio/AIOServer.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/netty/WebSocketHandler.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/netty/WebSocketServer.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/nio/NIOClient.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/nio/NIOServer.java" charset="UTF-8" />
+    <file url="PROJECT" charset="UTF-8" />
+  </component>
+</project>
