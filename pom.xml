@@ -28,6 +28,7 @@
 		<module>netty-action</module> 				<!-- 2016.11 学习《netty实战》 给公司做文件服务器 -->
 		<module>rocketmq</module>					<!-- 2016.12 学习rmq中间件 -->
 		<module>dubbo-client</module>     			<!-- 2017.01 学习dobbo框架 -->
+		<module>dubbo-server</module>				<!-- 2017.01 学习dobbo框架 -->
 		<module>spring-security</module>			<!-- 2017.01 学习security框架 outh2等 -->
 													<!-- 2017.07 学习《java并发编程实战》 -->
 		<module>java8-action</module>				<!-- 2017.02 学习《java8实战》 -->
