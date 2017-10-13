@@ -2,6 +2,7 @@
 <project version="4">
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$/mycat" />
+    <type id="Spring" />
   </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">
@@ -16,6 +17,7 @@
         <option value="$PROJECT_DIR$/shiro/pom.xml" />
         <option value="$PROJECT_DIR$/dubbo-client/pom.xml" />
         <option value="$PROJECT_DIR$/spring-security/pom.xml" />
+        <option value="$PROJECT_DIR$/extjs/pom.xml" />
       </list>
     </option>
   </component>

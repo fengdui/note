@@ -1,6 +1,6 @@
-package com.fengdui.extjs.service;
+package com.fengdui.test.extjs.service;
 
-import com.fengdui.extjs.pojo.Role;
+import com.fengdui.test.extjs.pojo.Role;
 
 import java.util.List;
 

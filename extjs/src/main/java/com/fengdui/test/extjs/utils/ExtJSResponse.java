@@ -3,7 +3,7 @@
  * Copyright © 2010 杭州邦盛金融信息技术有限公司 版权所有
  *
  */
-package com.fengdui.extjs.utils;
+package com.fengdui.test.extjs.utils;
 
 import java.util.HashMap;
 

@@ -1,14 +1,15 @@
-package com.fengdui.extjs.service.impl;
+package com.fengdui.test.extjs.service.impl;
 
-import com.fengdui.extjs.mapper.RoleMapper;
-import com.fengdui.extjs.pojo.Role;
-import com.fengdui.extjs.pojo.RoleExample;
-import com.fengdui.extjs.service.RoleService;
+import com.fengdui.test.extjs.mapper.RoleMapper;
+import com.fengdui.test.extjs.pojo.Role;
+import com.fengdui.test.extjs.pojo.RoleExample;
+import com.fengdui.test.extjs.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.util.List;
+
 
 /**
  * @author FD
@@ -16,7 +17,7 @@ import java.util.List;
  */
 
 @Service
-public class RoleServiceImpl implements RoleService{
+public class RoleServiceImpl implements RoleService {
 
     @Autowired
     private RoleMapper roleMapper;

@@ -1,4 +1,4 @@
-package com.fengdui.extjs.oracle;
+package com.fengdui.test.extjs.oracle;
 
 import org.mybatis.generator.api.CommentGenerator;
 import org.mybatis.generator.api.IntrospectedTable;

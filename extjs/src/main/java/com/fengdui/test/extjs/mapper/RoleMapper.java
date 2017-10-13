@@ -1,10 +1,11 @@
-package com.fengdui.extjs.mapper;
+package com.fengdui.test.extjs.mapper;
 
-import com.fengdui.extjs.pojo.Role;
-import com.fengdui.extjs.pojo.RoleExample;
-import java.util.List;
+import com.fengdui.test.extjs.pojo.Role;
+import com.fengdui.test.extjs.pojo.RoleExample;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public interface RoleMapper {

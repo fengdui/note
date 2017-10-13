@@ -29,6 +29,7 @@
 		<module>shiro</module>
 		<module>dubbo-client</module>
 		<module>spring-security</module>
+		<module>extjs</module>
 		<module>mycat</module>
 	</modules>
 </project>

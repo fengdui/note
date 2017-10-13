@@ -1,4 +1,4 @@
-package com.fengdui.extjs.pojo;
+package com.fengdui.test.extjs.pojo;
 
 import java.util.ArrayList;
 import java.util.List;

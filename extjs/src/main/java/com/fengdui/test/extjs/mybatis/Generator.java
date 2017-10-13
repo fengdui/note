@@ -1,4 +1,4 @@
-package com.fengdui.extjs.mybatis;
+package com.fengdui.test.extjs.mybatis;
 
 import org.mybatis.generator.api.MyBatisGenerator;
 import org.mybatis.generator.config.Configuration;

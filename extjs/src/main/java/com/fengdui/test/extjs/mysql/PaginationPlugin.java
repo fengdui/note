@@ -1,4 +1,4 @@
-package com.fengdui.extjs.mysql;
+package com.fengdui.test.extjs.mysql;
 
 import org.mybatis.generator.api.CommentGenerator;
 import org.mybatis.generator.api.IntrospectedTable;

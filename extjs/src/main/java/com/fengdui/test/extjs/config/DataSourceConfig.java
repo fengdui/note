@@ -1,4 +1,4 @@
-package com.fengdui.extjs.config;
+package com.fengdui.test.extjs.config;
 
 import org.springframework.context.annotation.Configuration;
 
