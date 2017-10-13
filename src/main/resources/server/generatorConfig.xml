@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+    <classPathEntry
+        location="C:\Users\lutai\.m2\repository\mysql\mysql-connector-java\5.1.38\mysql-connector-java-5.1.38.jar" />
+    <context id="context1">
+        <commentGenerator>
+            <property name="suppressAllComments" value="true" /><!-- 是否取消注释 -->
+            <property name="suppressDate" value="true" /> <!-- 是否生成注释代时间戳 -->
+        </commentGenerator>
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+            connectionURL="jdbc:mysql://localhost:3306/zheyuevr" userId="root"
+            password="root" />
+ 
+        <javaModelGenerator targetPackage="com.lutai.admin.auth.entity"
+            targetProject="src\main\java\" />
+        <sqlMapGenerator targetPackage="com.lutai.admin.auth.dao"
+            targetProject="src\main\resources\" />
+        <javaClientGenerator targetPackage="com.lutai.admin.auth.dao"
+            targetProject="src\main\java\" type="XMLMAPPER" />
+ 
+        <table tableName="sys_file" domainObjectName="SysFile"
+            enableCountByExample="false" enableSelectByExample="false"
+            enableDeleteByExample="false" enableUpdateByExample="false">
+        </table>
+    </context>
+</generatorConfiguration>

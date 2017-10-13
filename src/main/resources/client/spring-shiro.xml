@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+
+       <!--&lt;!&ndash;<bean id="sessionDAO" class="com.zheyue.authserver.redis.RedisSessionDAO"/>&ndash;&gt;-->
+       <!--<bean id="passwordService" class="org.apache.shiro.authc.credential.DefaultPasswordService"/>-->
+       <!--<bean id="passwordMatcher" class="org.apache.shiro.authc.credential.PasswordMatcher"></bean>-->
+       <!--&lt;!&ndash; Realm实现 &ndash;&gt;-->
+       <!--<bean id="userRealm" class="com.zheyue.authserver.realm.UserRealm">-->
+              <!--<property name="passwordService" ref="passwordService"/>-->
+              <!--<property name="credentialsMatcher" ref="passwordMatcher"/>-->
+       <!--</bean>-->
+
+       <!--&lt;!&ndash; 会话管理器 &ndash;&gt;-->
+       <!--<bean id="sessionManager" class="org.apache.shiro.web.session.mgt.ServletContainerSessionManager"/>-->
+
+       <!--&lt;!&ndash; 安全管理器 &ndash;&gt;-->
+       <!--<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">-->
+              <!--<property name="realm" ref="userRealm"/>-->
+              <!--<property name="sessionManager" ref="sessionManager"/>-->
+              <!--&lt;!&ndash;<property name="rememberMeManager" ref="rememberMeManager"/>&ndash;&gt;-->
+              <!--&lt;!&ndash;<property name="cacheManager" ref="cacheManager"/>&ndash;&gt;-->
+       <!--</bean>-->
+
+       <!--&lt;!&ndash; Shiro的Web过滤器 &ndash;&gt;-->
+       <!--<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">-->
+              <!--<property name="securityManager" ref="securityManager"/>-->
+              <!--<property name="loginUrl" value="/login"/>-->
+              <!--<property name="successUrl" value="/welcome"/>-->
+              <!--<property name="unauthorizedUrl" value="/403"/>-->
+              <!--<property name="filters">-->
+                     <!--<util:map>-->
+                            <!--<entry key="authc" value-ref="formAuthenticationFilter"/>-->
+                            <!--&lt;!&ndash;<entry key="sysUser" value-ref="sysUserFilter"/>&ndash;&gt;-->
+                     <!--</util:map>-->
+              <!--</property>-->
+              <!--<property name="filterChainDefinitions">-->
+                     <!--<value>-->
+                            <!--/remoteService = anon-->
+                            <!--/login = authc-->
+                            <!--/loginc = authc-->
+                            <!--/logout = logout-->
+                            <!--&lt;!&ndash;/authenticated = authc&ndash;&gt;-->
+                            <!--/** = authc-->
+                     <!--</value>-->
+              <!--</property>-->
+       <!--</bean>-->
+
+       <!--<bean id="formAuthenticationFilter" class="org.apache.shiro.web.filter.authc.FormAuthenticationFilter"/>-->
+
+
+       <!--&lt;!&ndash; 相当于调用SecurityUtils.setSecurityManager(securityManager) &ndash;&gt;-->
+       <!--<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">-->
+              <!--<property name="staticMethod" value="org.apache.shiro.SecurityUtils.setSecurityManager" />-->
+              <!--<property name="arguments" ref="securityManager" />-->
+       <!--</bean>-->
+
+       <!--&lt;!&ndash; Shiro生命周期处理器&ndash;&gt;-->
+       <!--<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>-->
+
+       <!--<aop:aspectj-autoproxy proxy-target-class="true"/>-->
+       <!--<bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">-->
+              <!--<property name="securityManager" ref="securityManager"/>-->
+       <!--</bean>-->
+</beans>
