@@ -1,4 +1,4 @@
-package com.fengdui.rmq.consumer;
+package com.fengdui.test.rocketmq.consumer;
 
 /**
  * @author FD

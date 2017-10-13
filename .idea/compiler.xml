@@ -14,6 +14,7 @@
         <module name="jiangzhioffer" />
         <module name="mycat" />
         <module name="netty-action" />
+        <module name="rocketmq" />
         <module name="shiro" />
         <module name="spring-action" />
         <module name="spring-security" />
@@ -30,6 +31,7 @@
       <module name="mycat" target="1.5" />
       <module name="netty-action" target="1.8" />
       <module name="note" target="1.5" />
+      <module name="rocketmq" target="1.8" />
       <module name="shiro" target="1.8" />
       <module name="spring-action" target="1.8" />
       <module name="spring-security" target="1.8" />

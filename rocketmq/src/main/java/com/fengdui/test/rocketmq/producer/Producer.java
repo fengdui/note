@@ -1,4 +1,4 @@
-package com.fengdui.rmq.producer;
+package com.fengdui.test.rocketmq.producer;
 
 /**
  * @author FD
