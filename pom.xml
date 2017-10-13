@@ -6,8 +6,13 @@
 	<groupId>com.fengdui</groupId>
 	<artifactId>learn</artifactId>
 	<modules>
+
+		<!-- 第一家公司 -->
 		<module>spring-action</module> 		<!-- 2015.07 暑假开始学习，并且平时遇到问题会学习 真正创建项目是在2016.05.25-->
 		<module>xhoa</module>				<!-- 2015.09 在xh实习，在2017.02重新学习了xhoa -->
+
+
+		<!-- 第二家公司 -->
 		<module>jiangzhioffer</module> 		<!-- 2016.05 抽空在zheyue那会做的 -->
 		<module>core-java</module> 			<!-- 2016.05 学习《corejava》 巩固基础 -->
 											<!-- 2016.06 毕业 拓展视野 opencv opengl等-->
@@ -15,7 +20,8 @@
 											<!-- 2016.08 学习go 在牛客网答题 -->
 		<module>shiro</module> 				<!-- 2016.10 学习shiro框架 -->
 		<module>netty-action</module> 		<!-- 2016.11 学习《netty实战》 给公司做文件服务器 -->
-		<module>dubbo-client</module>     	<!-- 2016.12 学习dobbo框架 -->
+		<module>rocketmq</module>			<!-- 2016.12 学习rmq中间件 -->
+		<module>dubbo-client</module>     	<!-- 2017.13 学习dobbo框架 -->
 		<module>spring-security</module>	<!-- 2017.01 学习security框架 outh2等 -->
 											<!-- 2017.07 学习《java并发编程实战》 -->
 		<module>java8-action</module>		<!-- 2017.02 学习《java8实战》 -->
