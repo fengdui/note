@@ -25,6 +25,8 @@
 
 
 
+		<module>xhoa</module>
+		<module>shiro</module>
 		<module>mycat</module>
 	</modules>
 </project>

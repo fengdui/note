@@ -13,6 +13,7 @@
         <option value="$PROJECT_DIR$/java8-action/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/webapp/pom.xml" />
         <option value="$PROJECT_DIR$/xhoa/pom.xml" />
+        <option value="$PROJECT_DIR$/shiro/pom.xml" />
       </list>
     </option>
   </component>
