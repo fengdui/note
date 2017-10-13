@@ -14,6 +14,7 @@
         <option value="$PROJECT_DIR$/src/main/webapp/pom.xml" />
         <option value="$PROJECT_DIR$/xhoa/pom.xml" />
         <option value="$PROJECT_DIR$/shiro/pom.xml" />
+        <option value="$PROJECT_DIR$/dubbo-client/pom.xml" />
       </list>
     </option>
   </component>

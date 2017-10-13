@@ -1,4 +1,4 @@
-package com.fengdui.dubbo.service;
+package com.fengdui.test.dubbo.client.service;
 
 /**
  * @author FD

@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="core-java" />
+        <module name="dubbo-client" />
         <module name="framework" />
         <module name="java8-action" />
         <module name="jiangzhioffer" />
@@ -19,6 +20,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="core-java" target="1.8" />
+      <module name="dubbo-client" target="1.8" />
       <module name="framework" target="1.8" />
       <module name="java8-action" target="1.8" />
       <module name="jiangzhioffer" target="1.8" />

@@ -1,4 +1,4 @@
-package com.fengdui.dubbo;
+package com.fengdui.test.dubbo.client;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
