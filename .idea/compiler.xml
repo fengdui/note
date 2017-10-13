@@ -31,6 +31,7 @@
       <module name="machineLearningInAction" target="1.5" />
       <module name="mycat" target="1.5" />
       <module name="netty-action" target="1.8" />
+      <module name="nltk" target="1.5" />
       <module name="note" target="1.5" />
       <module name="rocketmq" target="1.8" />
       <module name="shiro" target="1.8" />

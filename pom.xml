@@ -20,6 +20,7 @@
 		<module>jiangzhioffer</module> 				<!-- 2016.05 抽空在zheyue那会做的 -->
 		<module>core-java</module> 					<!-- 2016.05 学习《corejava》 巩固基础 -->
 													<!-- 2016.06 毕业 拓展视野 opencv opengl等-->
+		<module>nltk</module>						<!-- 2016.07 学习《PYTHON自然语言处理》-->
 		<module>framework</module> 					<!-- 2016.07 学习《架构探险》 此外学习了hive-->
 													<!-- 2016.08 学习go 在牛客网答题 -->
 													<!-- 2016.09 学习spring源码 -->
