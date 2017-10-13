@@ -6,10 +6,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="jiangzhioffer" />
         <module name="spring-action" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="jiangzhioffer" target="1.8" />
       <module name="note" target="1.5" />
       <module name="spring-action" target="1.8" />
     </bytecodeTargetLevel>
