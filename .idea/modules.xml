@@ -12,6 +12,7 @@
       <module fileurl="file://$PROJECT_DIR$/note.iml" filepath="$PROJECT_DIR$/note.iml" />
       <module fileurl="file://$PROJECT_DIR$/shiro/shiro.iml" filepath="$PROJECT_DIR$/shiro/shiro.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring-action/spring-action.iml" filepath="$PROJECT_DIR$/spring-action/spring-action.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-security/spring-security.iml" filepath="$PROJECT_DIR$/spring-security/spring-security.iml" />
       <module fileurl="file://$PROJECT_DIR$/xhoa/xhoa.iml" filepath="$PROJECT_DIR$/xhoa/xhoa.iml" />
     </modules>
   </component>

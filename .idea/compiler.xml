@@ -15,6 +15,7 @@
         <module name="netty-action" />
         <module name="shiro" />
         <module name="spring-action" />
+        <module name="spring-security" />
         <module name="xhoa" />
       </profile>
     </annotationProcessing>
@@ -29,6 +30,7 @@
       <module name="note" target="1.5" />
       <module name="shiro" target="1.8" />
       <module name="spring-action" target="1.8" />
+      <module name="spring-security" target="1.8" />
       <module name="xhoa" target="1.8" />
     </bytecodeTargetLevel>
   </component>

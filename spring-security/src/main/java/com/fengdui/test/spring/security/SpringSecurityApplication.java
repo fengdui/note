@@ -22,7 +22,7 @@ public class SpringSecurityApplication {
 
 	public static void main(String[] args) {
 //		SpringApplication.run(ZheyueSecurityApplication.class, args);
-		SpringApplication application = new SpringApplication(SecurityApplication.class);
+		SpringApplication application = new SpringApplication(SpringSecurityApplication.class);
 //		application.setBannerMode(Banner.Mode.OFF);
 		application.run(args);
 	}
