@@ -1,7 +1,7 @@
 package com.fengdui.note.springaction.chapter_12_jms.config;
 
-import com.fengdui.chapter_12_jms.MyListener;
-import com.fengdui.chapter_12_jms.listener.BatchMessageListenerContainer;
+import com.fengdui.note.springaction.chapter_12_jms.MyListener;
+import com.fengdui.note.springaction.chapter_12_jms.listener.BatchMessageListenerContainer;
 import org.hornetq.api.core.TransportConfiguration;
 import org.hornetq.api.jms.HornetQJMSClient;
 import org.hornetq.api.jms.JMSFactoryType;

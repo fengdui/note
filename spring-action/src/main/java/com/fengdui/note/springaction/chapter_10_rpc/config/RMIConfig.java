@@ -1,7 +1,8 @@
 package com.fengdui.note.springaction.chapter_10_rpc.config;
 
-import com.fengdui.chapter_10_rpc.springRMI.HelloService;
-import com.fengdui.chapter_10_rpc.springRMI.HelloServiceImpl;
+
+import com.fengdui.note.springaction.chapter_10_rpc.springRMI.HelloService;
+import com.fengdui.note.springaction.chapter_10_rpc.springRMI.HelloServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.remoting.rmi.RmiServiceExporter;
