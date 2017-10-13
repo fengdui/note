@@ -6,6 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="core-java" />
         <module name="framework" />
         <module name="jiangzhioffer" />
         <module name="netty-action" />
@@ -13,6 +14,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="core-java" target="1.8" />
       <module name="framework" target="1.8" />
       <module name="jiangzhioffer" target="1.8" />
       <module name="netty-action" target="1.8" />
