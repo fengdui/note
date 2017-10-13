@@ -1,4 +1,4 @@
-package com.fengdui.chapter_12_jms;
+package com.fengdui.note.springaction.chapter_12_jms;
 
 import com.fengdui.chapter_12_jms.listener.SessionAwareBatchMessageListener;
 import org.springframework.jms.listener.adapter.MessageListenerAdapter;

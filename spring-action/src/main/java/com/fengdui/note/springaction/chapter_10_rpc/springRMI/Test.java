@@ -1,6 +1,4 @@
-package com.fengdui.chapter_10_rpc.springRMI;
-
-import org.springframework.remoting.rmi.RmiProxyFactoryBean;
+package com.fengdui.note.springaction.chapter_10_rpc.springRMI;
 
 /**
  * @author FD

@@ -1,4 +1,4 @@
-package com.fengdui.chapter_12_jms.config;
+package com.fengdui.note.springaction.chapter_12_jms.config;
 
 import com.fengdui.chapter_12_jms.MyListener;
 import com.fengdui.chapter_12_jms.listener.BatchMessageListenerContainer;
@@ -10,16 +10,12 @@ import org.hornetq.jms.client.HornetQConnectionFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 import org.springframework.jms.connection.CachingConnectionFactory;
 import org.springframework.jndi.JndiObjectFactoryBean;
 import org.springframework.jndi.JndiTemplate;
 
 import javax.jms.ConnectionFactory;
 import javax.naming.NamingException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Properties;
 
 /**

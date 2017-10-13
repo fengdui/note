@@ -1,4 +1,4 @@
-package com.fengdui.chapter_12_jms.listener;
+package com.fengdui.note.springaction.chapter_12_jms.listener;
 
 import javax.jms.JMSException;
 import javax.jms.Message;

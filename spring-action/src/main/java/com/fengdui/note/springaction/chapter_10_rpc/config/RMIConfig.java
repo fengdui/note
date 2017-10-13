@@ -1,4 +1,4 @@
-package com.fengdui.chapter_10_rpc.config;
+package com.fengdui.note.springaction.chapter_10_rpc.config;
 
 import com.fengdui.chapter_10_rpc.springRMI.HelloService;
 import com.fengdui.chapter_10_rpc.springRMI.HelloServiceImpl;

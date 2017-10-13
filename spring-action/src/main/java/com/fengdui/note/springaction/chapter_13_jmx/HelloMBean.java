@@ -1,4 +1,4 @@
-package com.fengdui.chapter_13_jmx;
+package com.fengdui.note.springaction.chapter_13_jmx;
 
 /**
  * HelloMBean

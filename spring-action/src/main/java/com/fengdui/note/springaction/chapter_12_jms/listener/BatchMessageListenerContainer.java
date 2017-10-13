@@ -1,9 +1,8 @@
 /**
  * 
  */
-package com.fengdui.chapter_12_jms.listener;
+package com.fengdui.note.springaction.chapter_12_jms.listener;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jms.connection.ConnectionFactoryUtils;
 import org.springframework.jms.listener.DefaultMessageListenerContainer;
 import org.springframework.jms.listener.adapter.MessageListenerAdapter;

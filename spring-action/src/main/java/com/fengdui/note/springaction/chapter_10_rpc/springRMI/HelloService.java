@@ -1,6 +1,4 @@
-package com.fengdui.chapter_10_rpc.springRMI;
-
-import org.springframework.stereotype.Service;
+package com.fengdui.note.springaction.chapter_10_rpc.springRMI;
 
 /**
  * @author FD

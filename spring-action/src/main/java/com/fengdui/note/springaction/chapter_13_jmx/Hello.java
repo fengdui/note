@@ -1,7 +1,4 @@
-package com.fengdui.chapter_13_jmx;
-
-import javax.management.*;
-import java.lang.management.ManagementFactory;
+package com.fengdui.note.springaction.chapter_13_jmx;
 
 /**
  * Hello
