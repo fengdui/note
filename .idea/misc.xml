@@ -19,6 +19,7 @@
         <option value="$PROJECT_DIR$/spring-security/pom.xml" />
         <option value="$PROJECT_DIR$/extjs/pom.xml" />
         <option value="$PROJECT_DIR$/rocketmq/pom.xml" />
+        <option value="$PROJECT_DIR$/machineLearningInAction/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
