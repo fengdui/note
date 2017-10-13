@@ -17,5 +17,6 @@
 		<module>netty-action</module>
 		<module>framework</module>
 		<module>core-java</module>
+		<!--<module>java8-action</module>-->
 	</modules>
 </project>
