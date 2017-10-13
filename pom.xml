@@ -4,24 +4,41 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.fengdui</groupId>
+<<<<<<< HEAD
 	<artifactId>note</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<name>note</name>
 	<description>我的读书笔记</description>
+=======
+	<artifactId>spring-inAction</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>spring-inAction</name>
+	<description>spring-inAction</description>
+>>>>>>> e0e3ca73c4749a1280d90daf7e399f3f56058df4
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
+<<<<<<< HEAD
 		<version>1.5.7.RELEASE</version>
+=======
+		<version>1.4.3.RELEASE</version>
+>>>>>>> e0e3ca73c4749a1280d90daf7e399f3f56058df4
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+<<<<<<< HEAD
 		<java.version>1.8</java.version>
+=======
+		<java.version>1.7</java.version>
+>>>>>>> e0e3ca73c4749a1280d90daf7e399f3f56058df4
 	</properties>
 
 	<dependencies>
@@ -29,7 +46,31 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
 		</dependency>
+<<<<<<< HEAD
 
+=======
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-aop</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jdbc</artifactId>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-hornetq -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-hornetq</artifactId>
+			<version>1.4.5.RELEASE</version>
+		</dependency>
+
+		<!--mysql驱动 -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+>>>>>>> e0e3ca73c4749a1280d90daf7e399f3f56058df4
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -37,6 +78,7 @@
 		</dependency>
 	</dependencies>
 
+<<<<<<< HEAD
 	<build>
 		<plugins>
 			<plugin>
@@ -45,6 +87,16 @@
 			</plugin>
 		</plugins>
 	</build>
+=======
+	<!--<build>-->
+		<!--<plugins>-->
+			<!--<plugin>-->
+				<!--<groupId>org.springframework.boot</groupId>-->
+				<!--<artifactId>spring-boot-maven-plugin</artifactId>-->
+			<!--</plugin>-->
+		<!--</plugins>-->
+	<!--</build>-->
+>>>>>>> e0e3ca73c4749a1280d90daf7e399f3f56058df4
 
 
 </project>
