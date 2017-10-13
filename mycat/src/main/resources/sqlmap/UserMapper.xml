@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mycat.test.model.User">
+
+	<resultMap type="com.mycat.test.model.User" id="resultMap">
+		<result property="userId" column="user_id"/>
+  		<result property="name" column="name"/>
+        <result property="roleId" column="role_id"/>
+    </resultMap>
+
+    <select id="selectAll" resultMap="resultMap">
+        select * from user
+    </select>
+
+    <select id="selectSome" parameterType="java.util.Map" resultMap="resultMap">
+        select * from user limit #{offset},#{limit}
+    </select>
+
+    <select id="getObject" resultMap="resultMap" parameterType="java.lang.Object">
+        select * from user where user_id = #{userId}
+    </select>
+
+    <insert id="insert" parameterType="com.mycat.test.model.User">
+        INSERT INTO user(
+        name,
+        role_id
+        )
+        VALUES(
+            #{name,jdbcType=VARCHAR},
+            #{roleId,jdbcType=BIGINT}
+        )
+        <selectKey resultType="java.lang.Long" order="AFTER" keyProperty="user_id">
+            select last_insert_id()
+        </selectKey>
+    </insert>
+
+    <update id="update" parameterType="com.mycat.test.model.User">
+        update user
+        <set>
+            <if test="name != null and name != ''">
+              name_ = #{name}
+            </if>
+        </set>
+        where user_id=#{userId}
+    </update>
+
+    <delete id="delete" parameterType="java.lang.Object">
+        delete from user where id = #{userId}
+    </delete>
+
+    <select id="findOneByMap" resultMap="resultMap">
+        select * from user where 1=1 AND
+        <foreach item="param" index="key" collection="list"  open="" separator="AND" close="">
+            ${param.name} = #{param.value}
+        </foreach>
+        limit 0, 1
+    </select>
+
+    <select id="findOneByObject" parameterType="com.mycat.test.model.User" resultMap="resultMap">
+        select * from user
+        <where>
+                <if test="name != null">
+                    and name_=#{name}
+                </if>
+        </where>
+        limit 0, 1
+    </select>
+
+    <select id="findByMap" resultMap="resultMap">
+        select * from user where 1=1 AND
+        <foreach item="param" index="key" collection="list" open="" separator="AND" close="">
+            ${param.name} = #{param.value}
+        </foreach>
+    </select>
+
+    <select id="findByObject" parameterType="com.mycat.test.model.User" resultMap="resultMap">
+        select * from user
+        <where>
+            <if test="name != null">
+                and name_=#{name}
+            </if>
+        </where>
+    </select>
+
+    <select id="findByIn" resultMap="resultMap">
+        select * from user where 1=1 AND
+        <foreach item="param" index="key" collection="list"  open="" separator="AND" close="">
+            ${param.name} IN (#{param.value})
+        </foreach>
+    </select>
+
+    <select id="findByLike" resultMap="resultMap">
+        select * from user where 1=1 AND
+        <foreach item="param" index="key" collection="list"  open="" separator="AND" close="">
+            ${param.name} LIKE #{param.value}
+        </foreach>
+    </select>
+
+    <select id="getTotalCount" resultType="int">
+        select count(1) from user
+    </select>
+
+    <select id="getCount" parameterType="java.util.Map" resultType="int">
+        select count(1) from user where 1=1
+        <if test="whereClause != null">
+        ${whereClause}
+        </if>
+    </select>
+
+    <select id="query" parameterType="java.util.Map" resultMap="resultMap">
+        select ${fieldsClause} from user where 1=1
+        <if test="whereClause != null">
+        ${whereClause}
+        </if>
+        <if test="orderClause != null">
+        ${orderClause}
+        </if>
+        limit ${limit} offset ${offset}
+    </select>
+
+</mapper>

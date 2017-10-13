@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+    <appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d [%7r] %6p - %30.30c - %m \n"/>
+        </layout>
+    </appender>
+
+    <appender name="FILE-DEBUG" class="org.apache.log4j.FileAppender">
+        <param name="Append" value="false"/>
+        <param name="file" value="mycatDemo-debug.log"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d [%7r] %6p - %30.30c - %m \n"/>
+        </layout>
+    </appender>
+
+    <appender name="FILE" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="DatePattern" value="'.'yyyy-MM-dd"/>
+        <param name="Append" value="true"/>
+        <param name="file" value="mycatDemo.log"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d [%7r] %6p - %30.30c - %m \n"/>
+        </layout>
+        <filter class="org.apache.log4j.varia.LevelRangeFilter">
+            <param name="LevelMin" value="DEBUG"/>
+        </filter>
+    </appender>
+
+    <!--<appender name="FILE-ZOOKEEPER" class="org.apache.log4j.DailyRollingFileAppender">
+            <param name="DatePattern" value="'.'yyyy-MM-dd"/>
+            <param name="file" value="${las-im-scheduler.log.path}/las-report-zookeeper.log"/>
+            <layout class="org.apache.log4j.PatternLayout">
+                <param name="ConversionPattern" value="%d [%7r] %6p - %30.30c - %m \n"/>
+            </layout>
+        </appender>
+
+        <category name="org.apache.zookeeper" additivity="false">
+            <priority value="debug"/>
+            <appender-ref ref="FILE-ZOOKEEPER"/>
+        </category>
+    -->
+
+    <category name="org.cometd" additivity="true">
+        <priority value="ERROR"/>
+        <appender-ref ref="FILE"/>
+    </category>
+
+    <category name="org.springframework.orm.ibatis3" additivity="true">
+        <priority value="INFO"/>
+        <appender-ref ref="CONSOLE"/>
+    </category>
+
+    <category name="org.apache.ibatis" additivity="true">
+        <priority value="ERROR"/>
+        <appender-ref ref="CONSOLE"/>
+    </category>
+
+    <category name="java.sql" additivity="true">
+        <priority value="ERROR"/>
+        <appender-ref ref="CONSOLE"/>
+    </category>
+
+    <category name="com.mycat" additivity="true">
+        <priority value="debug"/>
+        <appender-ref ref="FILE"/>
+    </category>
+
+    <root>
+        <priority value="ERROR"/>
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="FILE-DEBUG"/>
+    </root>
+
+</log4j:configuration>
