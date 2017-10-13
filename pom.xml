@@ -14,5 +14,6 @@
 	<modules>
 		<module>spring-action</module>
 		<module>jiangzhioffer</module>
+		<module>netty-action</module>
 	</modules>
 </project>
