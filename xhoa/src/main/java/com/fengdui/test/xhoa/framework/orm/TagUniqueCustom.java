@@ -1,4 +1,4 @@
-package com.fengdui.oa.framework.orm;
+package com.fengdui.test.xhoa.framework.orm;
 
 import java.lang.annotation.*;
 

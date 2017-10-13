@@ -1,4 +1,4 @@
-package com.fengdui.oa.framework.util.reflection;
+package com.fengdui.test.xhoa.framework.util.reflection;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;

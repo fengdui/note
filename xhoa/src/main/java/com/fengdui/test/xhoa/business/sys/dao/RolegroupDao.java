@@ -1,7 +1,7 @@
-package com.fengdui.oa.business.sys.dao;
+package com.fengdui.test.xhoa.business.sys.dao;
 
-import com.fengdui.oa.business.sys.entity.Rolegroup;
-import com.fengdui.oa.framework.orm.MybatisDao;
+import com.fengdui.test.xhoa.business.sys.entity.Rolegroup;
+import com.fengdui.test.xhoa.framework.orm.MybatisDao;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 

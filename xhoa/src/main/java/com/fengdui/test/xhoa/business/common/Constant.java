@@ -1,7 +1,7 @@
-package com.fengdui.oa.business.common;
+package com.fengdui.test.xhoa.business.common;
 
-import com.fengdui.oa.framework.util.date.DateUtil;
-import com.fengdui.oa.framework.util.file.FileUtil;
+import com.fengdui.test.xhoa.framework.util.date.DateUtil;
+import com.fengdui.test.xhoa.framework.util.file.FileUtil;
 import org.springframework.web.context.ContextLoader;
 import org.springframework.web.multipart.MultipartFile;
 

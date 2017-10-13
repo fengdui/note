@@ -1,4 +1,4 @@
-package com.fengdui.oa.framework.orm;
+package com.fengdui.test.xhoa.framework.orm;
 
 import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.ProceedingJoinPoint;

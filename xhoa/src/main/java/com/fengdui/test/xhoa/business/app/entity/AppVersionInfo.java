@@ -1,8 +1,8 @@
-package com.fengdui.oa.business.app.entity;
+package com.fengdui.test.xhoa.business.app.entity;
 
 
-import com.fengdui.oa.framework.orm.EntityExtend;
-import com.fengdui.oa.framework.orm.TagLogicDelete;
+import com.fengdui.test.xhoa.framework.orm.EntityExtend;
+import com.fengdui.test.xhoa.framework.orm.TagLogicDelete;
 
 /**
  * @author fd

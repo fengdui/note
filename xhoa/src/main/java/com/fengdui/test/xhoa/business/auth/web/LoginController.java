@@ -1,14 +1,14 @@
-package com.fengdui.oa.business.auth.web;
+package com.fengdui.test.xhoa.business.auth.web;
 
-import com.fengdui.oa.business.auth.entity.User;
-import com.fengdui.oa.business.auth.service.UserService;
-import com.fengdui.oa.business.auth.verify.GeetestConfig;
-import com.fengdui.oa.business.auth.verify.GeetestLib;
-import com.fengdui.oa.framework.constant.ConstantSession;
-import com.fengdui.oa.framework.orm.MybatisService;
-import com.fengdui.oa.framework.util.http.HttpUtil;
-import com.fengdui.oa.framework.web.BaseController;
-import com.fengdui.oa.framework.web.PageRespData;
+import com.fengdui.test.xhoa.business.auth.entity.User;
+import com.fengdui.test.xhoa.business.auth.service.UserService;
+import com.fengdui.test.xhoa.business.auth.verify.GeetestConfig;
+import com.fengdui.test.xhoa.business.auth.verify.GeetestLib;
+import com.fengdui.test.xhoa.framework.constant.ConstantSession;
+import com.fengdui.test.xhoa.framework.orm.MybatisService;
+import com.fengdui.test.xhoa.framework.util.http.HttpUtil;
+import com.fengdui.test.xhoa.framework.web.BaseController;
+import com.fengdui.test.xhoa.framework.web.PageRespData;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

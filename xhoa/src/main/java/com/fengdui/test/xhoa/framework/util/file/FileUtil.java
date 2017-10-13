@@ -1,4 +1,4 @@
-package com.fengdui.oa.framework.util.file;
+package com.fengdui.test.xhoa.framework.util.file;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.web.multipart.MultipartFile;

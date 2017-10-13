@@ -1,4 +1,4 @@
-package com.fengdui.oa.business.auth.verify;
+package com.fengdui.test.xhoa.business.auth.verify;
 
 /**
  * GeetestWeb配置文件

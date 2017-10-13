@@ -1,4 +1,4 @@
-package com.fengdui.oa.framework.util.string;
+package com.fengdui.test.xhoa.framework.util.string;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.util.CollectionUtils;

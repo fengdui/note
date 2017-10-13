@@ -1,15 +1,15 @@
-package com.fengdui.oa.business.sys.web;
+package com.fengdui.test.xhoa.business.sys.web;
 
-import com.fengdui.oa.business.sys.entity.Role;
-import com.fengdui.oa.business.sys.entity.Rolegroup;
-import com.fengdui.oa.business.sys.service.MenuService;
-import com.fengdui.oa.business.sys.service.RoleService;
-import com.fengdui.oa.business.sys.service.RolegroupService;
-import com.fengdui.oa.framework.constant.ConstantColumn;
-import com.fengdui.oa.framework.orm.MybatisService;
-import com.fengdui.oa.framework.orm.PageFilter;
-import com.fengdui.oa.framework.web.BaseController;
-import com.fengdui.oa.framework.web.TableHeadInfo;
+import com.fengdui.test.xhoa.business.sys.entity.Role;
+import com.fengdui.test.xhoa.business.sys.entity.Rolegroup;
+import com.fengdui.test.xhoa.business.sys.service.MenuService;
+import com.fengdui.test.xhoa.business.sys.service.RoleService;
+import com.fengdui.test.xhoa.business.sys.service.RolegroupService;
+import com.fengdui.test.xhoa.framework.constant.ConstantColumn;
+import com.fengdui.test.xhoa.framework.orm.MybatisService;
+import com.fengdui.test.xhoa.framework.orm.PageFilter;
+import com.fengdui.test.xhoa.framework.web.BaseController;
+import com.fengdui.test.xhoa.framework.web.TableHeadInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

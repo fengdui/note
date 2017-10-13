@@ -1,12 +1,12 @@
-package com.fengdui.oa.business.app.web;
+package com.fengdui.test.xhoa.business.app.web;
 
-import com.fengdui.oa.business.app.entity.AppVersionInfo;
-import com.fengdui.oa.business.app.service.AppVersionInfoService;
-import com.fengdui.oa.framework.constant.Cue;
-import com.fengdui.oa.framework.orm.MybatisService;
-import com.fengdui.oa.framework.web.BaseController;
-import com.fengdui.oa.framework.web.PageRespData;
-import com.fengdui.oa.framework.web.TableHeadInfo;
+import com.fengdui.test.xhoa.business.app.entity.AppVersionInfo;
+import com.fengdui.test.xhoa.business.app.service.AppVersionInfoService;
+import com.fengdui.test.xhoa.framework.constant.Cue;
+import com.fengdui.test.xhoa.framework.orm.MybatisService;
+import com.fengdui.test.xhoa.framework.web.BaseController;
+import com.fengdui.test.xhoa.framework.web.PageRespData;
+import com.fengdui.test.xhoa.framework.web.TableHeadInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

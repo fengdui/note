@@ -1,9 +1,9 @@
-package com.fengdui.oa.business.sys.entity;
+package com.fengdui.test.xhoa.business.sys.entity;
 
-import com.fengdui.oa.framework.orm.EntityExtend;
-import com.fengdui.oa.framework.orm.TagLogicDelete;
-import com.fengdui.oa.framework.orm.TagUniqueColumn;
-import com.fengdui.oa.framework.util.string.StringUtil;
+import com.fengdui.test.xhoa.framework.orm.EntityExtend;
+import com.fengdui.test.xhoa.framework.orm.TagLogicDelete;
+import com.fengdui.test.xhoa.framework.orm.TagUniqueColumn;
+import com.fengdui.test.xhoa.framework.util.string.StringUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;

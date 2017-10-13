@@ -1,9 +1,9 @@
-package com.fengdui.oa.business.test.web;
+package com.fengdui.test.xhoa.business.test.web;
 
-import com.fengdui.oa.business.test.service.TestService;
-import com.fengdui.oa.business.test.service.TestTmpService;
-import com.fengdui.oa.framework.orm.MybatisService;
-import com.fengdui.oa.framework.web.BaseController;
+import com.fengdui.test.xhoa.business.test.service.TestService;
+import com.fengdui.test.xhoa.business.test.service.TestTmpService;
+import com.fengdui.test.xhoa.framework.orm.MybatisService;
+import com.fengdui.test.xhoa.framework.web.BaseController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

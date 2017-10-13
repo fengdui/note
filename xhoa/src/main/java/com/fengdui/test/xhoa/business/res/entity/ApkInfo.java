@@ -1,4 +1,4 @@
-package com.fengdui.oa.business.res.entity;
+package com.fengdui.test.xhoa.business.res.entity;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.ToStringBuilder;

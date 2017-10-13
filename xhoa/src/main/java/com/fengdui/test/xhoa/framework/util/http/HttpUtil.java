@@ -1,4 +1,4 @@
-package com.fengdui.oa.framework.util.http;
+package com.fengdui.test.xhoa.framework.util.http;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Enumeration;

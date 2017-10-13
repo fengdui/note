@@ -1,7 +1,7 @@
-package com.fengdui.oa.business.app.dao;
+package com.fengdui.test.xhoa.business.app.dao;
 
-import com.fengdui.oa.business.app.entity.AppVersionInfo;
-import com.fengdui.oa.framework.orm.MybatisDao;
+import com.fengdui.test.xhoa.business.app.entity.AppVersionInfo;
+import com.fengdui.test.xhoa.framework.orm.MybatisDao;
 import org.springframework.stereotype.Repository;
 
 /**

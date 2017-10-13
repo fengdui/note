@@ -1,4 +1,4 @@
-package com.fengdui.oa.framework.communication.socket;
+package com.fengdui.test.xhoa.framework.communication.socket;
 
 import net.sf.json.JSONObject;
 import org.apache.commons.lang3.StringUtils;

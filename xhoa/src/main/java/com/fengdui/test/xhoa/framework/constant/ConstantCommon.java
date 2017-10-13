@@ -1,4 +1,4 @@
-package com.fengdui.oa.framework.constant;
+package com.fengdui.test.xhoa.framework.constant;
 
 /**
  * @author Wander.Zeng

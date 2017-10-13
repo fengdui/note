@@ -1,4 +1,4 @@
-package com.fengdui.oa.framework.web;
+package com.fengdui.test.xhoa.framework.web;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;

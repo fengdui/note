@@ -1,7 +1,7 @@
-package com.fengdui.oa.framework.orm;
+package com.fengdui.test.xhoa.framework.orm;
 
-import com.fengdui.oa.framework.util.http.HttpUtil;
-import com.fengdui.oa.framework.util.string.StringUtil;
+import com.fengdui.test.xhoa.framework.util.http.HttpUtil;
+import com.fengdui.test.xhoa.framework.util.string.StringUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;

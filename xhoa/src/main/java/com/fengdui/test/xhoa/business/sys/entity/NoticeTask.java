@@ -1,6 +1,6 @@
-package com.fengdui.oa.business.sys.entity;
+package com.fengdui.test.xhoa.business.sys.entity;
 
-import com.fengdui.oa.framework.orm.EntityBase;
+import com.fengdui.test.xhoa.framework.orm.EntityBase;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 

@@ -1,7 +1,7 @@
-package com.fengdui.oa.business.auth.dao;
+package com.fengdui.test.xhoa.business.auth.dao;
 
-import com.fengdui.oa.business.auth.entity.User;
-import com.fengdui.oa.framework.orm.MybatisDao;
+import com.fengdui.test.xhoa.business.auth.entity.User;
+import com.fengdui.test.xhoa.framework.orm.MybatisDao;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 

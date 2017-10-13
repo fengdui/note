@@ -1,15 +1,15 @@
-package com.fengdui.oa.business.auth.service;
+package com.fengdui.test.xhoa.business.auth.service;
 
-import com.fengdui.oa.business.auth.dao.UserDao;
-import com.fengdui.oa.business.auth.entity.User;
-import com.fengdui.oa.business.auth.entity.UserMenuRef;
-import com.fengdui.oa.business.sys.dao.RoleDao;
-import com.fengdui.oa.business.sys.entity.Role;
-import com.fengdui.oa.framework.constant.ConstantColumn;
-import com.fengdui.oa.framework.constant.ConstantCommon;
-import com.fengdui.oa.framework.constant.ConstantSession;
-import com.fengdui.oa.framework.orm.MybatisService;
-import com.fengdui.oa.framework.util.string.StringUtil;
+import com.fengdui.test.xhoa.business.auth.dao.UserDao;
+import com.fengdui.test.xhoa.business.auth.entity.User;
+import com.fengdui.test.xhoa.business.auth.entity.UserMenuRef;
+import com.fengdui.test.xhoa.business.sys.dao.RoleDao;
+import com.fengdui.test.xhoa.business.sys.entity.Role;
+import com.fengdui.test.xhoa.framework.constant.ConstantColumn;
+import com.fengdui.test.xhoa.framework.constant.ConstantCommon;
+import com.fengdui.test.xhoa.framework.constant.ConstantSession;
+import com.fengdui.test.xhoa.framework.orm.MybatisService;
+import com.fengdui.test.xhoa.framework.util.string.StringUtil;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;

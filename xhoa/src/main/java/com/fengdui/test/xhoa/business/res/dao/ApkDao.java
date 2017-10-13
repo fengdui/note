@@ -1,7 +1,7 @@
-package com.fengdui.oa.business.res.dao;
+package com.fengdui.test.xhoa.business.res.dao;
 
-import com.fengdui.oa.business.res.entity.Apk;
-import com.fengdui.oa.framework.orm.MybatisDao;
+import com.fengdui.test.xhoa.business.res.entity.Apk;
+import com.fengdui.test.xhoa.framework.orm.MybatisDao;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 

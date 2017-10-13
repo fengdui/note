@@ -1,7 +1,7 @@
-package com.fengdui.oa.business.test.service;
+package com.fengdui.test.xhoa.business.test.service;
 
-import com.fengdui.oa.business.test.dao.TestDao;
-import com.fengdui.oa.framework.orm.MultiDataSourceAnnotation;
+import com.fengdui.test.xhoa.business.test.dao.TestDao;
+import com.fengdui.test.xhoa.framework.orm.MultiDataSourceAnnotation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

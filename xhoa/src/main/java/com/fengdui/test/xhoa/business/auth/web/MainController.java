@@ -1,12 +1,12 @@
-package com.fengdui.oa.business.auth.web;
+package com.fengdui.test.xhoa.business.auth.web;
 
-import com.fengdui.oa.business.sys.entity.Menu;
-import com.fengdui.oa.business.sys.entity.Role;
-import com.fengdui.oa.business.sys.service.MenuService;
-import com.fengdui.oa.framework.constant.ConstantSession;
-import com.fengdui.oa.framework.orm.MybatisService;
-import com.fengdui.oa.framework.util.http.WeatherUtil;
-import com.fengdui.oa.framework.web.BaseController;
+import com.fengdui.test.xhoa.business.sys.entity.Menu;
+import com.fengdui.test.xhoa.business.sys.entity.Role;
+import com.fengdui.test.xhoa.business.sys.service.MenuService;
+import com.fengdui.test.xhoa.framework.constant.ConstantSession;
+import com.fengdui.test.xhoa.framework.orm.MybatisService;
+import com.fengdui.test.xhoa.framework.util.http.WeatherUtil;
+import com.fengdui.test.xhoa.framework.web.BaseController;
 import net.sf.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

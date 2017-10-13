@@ -1,8 +1,8 @@
-package com.fengdui.oa.framework.web;
+package com.fengdui.test.xhoa.framework.web;
 
-import com.fengdui.oa.business.time.service.QuartzScheduleManager;
-import com.fengdui.oa.business.time.service.TimeTaskService;
-import com.fengdui.oa.framework.communication.socket.OnlineUserManagerServer;
+import com.fengdui.test.xhoa.business.time.service.QuartzScheduleManager;
+import com.fengdui.test.xhoa.business.time.service.TimeTaskService;
+import com.fengdui.test.xhoa.framework.communication.socket.OnlineUserManagerServer;
 import org.java_websocket.WebSocketImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

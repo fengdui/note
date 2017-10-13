@@ -11,6 +11,7 @@
     <packaging>war</packaging>
 
     <name>mycat</name>
+    <description>mycat中间件学习</description>
 
     <properties>
         <jetty-version>8.1.9.v20130131</jetty-version>

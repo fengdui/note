@@ -1,4 +1,4 @@
-package com.fengdui.oa.framework.security;
+package com.fengdui.test.xhoa.framework.security;
 
 import com.xh.market.business.auth.entity.User;
 import com.xh.market.business.auth.service.UserService;

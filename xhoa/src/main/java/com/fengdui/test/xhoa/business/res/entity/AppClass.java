@@ -1,7 +1,7 @@
-package com.fengdui.oa.business.res.entity;
+package com.fengdui.test.xhoa.business.res.entity;
 
-import com.fengdui.oa.framework.orm.EntityBase;
-import com.fengdui.oa.framework.orm.TagLogicDelete;
+import com.fengdui.test.xhoa.framework.orm.EntityBase;
+import com.fengdui.test.xhoa.framework.orm.TagLogicDelete;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 

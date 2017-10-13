@@ -1,8 +1,8 @@
-package com.fengdui.oa.business.res.service;
+package com.fengdui.test.xhoa.business.res.service;
 
-import com.fengdui.oa.business.res.dao.AppClassDao;
-import com.fengdui.oa.business.res.entity.AppClass;
-import com.fengdui.oa.framework.orm.MybatisService;
+import com.fengdui.test.xhoa.business.res.dao.AppClassDao;
+import com.fengdui.test.xhoa.business.res.entity.AppClass;
+import com.fengdui.test.xhoa.framework.orm.MybatisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

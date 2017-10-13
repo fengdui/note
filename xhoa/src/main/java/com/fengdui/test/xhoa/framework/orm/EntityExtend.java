@@ -1,7 +1,7 @@
-package com.fengdui.oa.framework.orm;
+package com.fengdui.test.xhoa.framework.orm;
 
 
-import com.fengdui.oa.framework.constant.ConstantSession;
+import com.fengdui.test.xhoa.framework.constant.ConstantSession;
 
 /**
  * @author Wander.Zeng

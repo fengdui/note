@@ -1,6 +1,6 @@
-package com.fengdui.oa.business.auth.entity;
+package com.fengdui.test.xhoa.business.auth.entity;
 
-import com.fengdui.oa.framework.orm.EntityExtend;
+import com.fengdui.test.xhoa.framework.orm.EntityExtend;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 

@@ -1,4 +1,4 @@
-package com.fengdui.oa.business.test.dao;
+package com.fengdui.test.xhoa.business.test.dao;
 
 import org.springframework.stereotype.Repository;
 

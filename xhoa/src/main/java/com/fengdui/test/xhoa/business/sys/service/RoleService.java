@@ -1,15 +1,15 @@
-package com.fengdui.oa.business.sys.service;
+package com.fengdui.test.xhoa.business.sys.service;
 
-import com.fengdui.oa.business.auth.entity.User;
-import com.fengdui.oa.business.auth.service.UserMenuRefService;
-import com.fengdui.oa.business.auth.service.UserService;
-import com.fengdui.oa.business.sys.dao.RoleDao;
-import com.fengdui.oa.business.sys.dao.RolegroupDao;
-import com.fengdui.oa.business.sys.entity.Role;
-import com.fengdui.oa.business.sys.entity.RoleMenuRef;
-import com.fengdui.oa.framework.constant.ConstantColumn;
-import com.fengdui.oa.framework.orm.MybatisService;
-import com.fengdui.oa.framework.util.string.StringUtil;
+import com.fengdui.test.xhoa.business.auth.entity.User;
+import com.fengdui.test.xhoa.business.auth.service.UserMenuRefService;
+import com.fengdui.test.xhoa.business.auth.service.UserService;
+import com.fengdui.test.xhoa.business.sys.dao.RoleDao;
+import com.fengdui.test.xhoa.business.sys.dao.RolegroupDao;
+import com.fengdui.test.xhoa.business.sys.entity.Role;
+import com.fengdui.test.xhoa.business.sys.entity.RoleMenuRef;
+import com.fengdui.test.xhoa.framework.constant.ConstantColumn;
+import com.fengdui.test.xhoa.framework.orm.MybatisService;
+import com.fengdui.test.xhoa.framework.util.string.StringUtil;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

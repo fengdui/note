@@ -1,10 +1,10 @@
-package com.fengdui.oa.framework.util.file;
+package com.fengdui.test.xhoa.framework.util.file;
 
-import com.fengdui.oa.business.common.Constant;
-import com.fengdui.oa.business.res.entity.Apk;
-import com.fengdui.oa.business.res.entity.ApkIcon;
-import com.fengdui.oa.business.res.entity.ApkInfo;
-import com.fengdui.oa.framework.util.ImageUtil;
+import com.fengdui.test.xhoa.business.common.Constant;
+import com.fengdui.test.xhoa.business.res.entity.Apk;
+import com.fengdui.test.xhoa.business.res.entity.ApkIcon;
+import com.fengdui.test.xhoa.business.res.entity.ApkInfo;
+import com.fengdui.test.xhoa.framework.util.ImageUtil;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.web.context.ContextLoader;
