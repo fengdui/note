@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/nettyInAction.iml" filepath="$PROJECT_DIR$/nettyInAction.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jiangzhioffer/jiangzhioffer.iml" filepath="$PROJECT_DIR$/jiangzhioffer/jiangzhioffer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/netty-action/netty-action.iml" filepath="$PROJECT_DIR$/netty-action/netty-action.iml" />
+      <module fileurl="file://$PROJECT_DIR$/note.iml" filepath="$PROJECT_DIR$/note.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-action/spring-action.iml" filepath="$PROJECT_DIR$/spring-action/spring-action.iml" />
     </modules>
   </component>
 </project>
