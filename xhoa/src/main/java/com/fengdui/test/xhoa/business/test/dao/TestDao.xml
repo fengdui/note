@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper    
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"    
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xh.market.business.test.dao.TestDao">
+
+	<sql id="table">
+		tbl_test
+	</sql>
+
+	<insert id="test">
+		INSERT INTO <include refid="table" />
+		(
+			test
+		) VALUES (
+			'wander'
+		)
+	</insert>
+
+</mapper>

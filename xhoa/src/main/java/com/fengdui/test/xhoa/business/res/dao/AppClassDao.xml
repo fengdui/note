@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper    
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"    
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xh.market.business.res.dao.AppClassDao">
+
+	<resultMap type="AppClass" id="resultMap">
+		<id property="id" column="ID" />
+		<id property="name" column="NAME" />
+		<id property="parentId" column="PARENT_ID" />
+		<id property="parentName" column="PARENT_NAME" />
+		<id property="description" column="DESCRIPTION" />
+		
+		<result property="createUser" column="CREATE_USER" />
+		<result property="createTime" column="CREATE_TIME" />
+		<result property="modifyUser" column="MODIFY_USER" />
+		<result property="modifyTime" column="MODIFY_TIME" />
+		<result property="deleted" column="DELETED" />
+	</resultMap>
+
+	<sql id="table">
+		tbl_res_app_class
+	</sql>
+	
+	<select id="getAppClassList" resultMap="resultMap" statementType="STATEMENT">
+		SELECT *
+		FROM <include refid="table" />
+	</select>
+	
+	<select id="getAppClassListByParentId" resultMap="resultMap">
+		SELECT *
+		FROM <include refid="table" />
+		WHERE parent_id = #{parentId}
+	</select>
+<!-- ************************************************** 分割线 ************************************************** -->
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO <include refid="table" />
+		(
+		<trim suffixOverrides=",">
+			<if test="name != null"> name, </if>
+			<if test="parentId != null"> parent_id, </if>
+			<if test="parentName != null"> parent_name, </if>
+			<if test="description != null"> description, </if>
+			<if test="createUser != null"> create_user, </if>
+			<if test="modifyUser != null"> modify_user, </if>
+		</trim>
+		) VALUES (
+		<trim suffixOverrides=",">
+			<if test="name != null"> #{name}, </if>
+			<if test="parentId != null"> #{parentId}, </if>
+			<if test="parentName != null"> #{parentName}, </if>
+			<if test="description != null"> #{description}, </if>
+			<if test="createUser != null"> #{createUser}, </if>
+			<if test="modifyUser != null"> #{modifyUser}, </if>
+		</trim>
+		)
+	</insert>
+
+	<insert id="insertBySql" statementType="STATEMENT">
+		INSERT INTO <include refid="table" /> ${sql}
+	</insert>
+
+	<insert id="insertBatch" parameterType="java.util.List" useGeneratedKeys="true">
+		INSERT INTO <include refid="table" />
+			(name, parent_id,parent_name, description, create_user, modify_user)
+		VALUES
+		<foreach collection="list" item="item" index="index" separator=",">
+			(#{item.name}, #{item.parentId},#{item.parentName}, #{item.description}, #{item.createUser}, #{item.modifyUser})
+		</foreach>
+	</insert>
+	
+	<delete id="deleteBySql" statementType="STATEMENT">
+		DELETE FROM <include refid="table" /> ${sql}
+	</delete>
+	
+	<delete id="deleteByMultiValue" statementType="STATEMENT">
+		DELETE FROM <include refid="table"/>
+		WHERE 
+		<foreach item="item" index="index" collection="cols" separator=" and">
+			${cols[index]} = ${vals[index]}
+		</foreach>
+	</delete>
+	
+	<update id="update">
+		UPDATE <include refid="table" />
+		<set>
+			name = #{name},
+			parent_id = #{parentId},
+			parent_name = #{parentName},
+			description = #{description},
+			modify_time = now(),
+			modify_user = #{modifyUser}
+		</set>
+		WHERE
+			ID = #{id}
+	</update>
+	
+	<update id="updateBySql" statementType="STATEMENT">
+		UPDATE <include refid="table" /> ${sql}
+	</update>
+	
+	<update id="updateMultiValueByMultiValue" statementType="STATEMENT">
+		UPDATE <include refid="table" />
+		SET
+		<foreach item="item" index="index" collection="cols" separator=" ,">
+			${cols[index]} = ${vals[index]}
+		</foreach>
+		WHERE
+		<foreach item="item" index="index" collection="keyCols" separator=" and">
+			${keyCols[index]} = ${keyVals[index]}
+		</foreach>
+	</update>
+
+	<select id="queryBySql" resultMap="resultMap" statementType="STATEMENT">
+		SELECT * FROM <include refid="table" /> 
+		<where>
+			<if test="sqls.length > 0">
+				<foreach item="item" index="index" collection="sqls" separator=" and">
+					${item}
+				</foreach>
+			</if>
+		</where>
+		<if test="orders != null">
+			<if test="orders.length > 0">
+				ORDER BY
+				<foreach item="item" index="index" collection="orders" separator=" ,">
+					${item}
+				</foreach>
+			</if>
+		</if>
+	</select>
+
+	<select id="queryUniqueByMultiValue" resultMap="resultMap" statementType="STATEMENT">
+		SELECT *
+		FROM <include refid="table" />
+		WHERE
+		<foreach index="index" item="item" collection="cols" separator=" and">
+			${cols[index]} = ${vals[index]}
+		</foreach>
+	</select>
+	
+	<select id="queryByMultiValue" resultMap="resultMap" statementType="STATEMENT">
+		SELECT *
+		FROM <include refid="table" />
+		WHERE
+		<foreach item="item" index="index" collection="cols" separator=" and">
+			${cols[index]} = ${vals[index]}
+		</foreach>
+	</select>
+	
+	<select id="queryByMultiValueByMultiOrder" resultMap="resultMap" statementType="STATEMENT">
+		SELECT * 
+		FROM <include refid="table"/>
+		WHERE
+		<foreach item="item" index="index" collection="cols" separator=" and">
+			${cols[index]} = ${vals[index]}
+		</foreach>
+		ORDER BY
+		<foreach item="item" index="index" collection="orderBys" separator=", ">
+			${orderBys[index]} ${orders[index]}
+		</foreach>
+	</select>
+	
+	<select id="queryCountByMultiValue" resultType="java.lang.Integer" statementType="STATEMENT">
+		SELECT count(1) 
+		FROM <include refid="table"/>
+		WHERE
+		<foreach item="item" index="index" collection="cols" separator=" and">
+			${cols[index]} = ${vals[index]}
+		</foreach>
+	</select>
+	
+	<select id="queryByPage" resultMap="resultMap" statementType="STATEMENT">
+		SELECT * 
+		FROM <include refid="table"/>
+		<where>
+			<if test="filters.size() > 0">
+				<foreach item="item" index="index" collection="filters" separator=" and">
+					<if test="filters[index].sql == null">
+						${filters[index].propertyName} ${filters[index].matchType} ${filters[index].propertyValue}
+					</if>
+					<if test="filters[index].sql != null">
+						${filters[index].sql}
+					</if>
+				</foreach>
+			</if>
+		</where>
+	</select>
+	
+	<select id="queryByLikeValue" resultMap="resultMap" statementType="STATEMENT">
+		SELECT * 
+		FROM <include refid="table"/>
+		WHERE ${col} LIKE CONCAT('%', '${val}', '%')
+	</select>
+
+	<select id="isUniqueByMultiValue" resultType="java.lang.Boolean" statementType="STATEMENT">
+		SELECT count(1) = 0
+		FROM <include refid="table" />
+		WHERE
+		<foreach item="item" index="index" collection="cols" separator=" and">
+			${cols[index]} = ${vals[index]}
+		</foreach>
+	</select>	
+	
+	
+</mapper>
