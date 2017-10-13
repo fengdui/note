@@ -5,31 +5,31 @@
 
 	<groupId>com.fengdui</groupId>
 	<artifactId>learn</artifactId>
+	<modules>
+		<module>spring-action</module> 		<!-- 2015.07 暑假开始学习，并且平时遇到问题会学习 真正创建项目是在2016.05.25-->
+		<module>xhoa</module>				<!-- 2015.09 在xh实习，在2017.02重新学习了xhoa -->
+		<module>jiangzhioffer</module> 		<!-- 2016.05 抽空在zheyue那会做的 -->
+		<module>core-java</module> 			<!-- 2016.05 学习《corejava》 巩固基础 -->
+											<!-- 2016.06 毕业 拓展视野 opencv opengl等-->
+		<module>framework</module> 			<!-- 2016.07 学习《架构探险》 此外学习了hive-->
+											<!-- 2016.08 学习go 在牛客网答题 -->
+		<module>shiro</module> 				<!-- 2016.10 学习shiro框架 -->
+		<module>netty-action</module> 		<!-- 2016.11 学习《netty实战》 给公司做文件服务器 -->
+		<module>dubbo-client</module>     	<!-- 2016.12 学习dobbo框架 -->
+		<module>spring-security</module>	<!-- 2017.01 学习security框架 outh2等 -->
+											<!-- 2017.07 学习《java并发编程实战》 -->
+		<module>java8-action</module>		<!-- 2017.02 学习《java8实战》 -->
+		<module>extjs</module>				<!-- 2017.03 EXTJS 公司培训做的demo -->
+		<module>mycat</module>				<!-- 2017.08 学习mycat，公司分享会 -->
+	</modules>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>pom</packaging>
 
+	<packaging>pom</packaging>
 	<name>note</name>
+
 	<description>
 		我的读书笔记以及没有相关书籍的框架学习
 		读书笔记groupId以com.fengdui.note开头
 		没有书籍的框架以com.fengdui.test开头
 	</description>
-
-	<modules>
-		<module>spring-action</module>
-		<module>jiangzhioffer</module>
-		<module>netty-action</module>
-		<module>framework</module>
-		<module>core-java</module>
-		<module>java8-action</module>
-
-
-
-		<module>xhoa</module>
-		<module>shiro</module>
-		<module>dubbo-client</module>
-		<module>spring-security</module>
-		<module>extjs</module>
-		<module>mycat</module>
-	</modules>
 </project>
