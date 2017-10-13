@@ -22,5 +22,9 @@
 		<module>framework</module>
 		<module>core-java</module>
 		<module>java8-action</module>
+
+
+
+		<module>mycat</module>
 	</modules>
 </project>

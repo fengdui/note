@@ -10,6 +10,7 @@
         <module name="framework" />
         <module name="java8-action" />
         <module name="jiangzhioffer" />
+        <module name="mycat" />
         <module name="netty-action" />
         <module name="spring-action" />
       </profile>
@@ -19,6 +20,7 @@
       <module name="framework" target="1.8" />
       <module name="java8-action" target="1.8" />
       <module name="jiangzhioffer" target="1.8" />
+      <module name="mycat" target="1.5" />
       <module name="netty-action" target="1.8" />
       <module name="note" target="1.5" />
       <module name="spring-action" target="1.8" />
