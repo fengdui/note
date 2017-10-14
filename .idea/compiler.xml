@@ -15,6 +15,7 @@
         <module name="java8-action" />
         <module name="jiangzhioffer" />
         <module name="mycat" />
+        <module name="myEditor" />
         <module name="netty-action" />
         <module name="rocketmq" />
         <module name="shiro" />
@@ -35,6 +36,7 @@
       <module name="jiangzhioffer" target="1.8" />
       <module name="machineLearningInAction" target="1.5" />
       <module name="mycat" target="1.5" />
+      <module name="myEditor" target="1.5" />
       <module name="netty-action" target="1.8" />
       <module name="nltk" target="1.5" />
       <module name="note" target="1.5" />

@@ -11,6 +11,7 @@
       <module fileurl="file://$PROJECT_DIR$/java8-action/java8-action.iml" filepath="$PROJECT_DIR$/java8-action/java8-action.iml" />
       <module fileurl="file://$PROJECT_DIR$/jiangzhioffer/jiangzhioffer.iml" filepath="$PROJECT_DIR$/jiangzhioffer/jiangzhioffer.iml" />
       <module fileurl="file://$PROJECT_DIR$/machineLearningInAction/machineLearningInAction.iml" filepath="$PROJECT_DIR$/machineLearningInAction/machineLearningInAction.iml" />
+      <module fileurl="file://$PROJECT_DIR$/myEditor/myEditor.iml" filepath="$PROJECT_DIR$/myEditor/myEditor.iml" />
       <module fileurl="file://$PROJECT_DIR$/mycat/mycat.iml" filepath="$PROJECT_DIR$/mycat/mycat.iml" />
       <module fileurl="file://$PROJECT_DIR$/netty-action/netty-action.iml" filepath="$PROJECT_DIR$/netty-action/netty-action.iml" />
       <module fileurl="file://$PROJECT_DIR$/nltk/nltk.iml" filepath="$PROJECT_DIR$/nltk/nltk.iml" />

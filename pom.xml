@@ -18,6 +18,7 @@
 		<module>machineLearningInAction</module>	<!-- 2016.02 学习《机器学习实战》 -->
 													<!-- 2016.03 学习tomcat源码 -->
 		<!-- 第三家公司 -->
+		<module>myEditor</module>					<!-- 2016.04 毕设 在线编译器的 -->
 		<module>jiangzhioffer</module> 				<!-- 2016.05 抽空在zheyue那会做的 -->
 		<module>core-java</module> 					<!-- 2016.05 学习《corejava》 巩固基础 -->
 													<!-- 2016.06 毕业 拓展视野 opencv opengl等-->
@@ -37,8 +38,16 @@
 		<module>java8-action</module>				<!-- 2017.02 学习《java8实战》 -->
 
 		<!-- 第四家公司 -->
+													<!-- 2017.03 入职培训 -->
 		<module>extjs</module>						<!-- 2017.03 EXTJS 公司培训做的demo -->
+													<!-- 2017.03 宝付3期 -->
+													<!-- 2017.04 宝付3期 -->
+													<!-- 2017.04 学习zookeeper -->
+													<!-- 2017.05 学习设计模式 重构模板 -->
+        											<!-- 2017.06 规则平台6.0 -->
+        											<!-- 2017.07 规则平台6.0 -->
 		<module>mycat</module>						<!-- 2017.08 学习mycat，公司分享会 -->
+													<!-- 2017.09 山寨流立方和引擎 -->
 	</modules>
 	<version>0.0.1-SNAPSHOT</version>
 
