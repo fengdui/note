@@ -3,36 +3,13 @@
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$/mycat" />
     <file type="web" url="file://$PROJECT_DIR$/myEditor" />
-    <type id="Spring" />
   </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/netty-action/pom.xml" />
-        <option value="$PROJECT_DIR$/framework/pom.xml" />
-        <option value="$PROJECT_DIR$/core-java/pom.xml" />
-        <option value="$PROJECT_DIR$/java8-action/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/webapp/pom.xml" />
-        <option value="$PROJECT_DIR$/xhoa/pom.xml" />
-        <option value="$PROJECT_DIR$/shiro/pom.xml" />
-        <option value="$PROJECT_DIR$/dubbo-client/pom.xml" />
-        <option value="$PROJECT_DIR$/spring-security/pom.xml" />
-        <option value="$PROJECT_DIR$/extjs/pom.xml" />
-        <option value="$PROJECT_DIR$/rocketmq/pom.xml" />
-        <option value="$PROJECT_DIR$/machineLearningInAction/pom.xml" />
-        <option value="$PROJECT_DIR$/nltk/pom.xml" />
-        <option value="$PROJECT_DIR$/dubbo-server/pom.xml" />
-        <option value="$PROJECT_DIR$/file-encrypt/pom.xml" />
       </list>
     </option>
-    <option name="ignoredFiles">
-      <set>
-        <option value="$PROJECT_DIR$/pom.xml" />
-      </set>
-    </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
-    <output url="file://$PROJECT_DIR$/classes" />
-  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_3" default="false" project-jdk-name="1.8" project-jdk-type="JavaSDK" />
 </project>
