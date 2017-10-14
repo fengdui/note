@@ -1,8 +1,8 @@
-package com.zheyue.encrypt.concurrency;
+package com.fengdui.test.fileEncrypt.concurrency;
 
-import com.zheyue.encrypt.common.AppContext;
-import com.zheyue.encrypt.model.DownloadRequest;
-import com.zheyue.encrypt.service.DownloadService;
+import com.fengdui.test.fileEncrypt.common.AppContext;
+import com.fengdui.test.fileEncrypt.model.DownloadRequest;
+import com.fengdui.test.fileEncrypt.service.DownloadService;
 import io.netty.channel.ChannelHandlerContext;
 
 import java.util.concurrent.Callable;

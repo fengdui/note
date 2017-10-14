@@ -1,7 +1,7 @@
-package com.zheyue.encrypt.test;
+package com.fengdui.test.fileEncrypt.test;
 
-import com.zheyue.encrypt.netty.ServerChannelInitializer;
-import com.zheyue.encrypt.serialize.SerializeProtocol;
+import com.fengdui.test.fileEncrypt.netty.ServerChannelInitializer;
+import com.fengdui.test.fileEncrypt.serialize.SerializeProtocol;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelOption;

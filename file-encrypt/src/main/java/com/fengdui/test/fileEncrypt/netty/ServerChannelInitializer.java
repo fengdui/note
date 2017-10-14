@@ -1,10 +1,10 @@
-package com.zheyue.encrypt.netty;
+package com.fengdui.test.fileEncrypt.netty;
 
-import com.zheyue.encrypt.concurrency.DownloadExecutor;
-import com.zheyue.encrypt.netty.handler.DownloadHandler;
-import com.zheyue.encrypt.serialize.SerializeProtocol;
-import com.zheyue.encrypt.serialize.hessian.HessianDecoder;
-import com.zheyue.encrypt.serialize.hessian.HessianEncoder;
+import com.fengdui.test.fileEncrypt.concurrency.DownloadExecutor;
+import com.fengdui.test.fileEncrypt.netty.handler.DownloadHandler;
+import com.fengdui.test.fileEncrypt.serialize.SerializeProtocol;
+import com.fengdui.test.fileEncrypt.serialize.hessian.HessianDecoder;
+import com.fengdui.test.fileEncrypt.serialize.hessian.HessianEncoder;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.socket.SocketChannel;
 import org.springframework.beans.factory.annotation.Autowired;

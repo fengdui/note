@@ -1,7 +1,7 @@
-package com.zheyue.encrypt.config;
+package com.fengdui.test.fileEncrypt.config;
 
-import com.zheyue.encrypt.concurrency.DownloadExecutor;
-import com.zheyue.encrypt.server.FileServer;
+import com.fengdui.test.fileEncrypt.concurrency.DownloadExecutor;
+import com.fengdui.test.fileEncrypt.server.FileServer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

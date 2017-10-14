@@ -1,10 +1,10 @@
-package com.zheyue.encrypt.service;
+package com.fengdui.test.fileEncrypt.service;
 
 import com.aliyun.oss.OSSClient;
 import com.aliyun.oss.model.GetObjectRequest;
 import com.aliyun.oss.model.OSSObject;
-import com.zheyue.encrypt.model.DownloadRequest;
-import com.zheyue.encrypt.model.DownloadResponse;
+import com.fengdui.test.fileEncrypt.model.DownloadRequest;
+import com.fengdui.test.fileEncrypt.model.DownloadResponse;
 import io.netty.channel.ChannelHandlerContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

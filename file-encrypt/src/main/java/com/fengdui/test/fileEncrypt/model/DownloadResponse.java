@@ -1,4 +1,4 @@
-package com.zheyue.encrypt.model;
+package com.fengdui.test.fileEncrypt.model;
 
 import java.io.Serializable;
 

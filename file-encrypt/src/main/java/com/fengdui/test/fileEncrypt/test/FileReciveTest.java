@@ -1,8 +1,8 @@
-package com.zheyue.encrypt.test;
+package com.fengdui.test.fileEncrypt.test;
 
-import com.zheyue.encrypt.model.DownloadRequest;
-import com.zheyue.encrypt.model.DownloadResponse;
-import com.zheyue.encrypt.service.AesService;
+import com.fengdui.test.fileEncrypt.model.DownloadRequest;
+import com.fengdui.test.fileEncrypt.model.DownloadResponse;
+import com.fengdui.test.fileEncrypt.service.AesService;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import org.slf4j.Logger;

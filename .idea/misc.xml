@@ -22,6 +22,7 @@
         <option value="$PROJECT_DIR$/machineLearningInAction/pom.xml" />
         <option value="$PROJECT_DIR$/nltk/pom.xml" />
         <option value="$PROJECT_DIR$/dubbo-server/pom.xml" />
+        <option value="$PROJECT_DIR$/file-encrypt/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">

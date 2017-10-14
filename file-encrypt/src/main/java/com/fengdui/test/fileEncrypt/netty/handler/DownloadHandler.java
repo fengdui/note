@@ -1,8 +1,8 @@
-package com.zheyue.encrypt.netty.handler;
+package com.fengdui.test.fileEncrypt.netty.handler;
 
-import com.zheyue.encrypt.concurrency.DownloadExecutor;
-import com.zheyue.encrypt.concurrency.DownloadTask;
-import com.zheyue.encrypt.model.DownloadRequest;
+import com.fengdui.test.fileEncrypt.concurrency.DownloadExecutor;
+import com.fengdui.test.fileEncrypt.concurrency.DownloadTask;
+import com.fengdui.test.fileEncrypt.model.DownloadRequest;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import org.slf4j.Logger;

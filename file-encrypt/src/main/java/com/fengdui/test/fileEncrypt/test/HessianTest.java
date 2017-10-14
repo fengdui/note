@@ -1,7 +1,7 @@
-package com.zheyue.encrypt.test;
+package com.fengdui.test.fileEncrypt.test;
 
-import com.zheyue.encrypt.model.DownloadRequest;
-import com.zheyue.encrypt.serialize.hessian.HessianSerialize;
+import com.fengdui.test.fileEncrypt.model.DownloadRequest;
+import com.fengdui.test.fileEncrypt.serialize.hessian.HessianSerialize;
 
 import java.io.*;
 import java.net.Socket;

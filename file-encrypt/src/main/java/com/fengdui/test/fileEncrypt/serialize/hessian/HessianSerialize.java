@@ -1,9 +1,9 @@
 
-package com.zheyue.encrypt.serialize.hessian;
+package com.fengdui.test.fileEncrypt.serialize.hessian;
 
 import com.caucho.hessian.io.Hessian2Input;
 import com.caucho.hessian.io.Hessian2Output;
-import com.zheyue.encrypt.serialize.Serialize;
+import com.fengdui.test.fileEncrypt.serialize.Serialize;
 
 import java.io.IOException;
 import java.io.InputStream;

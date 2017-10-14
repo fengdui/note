@@ -1,4 +1,4 @@
-package com.zheyue.encrypt.serialize;
+package com.fengdui.test.fileEncrypt.serialize;
 
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;

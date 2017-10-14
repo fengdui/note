@@ -1,6 +1,6 @@
-package com.zheyue.encrypt;
+package com.fengdui.test.fileEncrypt;
 
-import com.zheyue.encrypt.server.FileServer;
+import com.fengdui.test.fileEncrypt.server.FileServer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
