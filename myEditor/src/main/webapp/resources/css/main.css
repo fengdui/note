@@ -1,0 +1,71 @@
+@CHARSET "US-ASCII";
+
+body {
+	line-height: 1;
+}
+
+.navbar .navbar-brand small img {
+	width: auto;
+	border-radius: 5px;
+}
+
+.navbar .navbar-inner .navbar-header .navbar-account .account-area .login-area
+	{
+	padding-top: 12px;
+}
+
+.navbar .navbar-inner .navbar-header .navbar-account .account-area .login-area .avatar
+	{
+	border: none;
+	width: auto;
+	height: auto;
+}
+
+.navbar .navbar-inner .navbar-header .navbar-account .account-area .login-area .avatar .glyphicon-user
+	{
+	color: white;
+	top: 5px;
+}
+
+.navbar .navbar-inner .navbar-header .navbar-account .account-area>li.open .login-area-custom
+	{
+	width: 186px;
+}
+
+.navbar .navbar-inner .navbar-header .navbar-account .account-area>li .dropdown-menu.dropdown-login-area>li.edit a
+	{
+	clear: both;
+}
+
+.navbar .navbar-inner .navbar-header .navbar-account .account-area .fa {
+	margin-right: 5px;
+}
+
+.navbar .navbar-inner .navbar-header .navbar-account .account-area>li .dropdown-menu.dropdown-login-area .edit_title
+	{
+	border: none;
+}
+
+.page-header {
+	padding-left: 0;
+}
+
+.page-body {
+	padding: 0;
+}
+
+.loading {
+	background: url("/resources/image/load.gif") no-repeat center;
+	width: 100%;
+}
+
+.page-breadcrumbs {
+	background-image: linear-gradient(to right,#fff,#f3f3f3);
+}
+
+.ellipsis-profile {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	max-width: 118px;
+}
