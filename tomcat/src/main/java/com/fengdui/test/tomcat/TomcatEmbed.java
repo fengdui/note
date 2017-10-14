@@ -1,12 +1,9 @@
 package com.fengdui.test.tomcat;
 
-import java.io.File;
-
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
-
 import org.apache.catalina.LifecycleException;
 import org.apache.catalina.startup.Tomcat;
+
+import java.io.File;
 
 public class TomcatEmbed {
 	private Tomcat tomcat;

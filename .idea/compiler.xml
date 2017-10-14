@@ -20,6 +20,7 @@
         <module name="shiro" />
         <module name="spring-action" />
         <module name="spring-security" />
+        <module name="tomcat" />
         <module name="xhoa" />
       </profile>
     </annotationProcessing>
@@ -41,6 +42,7 @@
       <module name="shiro" target="1.8" />
       <module name="spring-action" target="1.8" />
       <module name="spring-security" target="1.8" />
+      <module name="tomcat" target="1.5" />
       <module name="xhoa" target="1.8" />
     </bytecodeTargetLevel>
   </component>
