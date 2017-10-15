@@ -9,6 +9,11 @@
         <module name="core-java" />
         <module name="dubbo-client" />
         <module name="dubbo-server" />
+        <module name="eureka-consumer" />
+        <module name="eureka-provider" />
+        <module name="eureka-server" />
+        <module name="eureka-server2" />
+        <module name="eureka-server3" />
         <module name="extjs" />
         <module name="file-encrypt" />
         <module name="framework" />
@@ -23,12 +28,18 @@
         <module name="spring-security" />
         <module name="tomcat" />
         <module name="xhoa" />
+        <module name="zuul" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="core-java" target="1.8" />
       <module name="dubbo-client" target="1.8" />
       <module name="dubbo-server" target="1.8" />
+      <module name="eureka-consumer" target="1.7" />
+      <module name="eureka-provider" target="1.7" />
+      <module name="eureka-server" target="1.7" />
+      <module name="eureka-server2" target="1.7" />
+      <module name="eureka-server3" target="1.7" />
       <module name="extjs" target="1.8" />
       <module name="file-encrypt" target="1.8" />
       <module name="framework" target="1.8" />
@@ -43,9 +54,11 @@
       <module name="rocketmq" target="1.8" />
       <module name="shiro" target="1.8" />
       <module name="spring-action" target="1.8" />
+      <module name="spring-cloud" target="1.5" />
       <module name="spring-security" target="1.8" />
       <module name="tomcat" target="1.5" />
       <module name="xhoa" target="1.8" />
+      <module name="zuul" target="1.7" />
     </bytecodeTargetLevel>
   </component>
 </project>

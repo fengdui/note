@@ -5,6 +5,11 @@
       <module fileurl="file://$PROJECT_DIR$/core-java/core-java.iml" filepath="$PROJECT_DIR$/core-java/core-java.iml" />
       <module fileurl="file://$PROJECT_DIR$/dubbo-client/dubbo-client.iml" filepath="$PROJECT_DIR$/dubbo-client/dubbo-client.iml" />
       <module fileurl="file://$PROJECT_DIR$/dubbo-server/dubbo-server.iml" filepath="$PROJECT_DIR$/dubbo-server/dubbo-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-cloud/eureka-consumer/eureka-consumer.iml" filepath="$PROJECT_DIR$/spring-cloud/eureka-consumer/eureka-consumer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-cloud/eureka-provider/eureka-provider.iml" filepath="$PROJECT_DIR$/spring-cloud/eureka-provider/eureka-provider.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-cloud/eureka-server/eureka-server.iml" filepath="$PROJECT_DIR$/spring-cloud/eureka-server/eureka-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-cloud/eureka-server2/eureka-server2.iml" filepath="$PROJECT_DIR$/spring-cloud/eureka-server2/eureka-server2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-cloud/eureka-server3/eureka-server3.iml" filepath="$PROJECT_DIR$/spring-cloud/eureka-server3/eureka-server3.iml" />
       <module fileurl="file://$PROJECT_DIR$/extjs/extjs.iml" filepath="$PROJECT_DIR$/extjs/extjs.iml" />
       <module fileurl="file://$PROJECT_DIR$/file-encrypt/file-encrypt.iml" filepath="$PROJECT_DIR$/file-encrypt/file-encrypt.iml" />
       <module fileurl="file://$PROJECT_DIR$/framework/framework.iml" filepath="$PROJECT_DIR$/framework/framework.iml" />
@@ -19,9 +24,11 @@
       <module fileurl="file://$PROJECT_DIR$/rocketmq/rocketmq.iml" filepath="$PROJECT_DIR$/rocketmq/rocketmq.iml" />
       <module fileurl="file://$PROJECT_DIR$/shiro/shiro.iml" filepath="$PROJECT_DIR$/shiro/shiro.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring-action/spring-action.iml" filepath="$PROJECT_DIR$/spring-action/spring-action.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-cloud/spring-cloud.iml" filepath="$PROJECT_DIR$/spring-cloud/spring-cloud.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring-security/spring-security.iml" filepath="$PROJECT_DIR$/spring-security/spring-security.iml" />
       <module fileurl="file://$PROJECT_DIR$/tomcat/tomcat.iml" filepath="$PROJECT_DIR$/tomcat/tomcat.iml" />
       <module fileurl="file://$PROJECT_DIR$/xhoa/xhoa.iml" filepath="$PROJECT_DIR$/xhoa/xhoa.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-cloud/zuul/zuul.iml" filepath="$PROJECT_DIR$/spring-cloud/zuul/zuul.iml" />
     </modules>
   </component>
 </project>
