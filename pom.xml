@@ -27,12 +27,15 @@
 													<!-- 2016.08 学习go 在牛客网答题 -->
 													<!-- 2016.09 学习spring源码 -->
 		<module>shiro</module> 						<!-- 2016.10 学习shiro框架 -->
+		<module>netty-action</module> 				<!-- 2016.10 学习《netty实战》 -->
 		<module>spring-security</module>			<!-- 2016.11 学习security等 给公司做权限模块 -->
-		<module>netty-action</module> 				<!-- 2016.11 学习《netty实战》 给公司做文件服务器 -->
+													<!-- 2016.11 学习spring boot -->
 		<module>file-encrypt</module>				<!-- 2016.12 文件加密服务器 -->
+													<!-- 2016.12 学习docker -->
 		<module>rocketmq</module>					<!-- 2016.12 学习rmq中间件 -->
 		<module>dubbo-client</module>     			<!-- 2017.12 学习dobbo框架 -->
 		<module>dubbo-server</module>				<!-- 2017.01 学习dobbo框架 -->
+													<!-- 2017.01 学习mycat框架 -->
 													<!-- 2017.01 学习security-outh2等 -->
 													<!-- 2017.07 学习《java并发编程实战》 -->
 		<module>java8-action</module>				<!-- 2017.02 学习《java8实战》 -->
@@ -45,10 +48,12 @@
 		<module>spring-cloud</module>				<!-- 2017.04 学习springCloud -->
 													<!-- 2017.04 学习zookeeper -->
 													<!-- 2017.05 学习设计模式 重构模板 -->
+													<!-- 2017.05 学习vue.js -->
         											<!-- 2017.06 规则平台6.0 -->
         											<!-- 2017.07 规则平台6.0 -->
 		<module>mycat</module>						<!-- 2017.08 学习mycat，公司分享会 -->
 													<!-- 2017.09 山寨流立方和引擎 -->
+		<module>kafka</module>
 	</modules>
 	<version>0.0.1-SNAPSHOT</version>
 
