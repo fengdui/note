@@ -54,6 +54,9 @@
 		<module>mycat</module>						<!-- 2017.08 学习mycat，公司分享会 -->
 													<!-- 2017.09 山寨流立方和引擎 -->
 		<module>kafka</module>
+		<module>zookeeper</module>
+		<module>fastjson</module>
+		<module>spark</module>
 	</modules>
 	<version>0.0.1-SNAPSHOT</version>
 

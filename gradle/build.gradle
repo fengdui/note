@@ -1,0 +1,27 @@
+group 'com.fengdui.test'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java' //java插件 提供构建代码的功能
+
+sourceCompatibility = 1.8 //设置java版本编译兼容1.8
+
+jar {
+    manifest {
+        attributes 'Main-Class' : 'fd' //设置清单 入口类
+    }
+}
+sourceSets { //设置源码目录
+
+}
+//task wrapper(type: Wrapper) {
+//    gradleVersion = '0.9-preview-1'
+//    distributionUrl = ''//包装器的下载地址
+//    distributionPath = '' //解压后存放的地址
+//}
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
