@@ -57,6 +57,7 @@
 		<module>zookeeper</module>
 		<module>fastjson</module>
 		<module>spark</module>
+		<module>lucene</module>
 	</modules>
 	<version>0.0.1-SNAPSHOT</version>
 
