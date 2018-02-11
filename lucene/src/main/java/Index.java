@@ -55,6 +55,7 @@ public class Index {
                 indexFile(file);
             }
         }
+        writer.commit();
         return writer.numDocs();
     }
     //这个方法是写入索引的方法，将生成的document对象写入到索引中

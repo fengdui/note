@@ -1,5 +1,7 @@
 package com.fengdui.test.elasticsearch;
 
+import org.elasticsearch.action.admin.indices.refresh.RefreshRequest;
+import org.elasticsearch.action.admin.indices.refresh.RefreshResponse;
 import org.elasticsearch.action.get.GetResponse;
 import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.action.search.SearchResponse;
@@ -35,7 +37,10 @@ public class ElasticsearchApplicationTests {
 				.setStoredFields().execute().actionGet();
 		IndexResponse indexResponse = client.prepareIndex("", "", "").execute().actionGet();
 
-		SearchResponse searchResponse = client.prepareSearch()
+		SearchResponse searchResponse = client.prepareSearch();
+		RefreshResponse response =  client.admin().indices()
+				.refresh(new RefreshRequest(indexName))
+				.actionGet();
 	}
 
 }
