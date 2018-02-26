@@ -27,8 +27,8 @@
 													<!-- 2016.08 学习go 在牛客网答题 -->
 													<!-- 2016.09 学习spring源码 -->
 		<!--<module>shiro</module>--> 						<!-- 2016.10 学习shiro框架 -->
-		<module>netty-action</module> 				 <!-- 2016.10 学习《netty实战》 -->
-		<!--<module>spring-security</module>-->			<!-- 2016.11 学习security等 给公司做权限模块 -->
+		<!--<module>netty-action</module>--> 				 <!-- 2016.10 学习《netty实战》 -->
+		<module>spring-security</module>			<!-- 2016.11 学习security等 给公司做权限模块 -->
 													<!-- 2016.11 学习spring boot -->
 		<!--<module>file-encrypt</module>-->				<!-- 2016.12 文件加密服务器 -->
 													<!-- 2016.12 学习docker -->
