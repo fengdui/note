@@ -1,6 +1,6 @@
 package com.fengdui.test.dubbo.client;
 
-import com.fengdui.test.dubbo.client.service.IDubboDemoService;
+import com.fengdui.test.dubbo.server.service.IDubboDemoService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
