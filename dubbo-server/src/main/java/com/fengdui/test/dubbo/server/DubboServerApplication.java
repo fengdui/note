@@ -1,11 +1,12 @@
 package com.fengdui.test.dubbo.server;
 
-import com.alibaba.dubbo.config.spring.ReferenceBean;
+import com.alibaba.dubbo.config.spring.context.annotation.DubboComponentScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
 @SpringBootApplication
+@DubboComponentScan(basePackages = "com.fengdui.test.dubbo.server.service")
 public class DubboServerApplication {
 
 	public static void main(String[] args) {

@@ -8,7 +8,7 @@
 	<modules>
 
 		<!-- 第一家公司 -->
-		<!--<module>spring-action</module>--> 				<!-- 2015.07 暑假开始学习，并且平时遇到问题会学习 真正创建项目是在2016.05.25-->
+		<module>spring-action</module> 				<!-- 2015.07 暑假开始学习，并且平时遇到问题会学习 真正创建项目是在2016.05.25-->
 		<!--<module>xhoa</module>-->						<!-- 2015.09-10 在xh实习，在2017.02重新学习了xhoa -->
 		<!--<module>tomcat</module>-->						<!-- 2015.11 一个内嵌的tomcat启动类 -->
 													<!-- 2015.11 裸辞，找工作，啃java编程思想 -->
@@ -21,7 +21,7 @@
 		<!--<module>myEditor</module>-->					<!-- 2016.04 毕设 在线编译器的 -->
 		<!--<module>jiangzhioffer</module>--> 				<!-- 2016.05 抽空在zheyue那会做的 -->
 		<!--<module>core-java</module>--> 					<!-- 2016.05 学习《corejava》 巩固基础 -->
-													<!-- 2016.06 毕业 拓展视野 opencv opengl等-->
+													<!-- 2016.06 毕业 拓展视野 opencv opengl 安卓等-->
 		<!--<module>nltk</module>-->						<!-- 2016.07 学习《PYTHON自然语言处理》-->
 		<!--<module>framework</module>--> 					<!-- 2016.07 学习《架构探险》 此外学习了hive-->
 													<!-- 2016.08 学习go 在牛客网答题 -->
@@ -33,8 +33,8 @@
 		<!--<module>file-encrypt</module>-->				<!-- 2016.12 文件加密服务器 -->
 													<!-- 2016.12 学习docker -->
 		<!--<module>rocketmq</module>-->					<!-- 2016.12 学习rmq中间件 -->
-		<!--<module>dubbo-client</module>-->     			<!-- 2017.12 学习dobbo框架 -->
-		<!--<module>dubbo-server</module>-->				<!-- 2017.01 学习dobbo框架 -->
+		<module>dubbo-client</module>     			<!-- 2017.12 学习dobbo框架-->
+		<module>dubbo-server</module>				 <!--2017.01 学习dobbo框架 -->
 													<!-- 2017.01 学习mycat框架 -->
 													<!-- 2017.01 学习security-outh2等 -->
 													<!-- 2017.07 学习《java并发编程实战》 -->
@@ -45,16 +45,21 @@
 		<!--<module>extjs</module>-->						<!-- 2017.03 EXTJS 公司培训做的demo -->
 													<!-- 2017.03 宝付3期 -->
 													<!-- 2017.04 宝付3期 -->
-		<!--<module>spring-cloud</module>-->				<!-- 2017.04 学习springCloud -->
-													<!-- 2017.04 学习zookeeper -->
-													<!-- 2017.05 学习设计模式 重构模板 -->
+		<!--<module>spring-cloud</module>-->		<!-- 2017.05 学习springCloud -->
+													<!-- 2017.05 学习kafka -->
+													<!-- 2017.05 学习es -->
 													<!-- 2017.05 学习vue.js -->
         											<!-- 2017.06 规则平台6.0 -->
         											<!-- 2017.07 规则平台6.0 -->
-		<!--<module>mycat</module>-->						<!-- 2017.08 学习mycat，公司分享会 -->
+		<!--<module>mycat</module>-->				<!-- 2017.08 学习mycat，公司分享会 -->
 													<!-- 2017.09 山寨流立方和引擎 -->
-		<!--<module>kafka</module>-->
-		<module>zookeeper</module>
+		<!--<module>kafka</module>-->				<!-- 2017.10 spark -->
+		<module>zookeeper</module>					<!-- 2017.11 hbase -->
+													<!-- 2017.12 zk -->
+													<!-- 2018.01 设计模式1 flink1 重构1-->
+													<!-- 2018.02 mbg redis 年假2周 spring源码+jvm-->
+													<!-- 2018.03 java源码巩固 -->
+
 		<module>guava</module>
 		<!--<module>fastjson</module>-->
 		<!--<module>spark</module>-->

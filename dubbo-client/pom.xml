@@ -37,7 +37,7 @@
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>dubbo</artifactId>
-			<version>2.5.3</version>
+			<version>2.6.0</version>
 			<exclusions>
 				<exclusion>
 					<artifactId>spring</artifactId>
@@ -85,7 +85,12 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-	</dependencies>
+        <dependency>
+            <groupId>com.fengdui.test</groupId>
+            <artifactId>dubbo-server</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 
 
 	<build>

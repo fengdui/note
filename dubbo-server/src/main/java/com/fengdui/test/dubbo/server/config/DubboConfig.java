@@ -1,19 +1,15 @@
-package com.fengdui.dubbo.config;
+package com.fengdui.test.dubbo.server.config;
 
-import com.alibaba.dubbo.config.*;
+import com.alibaba.dubbo.config.ApplicationConfig;
+import com.alibaba.dubbo.config.ProtocolConfig;
+import com.alibaba.dubbo.config.ProviderConfig;
+import com.alibaba.dubbo.config.RegistryConfig;
 import com.alibaba.dubbo.config.spring.AnnotationBean;
-import com.alibaba.dubbo.config.spring.ReferenceBean;
 import com.alibaba.dubbo.remoting.http.servlet.DispatcherServlet;
-import com.fengdui.dubbo.service.IDubboDemoService;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.beans.factory.config.BeanPostProcessor;
-import org.springframework.beans.factory.config.InstantiationAwareBeanPostProcessor;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
-
-import java.beans.PropertyDescriptor;
 
 /**
  * @author FD
@@ -22,6 +18,10 @@ import java.beans.PropertyDescriptor;
 @Configuration
 //@PropertySource(value = "classpath:/dubbo.properties")
 public class DubboConfig {
+
+    public DubboConfig() {
+        System.out.println("DubboConfig---------------------------------------------");
+    }
 
     @Value("${dubbo.application.name}")
     private String applicationName;
@@ -80,13 +80,13 @@ public class DubboConfig {
         return applicationConfig;
     }
 
-    @Bean
-    public static AnnotationBean annotationBean(@Value("${dubbo.annotation.package}") String packageName) {
-
-        AnnotationBean annotationBean = new AnnotationBean();
-        annotationBean.setPackage(packageName);
-        return annotationBean;
-    }
+//    @Bean
+//    public AnnotationBean annotationBean(@Value("${dubbo.annotation.package}") String packageName) {
+//
+//        AnnotationBean annotationBean = new AnnotationBean();
+//        annotationBean.setPackage(packageName);
+//        return annotationBean;
+//    }
 
     /**
      * 注入dubbo注册中心配置,基于zookeeper
