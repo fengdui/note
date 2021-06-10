@@ -14,7 +14,7 @@
     <description>mycat中间件学习</description>
 
     <properties>
-        <jetty-version>8.1.9.v20130131</jetty-version>
+        <jetty-version>9.4.41.v20210516</jetty-version>
         <spring.version>3.2.3.RELEASE</spring.version>
         <cometd-version>2.6.0</cometd-version>
     </properties>
